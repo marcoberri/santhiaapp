@@ -11,15 +11,15 @@ import android.view.View;
 import android.view.ViewGroup;
 
 
-public class FragmentHome  extends Fragment {
+public class FragmentHomeChurchs  extends Fragment {
 	
-	private final static String TAG = FragmentHome.class.getName();
+	private final static String TAG = FragmentHomeChurchs.class.getName();
 	
 	 public View onCreateView(LayoutInflater inflater, 
 	           ViewGroup container, Bundle savedInstanceState) {
-		 
 		 Log.v(TAG, "onCreateView");
-		    return  inflater.inflate(R.layout.frame_home,               container, false);
+		    return  inflater.inflate(R.layout.frame_home_churchs, 
+                    container, false);
 
 	 }
 

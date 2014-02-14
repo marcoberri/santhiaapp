@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/left_fragment"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         class="it.marcoberri.santhiaapp.graph.FragmentLeft" />
