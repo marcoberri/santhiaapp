@@ -3,6 +3,9 @@
 
     <string name="app_name">Santhià App</string>
     <string name="action_settings">Settings</string>
-    <string name="hello_world">Hello world!</string>
+    <string-array name="leftmenu">
+        <item >Voice 1</item>
+        <item >Voice 2</item>
+    </string-array>
 
 </resources>

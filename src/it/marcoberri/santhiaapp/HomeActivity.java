@@ -1,22 +1,26 @@
 package it.marcoberri.santhiaapp;
 
-import android.os.Bundle;
+
 import android.app.Activity;
-import android.support.v4.app.FragmentActivity;
-import android.view.Menu;
+import android.content.res.Configuration;
+import android.os.Bundle;
 
-public class HomeActivity extends FragmentActivity {
+public class HomeActivity extends Activity {
 
-	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_home);
-	}
 
-/*	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		getMenuInflater().inflate(R.menu.home, menu);
-		return true;
+		if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+			finish();
+			return;
+		}
+
+		if (savedInstanceState == null) {
+
+			// create fragment
+			FragmentCenter details = new FragmentCenter();
+			details.setArguments(getIntent().getExtras());
+			getFragmentManager().beginTransaction().add(android.R.id.content, details).commit();
+		}
 	}
-*/
 }
