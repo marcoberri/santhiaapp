@@ -8,4 +8,19 @@
         <item >Voice 2</item>
     </string-array>
 
+    <string name="church_parrochiale">
+        Consacrata dal Vescovo Limenio (371-396 a.C.) e nel V secolo dedicata a S. Stefano, venne insediata su un sacello pagano già esistente dedicato a Giove Ottimo Massimo. La chiesa fu fatta costruire dalla Regina Teodolinda in onore della reliquia di S. Agata (595 circa) e venne ricostruita nel 1150, dopo il disastroso terremoto del 1117. La versione attuale fu edificata su progetto dell’Architetto Talucchi e inaugurata nel 1841. 
+Si tratta di un Duomo, dal momento che presenta tre navate: quella centrale, con una volta a botte affrescata con l’apoteosi di S. Agata, in cui compaiono la SS. Trinità, le schiere degli angeli e i personaggi dell’antico testamento; quella di destra, dedicata a S. Lorenzo e al suo martirio, e quella di sinistra, dedicata a S. Eusebio (Vescovo e Patrono di Vercelli) e al suo martirio. Lungo le navate sono presenti immagini del martirio di S. Agata e dietro l’altare maggiore è visibile, in una nicchia, una statua della Santa del 1861, opera dello scultore Giani di Torino. 
+In ogni navata sono presenti tre cappelle. In quella di sinistra vi sono quelle del Cristo Morto, del SS. Rosario e di S. Giuseppe; in quella di destra si trovano le cappelle di S. Isidoro, del Sacro Cuore e di S. Ignazio.
+Nella cappella di S. Isidoro è visibile il Polittico del Giovenone, dipinto da Girolamo Giovenone 
+nel 1531. È composto da dieci tavole pittoriche, diviso in due parti e circondato da una cornice. Nella cappella di S. Ignazio si trova invece la reliquia del frate cappuccino, cittadino santhiatese, consacrato agli onori degli altari nel 2002. 
+La chiesa è impreziosita dalla presenza dell’Organo Serassi, realizzato dai fratelli Giacomo, Giuseppe, Vittorio e Carlo Serassi nel 1858, capolavoro dell’arte organaria dell’ ‘800 e considerato uno tra i migliori del Piemonte. È formato da due strumenti distinti e completi, capaci di essere suonati anche separatamente. È costruito in stagno, rame e piombo e, oltre ai suoni ordinari, può imitare la voce di altri strumenti come ad esempio la tromba, l’armonica, l’oboe e il corno.
+Vale la pena visitare anche la Cripta, a cui si accede dalle scale laterali poste sotto l’altare: si tratta della prima versione della chiesa dedicata a S. Stefano, da alcuni anni interamente restaurata. Restaurato nel 2009 – e inaugurato l’11 febbraio di quell’anno – è il Battistero, sotto cui sono visibili, attraverso una vetrata, resti umani antichissimi.
+Il campanile, di stile tardo romanico e alto circa 35 metri, è di sezione quadrata ed è formato da sei piani sovrapposti. Le campane elettriche sono state introdotte solo nel 1970.
+        
+    </string>
+    <string name="church_trinita">
+        La Chiesa della SS. Trinità: costruita a cavallo tra il ‘600 e il ‘700, è in fase di restauro. Internamente presenta ancora opere di inestimabile valore, come l’altare ligneo barocco, eseguito dagli intagliatori valsesiani nel XVII secolo, o la pala d’altare, di scuola vercellese, raffigurante il Crocifisso e posizionata presso l’altare della Confraternita della SS. Trinità. Sono visibili all’interno i blasoni delle famiglie santhiatesi più ricche dell’epoca e le raffigurazioni dei 12 apostoli. All’esterno, svetta il bellissimo campanile barocco di pianta quadrata, risalente al XVIII secolo.
+        
+    </string>
 </resources>

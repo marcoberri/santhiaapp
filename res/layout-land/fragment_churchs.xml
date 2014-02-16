@@ -1,8 +1,6 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent" 
-    
-    >
+    android:layout_height="fill_parent" >
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -12,37 +10,99 @@
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:orientation="horizontal" 
             android:layout_gravity="center_horizontal"
-            >
+            android:orientation="horizontal" >
 
-            <Button
-                android:id="@+id/church_1_button"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:text="Button 1" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:orientation="vertical" 
+                android:background="@android:color/holo_blue_light"
+                >
 
-            <Button
-                android:id="@+id/church_2_button"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:layout_toRightOf="@id/church_1_button"
-                android:text="Button 2" />
+                <ImageButton
+                    android:id="@+id/church_1_button"
+                    android:layout_margin="5dp"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_gravity="center_horizontal"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/church_parrochia" />
 
-            <Button
-                android:id="@+id/church_3_button"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:layout_toRightOf="@id/church_2_button"
-                android:text="Button 3" />
+                <TextView
+                    android:id="@+id/church_1_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="Chiesa di Sant&apos;Agata e Giorgio"
+                    android:textSize="10dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:orientation="vertical" 
+                android:background="@android:color/holo_blue_light"
+                >
+
+                <ImageButton
+                    android:id="@+id/church_2_button"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_margin="5dp"
+                    android:layout_gravity="center_horizontal"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/church_trinita" />
+
+                <TextView
+                    android:id="@+id/church_2_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="Chiesa della Santissima Trinità"
+                    android:textSize="10dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:orientation="vertical" 
+                android:background="@android:color/holo_blue_light"
+                >
+
+                <ImageButton
+                 android:layout_margin="5dp"
+                    android:id="@+id/church_3_button"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_gravity="center_horizontal"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/church_sangrato" />
+
+                <TextView
+                    android:id="@+id/church_3_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="Chiesa di San Grato"
+                    android:textSize="10dp" />
+            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-            android:orientation="horizontal" 
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
             android:layout_gravity="center_horizontal"
-            >
+            android:orientation="horizontal" >
 
             <Button
                 android:id="@+id/church_4_button"
