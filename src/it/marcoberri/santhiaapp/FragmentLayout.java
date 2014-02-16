@@ -12,42 +12,58 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
-
-// This code has some modifications to the original 
-// See http://developer.android.com/guide/components/fragments.html
-// for a detailed discussion on the app
-// I don't recommend toast as debug for flow but why not do that to get started.
-// Better to use Log.d() which we introduced before. Toast is fleeting and logs 
-// will always in in the LogCat -- hence they are more useful and better practice;
-// but you can't see them on the phone. It is sort cool to see onCreate() toast
-// as you flip the phone's orientation. It reinforces the lifecycle and the 
-// automatic adjustment of the UI.
-//
-// ATC 2013
-
-package it.marcoberri.santhiaapp;
-
+ */package it.marcoberri.santhiaapp;
 
 import android.app.Activity;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
-
+import android.util.Log;
+import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.Button;
 
 public class FragmentLayout extends Activity {
 
+	protected static String TAG = FragmentLayout.class.getName();
+
+	protected boolean isLeftClosed = false;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		Log.i(TAG, "onCreate");
 		super.onCreate(savedInstanceState);
 
+		final Window window = getWindow();
+		window.requestFeature(Window.FEATURE_CUSTOM_TITLE);
 		setContentView(R.layout.fragment_layout);
+		window.setFeatureInt(Window.FEATURE_CUSTOM_TITLE,
+				R.layout.custom_title_layout);
+
+		final Button refresh = (Button) findViewById(R.id.refreshButton);
+		refresh.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+
+				FragmentManager fragmentManager = getFragmentManager();
+				FragmentTransaction fragmentTransaction = fragmentManager
+						.beginTransaction();
+
+				final FragmentLeft fragmentLeft = (FragmentLeft) fragmentManager
+						.findFragmentById(R.id.titles);
+
+				if (isLeftClosed == false) {
+					fragmentTransaction.hide(fragmentLeft);
+					isLeftClosed = true;
+				} else {
+					fragmentTransaction.show(fragmentLeft);
+					isLeftClosed = false;
+				}
+
+				fragmentTransaction.commit();
+
+			}
+		});
 	}
-
-	// This is a secondary activity, to show what the user has selected when the
-	// screen is not large enough to show it all in one activity.
-
-	
-
-	
-
 
 }

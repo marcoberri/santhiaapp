@@ -1,75 +1,22 @@
-<TabHost xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:android1="http://schemas.android.com/apk/res/android"
-    android1:id="@android:id/tabhost"
-    android1:layout_width="match_parent"
-    android1:layout_height="match_parent"
-    android1:layout_weight="1" >
 
-    <LinearLayout
-        android1:layout_width="match_parent"
-        android1:layout_height="match_parent"
-        android1:orientation="vertical" >
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:baselineAligned="false"
+    android:orientation="horizontal" >
 
-        <TabWidget
-            android1:id="@android:id/tabs"
-            android1:layout_width="match_parent"
-            android1:layout_height="wrap_content" >
-        </TabWidget>
+    <fragment
+        android:id="@+id/titles"
+        android:layout_width="10dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        class="it.marcoberri.santhiaapp.FragmentLeft" />
 
-        <FrameLayout
-            android1:id="@android:id/tabcontent"
-            android1:layout_width="match_parent"
-            android1:layout_height="match_parent" >
+    <FrameLayout
+        android:id="@+id/details"
+        android:layout_width="0px"
+        android:layout_height="match_parent"
+        android:layout_weight="4"
+        android:background="?android:attr/detailsElementBackground" />
 
-            <LinearLayout
-                android1:id="@+id/tab1"
-                android1:layout_width="match_parent"
-                android1:layout_height="match_parent"
-                android1:orientation="vertical" >
-            </LinearLayout>
-
-            <LinearLayout
-                android1:id="@+id/tab2"
-                android1:layout_width="match_parent"
-                android1:layout_height="match_parent"
-                android1:orientation="vertical" >
-            </LinearLayout>
-
-            <LinearLayout
-                android1:id="@+id/tab3"
-                android1:layout_width="match_parent"
-                android1:layout_height="match_parent"
-                android1:orientation="vertical" >
-            </LinearLayout>
-
-            <LinearLayout
-                android1:id="@+id/tab4"
-                android1:layout_width="match_parent"
-                android1:layout_height="match_parent"
-                android1:orientation="vertical" >
-            </LinearLayout>
-
-            <LinearLayout
-                android1:id="@+id/tab5"
-                android1:layout_width="match_parent"
-                android1:layout_height="match_parent"
-                android1:orientation="vertical" >
-            </LinearLayout>
-
-            <LinearLayout
-                android1:id="@+id/tab6"
-                android1:layout_width="match_parent"
-                android1:layout_height="match_parent"
-                android1:orientation="vertical" >
-            </LinearLayout>
-
-            <LinearLayout
-                android1:id="@+id/tab7"
-                android1:layout_width="match_parent"
-                android1:layout_height="match_parent"
-                android1:orientation="vertical" >
-            </LinearLayout>
-        </FrameLayout>
-    </LinearLayout>
-
-</TabHost>
+</LinearLayout>
