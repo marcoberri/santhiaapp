@@ -12,7 +12,7 @@ import android.widget.ListView;
 public class FragmentLeft extends ListFragment {
 	private static String TAG = FragmentLeft.class.getName();
 	boolean mDualPane;
-	int mCurCheckPosition = 0;
+	int mCurCheckPosition = -1;
 
 
 	@Override
@@ -30,7 +30,7 @@ public class FragmentLeft extends ListFragment {
 				&& detailsFrame.getVisibility() == View.VISIBLE;
 
 		if (savedInstanceState != null) {
-			mCurCheckPosition = savedInstanceState.getInt("curChoice", 0);
+			mCurCheckPosition = savedInstanceState.getInt("curChoice", -1);
 		}
 
 		if (mDualPane) {
@@ -60,10 +60,9 @@ public class FragmentLeft extends ListFragment {
 		
 		if (mDualPane) {
 			getListView().setItemChecked(index, true);
+
 			FragmentCenter details = (FragmentCenter) getFragmentManager().findFragmentById(R.id.details);
-		
 			if (details == null || details.getShownIndex() != index) {
-				Log.d(TAG, "Make new fragment to show this selection");
 				details = FragmentCenter.newInstance(index);
 				FragmentTransaction ft = getFragmentManager().beginTransaction();
 				ft.replace(R.id.details, details);

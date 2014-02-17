@@ -46,8 +46,12 @@ public class FragmentLayout extends Activity {
 			public void onClick(View v) {
 
 				FragmentManager fragmentManager = getFragmentManager();
+				
+
+				 
 				FragmentTransaction fragmentTransaction = fragmentManager
 						.beginTransaction();
+				
 
 				final FragmentLeft fragmentLeft = (FragmentLeft) fragmentManager
 						.findFragmentById(R.id.titles);

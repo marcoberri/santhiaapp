@@ -4,8 +4,10 @@
     <string name="app_name">Santhià App</string>
     <string name="action_settings">Settings</string>
     <string-array name="leftmenu">
-        <item >Voice 1</item>
-        <item >Voice 2</item>
+        <item >Chiese</item>
+        <item >Natura</item>
+        <item >Carnevale</item>
+        <item >Mappa</item>
     </string-array>
 
     <string name="church_parrochiale">
@@ -21,6 +23,8 @@ Il campanile, di stile tardo romanico e alto circa 35 metri, è di sezione quadr
     </string>
     <string name="church_trinita">
         La Chiesa della SS. Trinità: costruita a cavallo tra il ‘600 e il ‘700, è in fase di restauro. Internamente presenta ancora opere di inestimabile valore, come l’altare ligneo barocco, eseguito dagli intagliatori valsesiani nel XVII secolo, o la pala d’altare, di scuola vercellese, raffigurante il Crocifisso e posizionata presso l’altare della Confraternita della SS. Trinità. Sono visibili all’interno i blasoni delle famiglie santhiatesi più ricche dell’epoca e le raffigurazioni dei 12 apostoli. All’esterno, svetta il bellissimo campanile barocco di pianta quadrata, risalente al XVIII secolo.
-        
+    </string>
+    <string name="church_sanrocco">
+        La chiesa di San Rocco di Santhià è citata per la prima volta negli Atti di Visita Pastorale del vescovo Giovanni Stefano Ferrero del 1606, mentre non se ne fa cenno nei resoconti di quelle precedenti del 1602 e 1581. Le murature, per quanto completamente intonacate sia all’interno che all’esterno, non rivelano tracce di anomalie tali da far ipotizzare interventi di ricostruzione dell’impianto, il cui sviluppo planimetrico - chiesa ad aula unica con abside semicircolare rivolta ad oriente e protiro addossato alla facciata - è coerente con quello delle cappelle diffuse nella campagne del Piemonte nordorientale tra XVI e XVII secolo. La chiesa è ubicata in posizione periferica rispetto all’abitato attuale di Santhià, lungo la strada che conduce a San Germano Vercellese che, in questo tratto, sembra ricalcare fedelmente il tracciato della strada Vercelli-Ivrea di età romana e medievale. In seguito all’approvazione di un progetto di recupero è risanamento conservativo dell’edificio è stato intrapreso lo scavo dell’interno della chiesa, del protiro e di una fascia di circa 1 m di larghezza lungo i perimetrali esterni fino ad una profondità di circa 1,2 m rispetto al piano di calpestio attuale, al fine di risanare i problemi di risalita di umidità lungo le pareti attraverso la realizzazione di un sottofondo areato. Le indagini hanno permesso di accertare l\'esistenza di un edificio di culto preesistente, caratterizzato dalla facciata leggermente più arretrata rispetto all\'attuale e già dotata di un protiro. Aula e abside attuali, invece, ricalcano fedelmente le murature pertinenti alla fase precedente. Sono state riscontrate, inoltre, ripetute pavimentazioni e una duplice ricostruzione dell\'altare: i resti in muratura del più antico conservavano, inoltre, un lacerto di affresco frontale a motivi geometrico-floreali, recuperato nel corso dei lavori. Lo scavo archeologico ha consentito di accertare l\'uso funerario dell\'edificio, sia nella prima che nella seconda fase: le sepolture indagate (una ventina), collocate all\'interno dell’aula (fig. 1), esternamente alla facciata e lungo il fianco Nord, sono in fossa terragna, talora entro cassa lignea, orientate in senso EO con cranio del defunto a Ovest. L’indagine archeologica non ha consentito di individuare tracce preesistenti alla prima chiesa, ad eccezione di un fossato - verosimilmente agricolo - che attraversava l\'area da NE verso SO.
     </string>
 </resources>
