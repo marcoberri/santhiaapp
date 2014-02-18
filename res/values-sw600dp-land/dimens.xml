@@ -5,4 +5,5 @@
          screen margins) for sw600dp devices (e.g. 7" tablets) here.
     -->
 
+<dimen name="tab_height">50px</dimen>
 </resources>

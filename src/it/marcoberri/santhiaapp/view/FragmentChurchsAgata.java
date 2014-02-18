@@ -53,8 +53,8 @@ public class FragmentChurchsAgata extends FragmentCenter {
 		//mTabHost.addTab(tabSpec3);
 		
 
-		mTabHost.getTabWidget().getChildAt(0).getLayoutParams().height = 30;
-		mTabHost.getTabWidget().getChildAt(1).getLayoutParams().height = 30;
+		mTabHost.getTabWidget().getChildAt(0).getLayoutParams().height = getResources().getDimensionPixelSize(R.dimen.tab_height);
+		mTabHost.getTabWidget().getChildAt(1).getLayoutParams().height = getResources().getDimensionPixelSize(R.dimen.tab_height);
 		//mTabHost.getTabWidget().getChildAt(2).getLayoutParams().height = 30;
 
 	}
