@@ -19,7 +19,7 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="5dp"
-                android:background="@android:color/holo_blue_light"
+                android:background="@drawable/round_corner"
                 android:orientation="vertical" >
 
                 <ImageButton
@@ -29,11 +29,8 @@
 
                 <TextView
                     android:id="@+id/church_1_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:text="Chiesa di Sant&apos;Agata e Giorgio"
-                    android:textSize="10dp" />
+                    style="@style/CustomChurchTitleBox"
+                    android:text="Chiesa di Sant&apos;Agata e Giorgio" />
             </LinearLayout>
 
             <LinearLayout
@@ -42,7 +39,7 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="5dp"
-                android:background="@android:color/holo_blue_light"
+                android:background="@drawable/round_corner"
                 android:orientation="vertical" >
 
                 <ImageButton
@@ -52,11 +49,8 @@
 
                 <TextView
                     android:id="@+id/church_2_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:text="Chiesa della Santissima Trinità"
-                    android:textSize="10dp" />
+                    style="@style/CustomChurchTitleBox"
+                    android:text="Chiesa della Santissima Trinità" />
             </LinearLayout>
 
             <LinearLayout
@@ -65,22 +59,18 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="5dp"
-                android:background="@android:color/holo_blue_light"
+                android:background="@drawable/round_corner"
                 android:orientation="vertical" >
 
                 <ImageButton
                     android:id="@+id/church_3_button"
                     style="@style/CustomChurchImageHome"
-                    android:layout_margin="5dp"
                     android:src="@drawable/church_sangrato" />
 
                 <TextView
                     android:id="@+id/church_3_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:text="Chiesa di San Grato"
-                    android:textSize="10dp" />
+                    style="@style/CustomChurchTitleBox"
+                    android:text="Chiesa di San Grato" />
             </LinearLayout>
         </LinearLayout>
 
@@ -96,22 +86,18 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="5dp"
-                android:background="@android:color/holo_blue_light"
+                android:background="@drawable/round_corner"
                 android:orientation="vertical" >
 
                 <ImageButton
                     android:id="@+id/church_4_button"
                     style="@style/CustomChurchImageHomeSmall"
-                    android:layout_margin="5dp"
                     android:src="@drawable/church_sanrocco" />
 
                 <TextView
                     android:id="@+id/church_4_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:text="Chiesa di San Rocco"
-                    android:textSize="10dp" />
+                    style="@style/CustomChurchTitleBox"
+                    android:text="Chiesa di San Rocco" />
             </LinearLayout>
 
             <LinearLayout
@@ -120,70 +106,58 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="5dp"
-                android:background="@android:color/holo_blue_light"
+                android:background="@drawable/round_corner"
                 android:orientation="vertical" >
 
                 <ImageButton
                     android:id="@+id/church_5_button"
                     style="@style/CustomChurchImageHomeSmall"
-                    android:layout_margin="5dp"
-                    android:src="@drawable/church_sanrocco" />
+                    android:src="@drawable/church_travata" />
 
                 <TextView
                     android:id="@+id/church_5_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:text="Chiesa di San Rocco"
-                    android:textSize="10dp" />
+                    style="@style/CustomChurchTitleBox"
+                    android:text="Chiesa della Travata" />
             </LinearLayout>
 
-  <LinearLayout
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="5dp"
-                android:background="@android:color/holo_blue_light"
+                android:background="@drawable/round_corner"
                 android:orientation="vertical" >
 
                 <ImageButton
                     android:id="@+id/church_6_button"
                     style="@style/CustomChurchImageHomeSmall"
-                    android:layout_margin="5dp"
                     android:src="@drawable/church_sanrocco" />
 
                 <TextView
                     android:id="@+id/church_6_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:text="Chiesa di San Rocco"
-                    android:textSize="10dp" />
+                    style="@style/CustomChurchTitleBox"
+                    android:text="Chiesa di San Rocco" />
             </LinearLayout>
 
-  <LinearLayout
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="5dp"
-                android:background="@android:color/holo_blue_light"
+                android:background="@drawable/round_corner"
                 android:orientation="vertical" >
 
                 <ImageButton
                     android:id="@+id/church_7_button"
                     style="@style/CustomChurchImageHomeSmall"
-                    android:layout_margin="5dp"
-                    android:src="@drawable/church_sanrocco" />
+                    android:src="@drawable/church_santannajpg" />
 
                 <TextView
                     android:id="@+id/church_7_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:text="Chiesa di San Rocco"
-                    android:textSize="10dp" />
+                    style="@style/CustomChurchTitleBox"
+                    android:text="Chiesa di Sant&apos;Anna" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

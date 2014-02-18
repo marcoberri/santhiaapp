@@ -15,47 +15,48 @@ public class FragmentChurchsAgata extends FragmentCenter {
 	protected final static String TAG = FragmentChurchsAgata.class.getName();
 
 	private TabHost mTabHost;
-	
-	public static FragmentChurchsAgata newInstance(int index) {
-		Log.i(TAG, "newInstance");
-		FragmentChurchsAgata f = new FragmentChurchsAgata();
-		Bundle args = new Bundle();
-		args.putInt("index", index);
-		f.setArguments(args);
-		return f;	
-	}
-
-	
+    
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
+		
+		
+		
 		Log.i(TAG, "onCreateView()");
 		View v = inflater.inflate(R.layout.fragment_churchs_agata, container,
 				false);
-	
+
 		mTabHost = (TabHost) v.findViewById(android.R.id.tabhost);
 		setupTabs();
 		return v;
 	}
-	
-	
+
 	private void setupTabs() {
+
 		mTabHost.setup(); // you must call this before adding your tabs!
-	//	mTabHost.addTab(newTab("A", /*"A",*/ R.id.tab_1));
-	//	mTabHost.addTab(newTab("B", /*"B",*/ R.id.tab_2));
-	}
 
-/*	private TabSpec newTab(String tag, int labelId, int tabContentId) {
-		Log.d(TAG, "buildTab(): tag=" + tag);
+		final TabSpec tabSpec1 = mTabHost.newTabSpec("Story");
+		tabSpec1.setContent(R.id.tab_1);
+		tabSpec1.setIndicator("Story");
 
-		View indicator = LayoutInflater.from(getActivity()).inflate(
-				R.layout.tab,
-				(ViewGroup) mRoot.findViewById(android.R.id.tabs), false);
-		//((TextView) indicator.findViewById(R.id.text)).setText(labelId);
-
-		TabSpec tabSpec = mTabHost.newTabSpec(tag);
-	//	tabSpec.setIndicator(indicator);
-		tabSpec.setContent(tabContentId);
-		return tabSpec;
-	}
+		final TabSpec tabSpec2 = mTabHost.newTabSpec("Near");
+		tabSpec2.setContent(R.id.tab_2);
+		tabSpec2.setIndicator("Nei Dintorini");
+		
+	/*	final TabSpec tabSpec3 = mTabHost.newTabSpec("Map");
+		tabSpec3.setContent(R.id.tab_3);
+		tabSpec3.setIndicator("Map");
 */
+
+	    
+		mTabHost.addTab(tabSpec1);
+		mTabHost.addTab(tabSpec2);
+		//mTabHost.addTab(tabSpec3);
+		
+
+		mTabHost.getTabWidget().getChildAt(0).getLayoutParams().height = 30;
+		mTabHost.getTabWidget().getChildAt(1).getLayoutParams().height = 30;
+		//mTabHost.getTabWidget().getChildAt(2).getLayoutParams().height = 30;
+
+	}
+
 }

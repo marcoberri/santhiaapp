@@ -8,21 +8,6 @@
         <!-- API 11 theme customizations can go here. -->
     </style>
 
-    <style name="CustomChurchImageHome">
-        <item name="android:layout_margin">5dp</item>
-        <item name="android:layout_width">150dp</item>
-        <item name="android:layout_height">150dp</item>
-        <item name="android:layout_gravity">center_horizontal</item>
-        <item name="android:adjustViewBounds">true</item>
-    </style>
 
-    <style name="CustomChurchImageHomeSmall">
-        <item name="android:layout_margin">5dp</item>
-        <item name="android:layout_width">190dp</item>
-        <item name="android:layout_height">190dp</item>
-
-        <item name="android:layout_gravity">center_horizontal</item>
-        <item name="android:adjustViewBounds">true</item>
-    </style>
 
 </resources>

@@ -61,14 +61,18 @@ public class FragmentLeft extends ListFragment {
 		if (mDualPane) {
 			getListView().setItemChecked(index, true);
 
-			FragmentCenter details = (FragmentCenter) getFragmentManager().findFragmentById(R.id.details);
-			if (details == null || details.getShownIndex() != index) {
-				details = FragmentCenter.newInstance(index);
+			//FragmentCenter details = (FragmentCenter) getFragmentManager().findFragmentById(R.id.details);
+			Log.d(TAG,"index " + index);
+		//	Log.d(TAG,"details " + details);
+			
+			
+			//if (details == null) {
+				FragmentCenter details = FragmentCenter.newInstance(index);
 				FragmentTransaction ft = getFragmentManager().beginTransaction();
 				ft.replace(R.id.details, details);
 				ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
 				ft.commit();
-			}
+			//}
 
 		} else {
 			Intent intent = new Intent();
