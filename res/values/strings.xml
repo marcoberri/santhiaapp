@@ -3,8 +3,13 @@
 
     <string name="app_name">Santhià App</string>
     <string name="action_settings">Settings</string>
-
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
+    <string name="action_websearch">Web search</string>
+    <string name="app_not_available">Sorry, there\'s no web browser available</string>
+    
     <string-array name="leftmenu">
+        <item>Home</item>
         <item>voice 1</item>
         <item>voice 2</item>
         <item>voice 3</item>

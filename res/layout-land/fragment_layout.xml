@@ -10,7 +10,7 @@
         android:layout_width="10dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        class="it.marcoberri.santhiaapp.FragmentLeft" />
+        class="it.marcoberri.santhiaapp._FragmentLeft" />
 
     <FrameLayout
         android:id="@+id/details"

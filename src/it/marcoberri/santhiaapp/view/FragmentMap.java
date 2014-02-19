@@ -1,118 +1,59 @@
 package it.marcoberri.santhiaapp.view;
 
-import android.app.Fragment;
-
-/*
-import java.util.ArrayList;
-import java.util.List;
-import android.app.Fragment;
-import android.graphics.drawable.Drawable;
+import it.marcoberri.santhiaapp.R;
+import android.app.Activity;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
 import android.widget.Toast;
-import com.google.android.maps.GeoPoint;
-import com.google.android.maps.ItemizedOverlay;
-import com.google.android.maps.MapView;
-import com.google.android.maps.MyLocationOverlay;
-import com.google.android.maps.OverlayItem;
-*/
-public class FragmentMap extends Fragment {
-	/*private MapView map = null;
-	private MyLocationOverlay me = null;
+
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.model.LatLng;
+
+public class FragmentMap extends Activity {
+
+	private final LatLng STARTING_POINT = new LatLng(45.464711, 9.188736);
+
+	private GoogleMap googleMap;
 
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) {
-		return (new FrameLayout(getActivity()));
-	}
-
-	@Override
-	public void onActivityCreated(Bundle savedInstanceState) {
-		super.onActivityCreated(savedInstanceState);
-
-		map = new MapView(getActivity(),
-				"0mjl6OufrY-tHs6WFurtL7rsYyEMpdEqBCbyjXg");
-		map.setClickable(true);
-
-		map.getController().setCenter(
-				getPoint(40.76793169992044, -73.98180484771729));
-		map.getController().setZoom(17);
-		map.setBuiltInZoomControls(true);
-
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		 try {
+	            // Loading map
+	            initilizeMap();
+	 
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        }
 		
-		  Drawable marker=getResources().getDrawable(R.drawable.marker);
-		  
-		  marker.setBounds(0, 0, marker.getIntrinsicWidth(),
-		  marker.getIntrinsicHeight());
-		  
-		  map.getOverlays().add(new SitesOverlay(marker));
-		  
-		  me=new MyLocationOverlay(getActivity(), map);
-		  map.getOverlays().add(me);
-		 
-		((ViewGroup) getView()).addView(map);
 	}
-
-	@Override
-	public void onResume() {
-		super.onResume();
-
-		me.enableCompass();
-	}
-
-	@Override
-	public void onPause() {
-		super.onPause();
-
-		me.disableCompass();
-	}
-
-	private GeoPoint getPoint(double lat, double lon) {
-		return (new GeoPoint((int) (lat * 1000000.0), (int) (lon * 1000000.0)));
-	}
-
-	private class SitesOverlay extends ItemizedOverlay<OverlayItem> {
-		private List<OverlayItem> items = new ArrayList<OverlayItem>();
-
-		public SitesOverlay(Drawable marker) {
-			super(marker);
-
-			boundCenterBottom(marker);
-
-			items.add(new OverlayItem(getPoint(40.748963847316034,
-					-73.96807193756104), "UN", "United Nations"));
-			items.add(new OverlayItem(getPoint(40.76866299974387,
-					-73.98268461227417), "Lincoln Center",
-					"Home of Jazz at Lincoln Center"));
-			items.add(new OverlayItem(getPoint(40.765136435316755,
-					-73.97989511489868), "Carnegie Hall",
-					"Where you go with practice, practice, practice"));
-			items.add(new OverlayItem(getPoint(40.70686417491799,
-					-74.01572942733765), "The Downtown Club",
-					"Original home of the Heisman Trophy"));
-
-			populate();
-		}
-
-		@Override
-		protected OverlayItem createItem(int i) {
-			return (items.get(i));
-		}
-
-		@Override
-		protected boolean onTap(int i) {
-			Toast.makeText(getActivity(), items.get(i).getSnippet(),
-					Toast.LENGTH_SHORT).show();
-
-			return (true);
-		}
-
-		@Override
-		public int size() {
-			return (items.size());
-		}
-	}*/
+	
+	   private void initilizeMap() {
+	        if (googleMap == null) {
+	            googleMap = ((MapFragment) getFragmentManager().findFragmentById(R.id.tab_3_map)).getMap();
+	 
+	            // check if map is created successfully or not
+	            if (googleMap == null) {
+	                Toast.makeText(getApplicationContext(),
+	                        "Sorry! unable to create maps", Toast.LENGTH_SHORT)
+	                        .show();
+	            }
+	        }
+	    }
+	   
+	
+	   @Override
+	    protected void onResume() {
+	        super.onResume();
+	        try {
+	            // Loading map
+	            initilizeMap();
+	 
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        }
+	    }
+	   
+	   
+	
 }
