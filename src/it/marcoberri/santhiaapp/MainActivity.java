@@ -138,12 +138,12 @@ public class MainActivity extends Activity {
 
     private void selectItem(int position) {
         // update the main content by replacing fragments
-        Fragment fragment = new FragmentCenter();
-        Bundle args = new Bundle();
+        final Fragment fragment = new FragmentCenter();
+        final Bundle args = new Bundle();
         args.putInt(FragmentCenter.ARG_VOICE_NUMBER, position);
         fragment.setArguments(args);
 
-        FragmentManager fragmentManager = getFragmentManager();
+        final FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
         mDrawerList.setItemChecked(position, true);
         setTitle(mPlanetTitles[position]);
