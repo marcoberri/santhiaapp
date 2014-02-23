@@ -2,9 +2,7 @@ package it.marcoberri.santhiaapp.view;
 
 import it.marcoberri.santhiaapp.R;
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.app.Fragment;
-import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;

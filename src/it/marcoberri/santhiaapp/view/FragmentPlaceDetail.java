@@ -11,9 +11,9 @@ import android.view.ViewGroup;
 import android.widget.TabHost;
 import android.widget.TabHost.TabSpec;
 
-public class FragmentChurchsAgata extends Fragment {
+public class FragmentPlaceDetail extends Fragment {
 
-	protected final static String TAG = FragmentChurchsAgata.class.getName();
+	protected final static String TAG = FragmentPlaceDetail.class.getName();
 
 	private TabHost mTabHost;
     
@@ -23,7 +23,7 @@ public class FragmentChurchsAgata extends Fragment {
 		
 		
 		Log.i(TAG, "onCreateView()");
-		View v = inflater.inflate(R.layout.fragment_churchs_agata, container,
+		View v = inflater.inflate(R.layout.fragment_place_detail, container,
 				false);
 
 		mTabHost = (TabHost) v.findViewById(android.R.id.tabhost);

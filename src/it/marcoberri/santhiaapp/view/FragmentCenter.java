@@ -45,7 +45,7 @@ public class FragmentCenter extends Fragment {
 							"OnClickListener() - onClick() - R.id.church_1_button");
 					final FragmentTransaction ft = getFragmentManager()
 							.beginTransaction();
-					ft.replace(R.id.content_frame, new FragmentChurchsAgata());
+					ft.replace(R.id.content_frame, new FragmentPlaceDetail());
 
 					ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
 					ft.commit();
