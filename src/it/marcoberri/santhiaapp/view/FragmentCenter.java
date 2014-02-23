@@ -57,6 +57,15 @@ public class FragmentCenter extends Fragment {
 			return rootView;
 		}
 		
+
+		if (index == 2) {
+			final String title = getResources().getStringArray(R.array.leftmenu)[index];
+			getActivity().setTitle(title);
+			final FragmentTransaction ft = getFragmentManager().beginTransaction();
+			ft.replace(R.id.content_frame, new FragmentPlace());
+			ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+			ft.commit();
+		}	
 		
 		if (index == 4) {
 			final String title = getResources().getStringArray(R.array.leftmenu)[index];
@@ -67,6 +76,8 @@ public class FragmentCenter extends Fragment {
 			ft.commit();
 		}		
 
+		
+		
 		return null;
 
 

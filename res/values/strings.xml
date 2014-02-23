@@ -11,11 +11,21 @@
     <string-array name="leftmenu">
         <item>Home</item>
         <item>voice 1</item>
-        <item>voice 2</item>
+        <item>Interesse Storico</item>
         <item>voice 3</item>
         <item>Make a Tour</item>
     </string-array>
 
+    
+    <string-array name="placelist">
+        <item>church 1</item>
+        <item>church 2</item>
+        <item>church 3</item>
+        <item>church 4</item>
+        <item>church 5</item>
+    </string-array>
+    
+    
     <string name="church_parrochiale">Consacrata dal Vescovo Limenio (371-396 a.C.) e nel V secolo dedicata a S. Stefano, venne insediata su un sacello pagano già esistente dedicato a Giove Ottimo Massimo. La chiesa fu fatta costruire dalla Regina Teodolinda in onore della reliquia di S. Agata (595 circa) e venne ricostruita nel 1150, dopo il disastroso terremoto del 1117. La versione attuale fu edificata su progetto dell’Architetto Talucchi e inaugurata nel 1841.\n\n 
 Si tratta di un Duomo, dal momento che presenta tre navate: quella centrale, con una volta a botte affrescata con l’apoteosi di S. Agata, in cui compaiono la SS. Trinità, le schiere degli angeli e i personaggi dell’antico testamento; quella di destra, dedicata a S. Lorenzo e al suo martirio, e quella di sinistra, dedicata a S. Eusebio (Vescovo e Patrono di Vercelli) e al suo martirio. Lungo le navate sono presenti immagini del martirio di S. Agata e dietro l’altare maggiore è visibile, in una nicchia, una statua della Santa del 1861, opera dello scultore Giani di Torino.\n\n 
 In ogni navata sono presenti tre cappelle. In quella di sinistra vi sono quelle del Cristo Morto, del SS. Rosario e di S. Giuseppe; in quella di destra si trovano le cappelle di S. Isidoro, del Sacro Cuore e di S. Ignazio.\n\n
