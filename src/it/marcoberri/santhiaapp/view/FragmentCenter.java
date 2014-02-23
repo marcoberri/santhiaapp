@@ -26,8 +26,13 @@ public class FragmentCenter extends Fragment {
 		
 		int index = getArguments().getInt(ARG_VOICE_NUMBER);
 		if (index == 0) {
-
-		}
+			final String title = getResources().getStringArray(R.array.leftmenu)[index];
+			getActivity().setTitle(title);
+			final FragmentTransaction ft = getFragmentManager().beginTransaction();
+			ft.replace(R.id.content_frame, new FragmentHome());
+			ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+			ft.commit();
+		}		
 
 		if (index == 1) {
 			

@@ -34,19 +34,23 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical" >
 
-                        <TextView
-                            android:id="@+id/churchs_agata_detail_text"
+                                             <TextView
+                            android:id="@+id/place_detail_title"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_margin="8dp"
                             android:layout_gravity="center_horizontal"
-                            android:text="@string/church_parrochiale" />
-
-                        <ImageView
-                            android:id="@+id/churchs_agata_detail_image"
+                            android:text="@string/dummy_title" />
+                        
+                                             
+                        <TextView
+                            android:id="@+id/place_detail_text"
                             android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:contentDescription="Santa Agata e Giorgio"
-                            android:src="@drawable/church_parrochia" />
+                            android:layout_height="wrap_content"
+                            android:layout_margin="8dp"
+                            android:layout_gravity="center_horizontal"
+                            android:text="@string/dummy_text" />
+
                     </LinearLayout>
                 </ScrollView>
             </FrameLayout>
@@ -88,5 +92,5 @@
         </FrameLayout>
     </LinearLayout>
 
-</TabHost> <!--  -->
+</TabHost>
 

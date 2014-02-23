@@ -33,7 +33,7 @@
 		android:layout_gravity="right"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-    	android:src="@drawable/ic_launcher"
+    	android:background="@drawable/ic_museum_item"
          />
 
 </LinearLayout>

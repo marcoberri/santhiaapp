@@ -18,10 +18,16 @@ import android.widget.Toast;
 public class FragmentPlace extends Fragment {
 
 	protected final static String TAG = FragmentPlace.class.getName();
-	PlaceListModel[] list = {new PlaceListModel("Chiesa di Sant'Agata e Gioegio","Parrochia di Santhià",0, 1),new PlaceListModel("B","b",0,2),new PlaceListModel("C","c",0,3)};
-	
+	final static PlaceListModel[] list = {
+			new PlaceListModel("Chiesa di Sant'Agata e Giorgio",
+					"Parrochia di Santhià", 0, 1),
+			new PlaceListModel("Chiesa Santissima Trinità", "da poco ristrutturata", 0, 2),
+			new PlaceListModel("Chiesa di San Grato", "Oratorio", 0, 3),
+			new PlaceListModel("Galleria di Arte Moderna", "Premio nazionale", 0, 4),
+			new PlaceListModel("Ostello della via Francigena", "Ospitalità", 0, 5),
+			new PlaceListModel("Il Mulino Ugliengo", "ex Consorzio agrario", 0, 6)
+	};
 
-	
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 
@@ -30,37 +36,31 @@ public class FragmentPlace extends Fragment {
 				false);
 
 		final ListView listview = (ListView) v.findViewById(R.id.listViewPlace);
-		
-		
-		
 
+		final PlaceListAdapter adapter = new PlaceListAdapter(v.getContext(),
+				R.layout.fragment_place_list, list);
 
-		
-		 final PlaceListAdapter adapter = new PlaceListAdapter(v.getContext(), R.layout.fragment_place_list,list);
-		
-		 listview.setAdapter(adapter);
-		
-		 listview.setOnItemClickListener(new OnItemClickListener() {
+		listview.setAdapter(adapter);
+
+		listview.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
-			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
-					long arg3) {
+			public void onItemClick(AdapterView<?> arg0, View arg1,
+					int position, long arg3) {
+
+				final FragmentTransaction ft = getFragmentManager()
+						.beginTransaction();
+				FragmentPlaceDetail detail = new FragmentPlaceDetail();
+				detail.setPlaceModel(FragmentPlace.list[position]);
+				ft.replace(R.id.content_frame, detail);
 				
-				Toast.makeText(getActivity(), "" + arg2, Toast.LENGTH_SHORT).show();
-				
-				
-				final FragmentTransaction ft = getFragmentManager().beginTransaction();
-				ft.replace(R.id.content_frame, new FragmentPlaceDetail());
 				ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
 				ft.commit();
 
-				
 			}
-		
-		 
-		 });
-		 return v;
+
+		});
+		return v;
 	}
 
-	
 }
