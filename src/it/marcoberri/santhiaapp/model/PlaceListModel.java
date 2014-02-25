@@ -16,6 +16,7 @@ public class PlaceListModel {
 		this.title = title;
 		this.subtitle = subtitle;
 		this.image = image;
+		this.id = id;
 
 	}
 

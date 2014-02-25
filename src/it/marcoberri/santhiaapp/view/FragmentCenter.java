@@ -29,8 +29,10 @@ public class FragmentCenter extends Fragment {
 			final String title = getResources().getStringArray(R.array.leftmenu)[index];
 			getActivity().setTitle(title);
 			final FragmentTransaction ft = getFragmentManager().beginTransaction();
-			ft.replace(R.id.content_frame, new FragmentHome());
+			
+			ft.replace(R.id.content_frame, new FragmentHome()).addToBackStack(null);
 			ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+			
 			ft.commit();
 		}		
 
@@ -50,7 +52,7 @@ public class FragmentCenter extends Fragment {
 							"OnClickListener() - onClick() - R.id.church_1_button");
 					final FragmentTransaction ft = getFragmentManager()
 							.beginTransaction();
-					ft.replace(R.id.content_frame, new FragmentPlaceDetail());
+					ft.replace(R.id.content_frame, new FragmentPlaceDetail()).addToBackStack(null);
 
 					ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
 					ft.commit();
@@ -67,7 +69,7 @@ public class FragmentCenter extends Fragment {
 			final String title = getResources().getStringArray(R.array.leftmenu)[index];
 			getActivity().setTitle(title);
 			final FragmentTransaction ft = getFragmentManager().beginTransaction();
-			ft.replace(R.id.content_frame, new FragmentPlace());
+			ft.replace(R.id.content_frame, new FragmentPlace()).addToBackStack(null);
 			ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
 			ft.commit();
 		}	
@@ -76,7 +78,7 @@ public class FragmentCenter extends Fragment {
 			final String title = getResources().getStringArray(R.array.leftmenu)[index];
 			getActivity().setTitle(title);
 			final FragmentTransaction ft = getFragmentManager().beginTransaction();
-			ft.replace(R.id.content_frame, new FragmentTour());
+			ft.replace(R.id.content_frame, new FragmentTour()).addToBackStack(null);
 			ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
 			ft.commit();
 		}		

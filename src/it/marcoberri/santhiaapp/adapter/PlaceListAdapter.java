@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class PlaceListAdapter extends ArrayAdapter<PlaceListModel>  {
@@ -52,6 +53,11 @@ public class PlaceListAdapter extends ArrayAdapter<PlaceListModel>  {
 		final TextView textViewBottom = (TextView) rowView
 				.findViewById(R.id.place_list_item_bottom_text_view);
 		textViewBottom.setText(data[position].getSubtitle());
+		
+		if(data[position].getImage() != 0){
+			ImageView image = (ImageView)rowView.findViewById(R.id.place_list_item_image_view);
+			image.setBackgroundResource(data[position].getImage());
+		}
 
 		return rowView;
 	}

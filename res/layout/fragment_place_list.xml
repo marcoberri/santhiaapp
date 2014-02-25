@@ -1,23 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent" 
-	android:orientation="vertical"    
-    >
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
 
-  <EditText android:id="@+id/listViewPlace_search"
+    <EditText
+        android:id="@+id/listViewPlace_search"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:hint="Search products.."
-        android:inputType="textVisiblePassword"/>
-  
-<ListView
-    android:id="@+id/listViewPlace"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent" 
-            android:choiceMode="singleChoice"
-        
-        android:listSelector="@drawable/list_item_place_selector"
-    />
+        android:inputType="textVisiblePassword" />
+
+    <ListView
+        android:id="@+id/listViewPlace"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:choiceMode="singleChoice"
+        android:listSelector="@drawable/list_item_place_selector" />
+
 </LinearLayout>

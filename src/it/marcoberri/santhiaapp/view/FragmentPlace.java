@@ -5,10 +5,12 @@ import it.marcoberri.santhiaapp.adapter.PlaceListAdapter;
 import it.marcoberri.santhiaapp.model.PlaceListModel;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
+import android.content.DialogInterface.OnKeyListener;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,45 +30,45 @@ public class FragmentPlace extends Fragment implements OnScrollListener {
 
 	final static PlaceListModel[] list = {
 			new PlaceListModel("Chiesa di Sant'Agata e Giorgio",
-					"Parrochia di Santhi�", 0, 1),
+					"Parrochia di Santhi�", R.drawable.ic_church_item, 1),
 			new PlaceListModel("Chiesa Santissima Trinit�",
 					"da poco ristrutturata", 0, 2),
-			new PlaceListModel("Chiesa di San Grato", "Oratorio", 0, 3),
+			new PlaceListModel("Chiesa di San Grato", "Oratorio",  R.drawable.ic_church_item, 3),
 			new PlaceListModel("Galleria di Arte Moderna", "Premio nazionale",
-					0, 4),
+					R.drawable.ic_galley_item, 4),
 			new PlaceListModel("Ostello della via Francigena", "Ospitalitaa", 0,
 					5),
-			new PlaceListModel("Il Mulino Ugliengo", "ex Consorzio agrario", 0,
+			new PlaceListModel("Il Mulino Ugliengo", "ex Consorzio agrario", R.drawable.ic_windmill_item,
 					6),
-			new PlaceListModel("Il Mulino Ugliengo", "ex Consorzio agrario", 0,
+			new PlaceListModel("Il Mulino Ugliengo", "ex Consorzio agrario", R.drawable.ic_windmill_item,
 					7),
-			new PlaceListModel("Il Mulino Ugliengo", "ex Consorzio agrario", 0,
+			new PlaceListModel("Il Mulino Ugliengo", "ex Consorzio agrario", R.drawable.ic_windmill_item,
 					8),
-			new PlaceListModel("Il Mulino Ugliengo", "ex Consorzio agrario", 0,
+			new PlaceListModel("Il Mulino Ugliengo", "ex Consorzio agrario", R.drawable.ic_windmill_item,
 					9),
-			new PlaceListModel("Il Mulino Ugliengo", "ex Consorzio agrario", 0,
+			new PlaceListModel("Il Mulino Ugliengo", "ex Consorzio agrario", R.drawable.ic_windmill_item,
 					10),
-			new PlaceListModel("Il Mulino Ugliengo", "ex Consorzio agrario", 0,
+			new PlaceListModel("Il Mulino Ugliengo", "ex Consorzio agrario", R.drawable.ic_windmill_item,
 					11),
-			new PlaceListModel("Il Mulino Ugliengo", "ex Consorzio agrario", 0,
+			new PlaceListModel("Il Mulino Ugliengo", "ex Consorzio agrario", R.drawable.ic_windmill_item,
 					12),
-			new PlaceListModel("Il Mulino Ugliengo", "ex Consorzio agrario", 0,
+			new PlaceListModel("Il Mulino Ugliengo", "ex Consorzio agrario", R.drawable.ic_windmill_item,
 					13),
-			new PlaceListModel("Il Mulino Ugliengo", "ex Consorzio agrario", 0,
+			new PlaceListModel("Il Mulino Ugliengo", "ex Consorzio agrario", R.drawable.ic_windmill_item,
 					14),
-			new PlaceListModel("Il Mulino Ugliengo", "ex Consorzio agrario", 0,
+			new PlaceListModel("Il Mulino Ugliengo", "ex Consorzio agrario", R.drawable.ic_windmill_item,
 					15),
-			new PlaceListModel("Il Mulino Ugliengo", "ex Consorzio agrario", 0,
+			new PlaceListModel("Il Mulino Ugliengo", "ex Consorzio agrario", R.drawable.ic_windmill_item,
 					16),
-			new PlaceListModel("Il Mulino Ugliengo", "ex Consorzio agrario", 0,
+			new PlaceListModel("Il Mulino Ugliengo", "ex Consorzio agrario", R.drawable.ic_windmill_item,
 					17),
-			new PlaceListModel("Il Mulino Ugliengo", "ex Consorzio agrario", 0,
+			new PlaceListModel("Il Mulino Ugliengo", "ex Consorzio agrario", R.drawable.ic_windmill_item,
 					18),
-			new PlaceListModel("Il Mulino Ugliengo", "ex Consorzio agrario", 0,
+			new PlaceListModel("Il Mulino Ugliengo", "ex Consorzio agrario", R.drawable.ic_windmill_item,
 					19),
-			new PlaceListModel("Il Mulino Ugliengo", "ex Consorzio agrario", 0,
+			new PlaceListModel("Il Mulino Ugliengo", "ex Consorzio agrario", R.drawable.ic_windmill_item,
 					20),
-			new PlaceListModel("Il Mulino Ugliengo", "ex Consorzio agrario", 0,
+			new PlaceListModel("Il Mulino Ugliengo", "ex Consorzio agrario", R.drawable.ic_windmill_item,
 					21)
 
 	};
@@ -130,6 +132,7 @@ public class FragmentPlace extends Fragment implements OnScrollListener {
 			}
 
 		});
+		
 		return v;
 	}
 
@@ -145,6 +148,8 @@ public class FragmentPlace extends Fragment implements OnScrollListener {
 		 */
 	}
 
+	
+	
 	@Override
 	public void onScrollStateChanged(AbsListView view, int scrollState) {
 

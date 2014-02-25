@@ -33,9 +33,23 @@ public class FragmentPlaceDetail extends Fragment {
 		
 		final TabHost mTabHost = (TabHost) v.findViewById(android.R.id.tabhost);
 		setupTabs(mTabHost);
+		
+		
+
+/*		this..onKeyDown(int keyCode, KeyEvent event) {
+		    switch(keyCode){
+		    case KeyEvent.KEYCODE_BACK:
+		        // do something here 
+		        return true;
+		    }
+		    return super.onKeyDown(keyCode, event);
+		}
+	*/	
+		
 		return v;
 	}
 
+	
 	private void setupTabs(TabHost mTabHost) {
 
 		mTabHost.setup(); 

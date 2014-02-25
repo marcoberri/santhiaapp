@@ -42,9 +42,9 @@
             android:id="@+id/place_list_item_top_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
+            android:layout_gravity="left"
             
-            android:text="item1"
+            android:text="@string/dummy_title"
             android:textColor="#040404"
             android:textSize="20sp"
             android:textStyle="bold" 
@@ -55,23 +55,24 @@
             android:id="@+id/place_list_item_bottom_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="item2"
+            android:layout_gravity="left"
+            android:text="@string/dummy_title"
             android:textColor="#343434"
             android:textSize="12sp"
             android:typeface="sans"
              />
         
-                    <ImageView
-        android:id="@+id/arrowrightImageView"
-        android:contentDescription="@string/app_name"
-        android:layout_width="wrap_content"
-        android:paddingLeft="5dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="top|right"
-        android:src="@drawable/ic_right_arrow_blue" />
+
     </LinearLayout>
 
-
+    <ImageView
+        android:id="@+id/arrowrightImageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/thumbnail"
+        android:layout_alignParentRight="true"
+        android:contentDescription="@string/app_name"
+        android:paddingRight="5dp"
+        android:src="@drawable/ic_right_arrow_blue" />
                     
 </RelativeLayout>
