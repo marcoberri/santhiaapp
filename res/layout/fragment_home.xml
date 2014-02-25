@@ -1,33 +1,196 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent" >
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
 
-    <LinearLayout
+    <TableLayout
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical" >
+        android:layout_height="fill_parent"
+        android:layout_marginTop="10dp" >
 
-        <LinearLayout
+        <TableRow
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_gravity="center_horizontal"
-            android:orientation="horizontal" >
+            android:layout_height="wrap_content"
+            android:layout_weight="0.6"
+            android:stretchColumns="*" >
 
-            <ImageButton
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_home_place"
-                android:background="@android:color/transparent" 
-                 />
-            
-            <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_museum_item" 
-                android:background="@android:color/transparent" 
-                />
-            
-        </LinearLayout>
-    </LinearLayout>
+                android:layout_column="2"
+                android:layout_margin="8dp"
+                android:layout_weight="1"
+                android:background="@drawable/round_corner"
+                android:orientation="vertical" >
 
-</ScrollView>
+                <ImageButton
+                    android:id="@+id/home_button_place"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/ic_home_place" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_marginTop="4dp"
+                     android:layout_marginRight="4dp"
+                    android:text="Place" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_column="2"
+                android:layout_margin="8dp"
+                android:layout_weight="1"
+                android:background="@drawable/round_corner"
+                android:orientation="vertical" >
+
+                <ImageButton
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/ic_home_place" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_marginTop="4dp"
+                    android:text="Place" />
+            </LinearLayout>
+        </TableRow>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+          <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.6"
+            android:stretchColumns="*" >
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_column="2"
+                android:layout_margin="8dp"
+                android:layout_weight="1"
+                android:background="@drawable/round_corner"
+                android:orientation="vertical" >
+
+                <ImageButton
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/ic_home_place" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_marginTop="4dp"
+                    android:text="Place" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_column="2"
+                android:layout_margin="8dp"
+                android:layout_weight="1"
+                android:background="@drawable/round_corner"
+                android:orientation="vertical" >
+
+                <ImageButton
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/ic_home_place" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_marginTop="4dp"
+                    android:text="Place" />
+            </LinearLayout>
+        </TableRow>
+        
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+            <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.6"
+            android:stretchColumns="*" >
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_column="2"
+                android:layout_margin="8dp"
+                android:layout_weight="1"
+                android:background="@drawable/round_corner"
+                android:orientation="vertical" >
+
+                <ImageButton
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/ic_home_place" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_marginTop="4dp"
+                    android:text="Place" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_column="2"
+                android:layout_margin="8dp"
+                android:layout_weight="1"
+                android:background="@drawable/round_corner"
+                android:orientation="vertical" >
+
+                <ImageButton
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/ic_home_place" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_marginTop="4dp"
+                    android:text="Place" />
+            </LinearLayout>
+        </TableRow>
+        
+    </TableLayout>
+
+</LinearLayout>

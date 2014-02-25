@@ -31,7 +31,7 @@ public class FragmentPlaceDetail extends Fragment {
 		final TextView title = (TextView)v.findViewById(R.id.place_detail_title);
 		title.setText(placeListModel.getTitle());
 		
-		TabHost mTabHost = (TabHost) v.findViewById(android.R.id.tabhost);
+		final TabHost mTabHost = (TabHost) v.findViewById(android.R.id.tabhost);
 		setupTabs(mTabHost);
 		return v;
 	}
