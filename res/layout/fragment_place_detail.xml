@@ -34,23 +34,21 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical" >
 
-                                             <TextView
+                        <TextView
                             android:id="@+id/place_detail_title"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_margin="8dp"
                             android:layout_gravity="center_horizontal"
+                            android:layout_margin="8dp"
                             android:text="@string/dummy_title" />
-                        
-                                             
+
                         <TextView
                             android:id="@+id/place_detail_text"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_margin="8dp"
                             android:layout_gravity="center_horizontal"
+                            android:layout_margin="8dp"
                             android:text="@string/dummy_text" />
-
                     </LinearLayout>
                 </ScrollView>
             </FrameLayout>
@@ -60,21 +58,24 @@
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent" >
 
-                <ScrollView
+                <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" >
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" >
 
-                    <LinearLayout
-                        android:layout_width="wrap_content"
+                    <Gallery
+                        android:id="@+id/tab_2_gallery"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content" />
+
+                    <ImageView
+                        android:id="@+id/imageView1"
+                                                android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical" >
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/dummy_text" />
-                    </LinearLayout>
-                </ScrollView>
+                        android:layout_gravity="center_horizontal"
+                        android:src="@drawable/church_trinita" />
+                    
+                </LinearLayout>
             </FrameLayout>
 
             <FrameLayout
@@ -82,15 +83,13 @@
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent" >
 
-                <ScrollView
+                <fragment
+                    android:id="@+id/tab_3_map"
+                    android:name="com.google.android.gms.maps.MapFragment"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" >
-
-                  
-                </ScrollView>
+                    android:layout_height="wrap_content" />
             </FrameLayout>
         </FrameLayout>
     </LinearLayout>
 
 </TabHost>
-
