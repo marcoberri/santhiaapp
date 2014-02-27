@@ -1,5 +1,6 @@
 package it.marcoberri.santhiaapp.view;
 
+import it.marcoberri.santhiaapp.MainActivity;
 import it.marcoberri.santhiaapp.R;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
@@ -36,7 +37,7 @@ public class FragmentCenter extends Fragment {
 			ft.commit();
 		}		
 
-		if (index == 1) {
+	/*	if (index == 1) {
 			
 			//todo add al fragmentchurcs
 			final View rootView = inflater.inflate(R.layout.fragment_churchs,
@@ -63,19 +64,28 @@ public class FragmentCenter extends Fragment {
 			getActivity().setTitle(title);
 			return rootView;
 		}
-		
+		*/
 
-		if (index == 2) {
-			final String title = getResources().getStringArray(R.array.leftmenu)[index];
+		if (index == 1) {
+			final String title = MainActivity.mPlanetTitles[index].getTitle();
 			getActivity().setTitle(title);
 			final FragmentTransaction ft = getFragmentManager().beginTransaction();
 			ft.replace(R.id.content_frame, new FragmentPlace()).addToBackStack(null);
 			ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
 			ft.commit();
 		}	
+
+		if (index == 2) {
+			final String title = MainActivity.mPlanetTitles[index].getTitle();
+			getActivity().setTitle(title);
+			final FragmentTransaction ft = getFragmentManager().beginTransaction();
+			ft.replace(R.id.content_frame, new FragmentCarnevale()).addToBackStack(null);
+			ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+			ft.commit();
+		}	
 		
-		if (index == 4) {
-			final String title = getResources().getStringArray(R.array.leftmenu)[index];
+		if (index == 3) {
+			final String title = MainActivity.mPlanetTitles[index].getTitle();
 			getActivity().setTitle(title);
 			final FragmentTransaction ft = getFragmentManager().beginTransaction();
 			ft.replace(R.id.content_frame, new FragmentTour()).addToBackStack(null);

@@ -1,11 +1,11 @@
 package it.marcoberri.santhiaapp;
 
+import it.marcoberri.santhiaapp.adapter.LeftListAdapter;
+import it.marcoberri.santhiaapp.model.LeftListModel;
 import it.marcoberri.santhiaapp.view.FragmentCenter;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
-import android.app.SearchManager;
-import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
@@ -16,9 +16,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
 
 public class MainActivity extends Activity {
@@ -28,29 +26,31 @@ public class MainActivity extends Activity {
 
     private CharSequence mDrawerTitle;
     private CharSequence mTitle;
-    private String[] mPlanetTitles;
+    
 
+	public final static LeftListModel[] mPlanetTitles = {
+			new LeftListModel("Home", 0, 0),
+			new LeftListModel("Place", 0, 1),
+			new LeftListModel("Carnevale", 0, 2),
+			new LeftListModel("Tour", 0, 3)
+
+	};
+	
+	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         mTitle = mDrawerTitle = getTitle();
-        mPlanetTitles = getResources().getStringArray(R.array.leftmenu);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerList = (ListView) findViewById(R.id.left_drawer);
-
-        // set a custom shadow that overlays the main content when the drawer opens
         mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
-        // set up the drawer's list view with items and click listener
-        mDrawerList.setAdapter(new ArrayAdapter<String>(this,
-                R.layout.drawer_list_item, mPlanetTitles));
+        
+        final LeftListAdapter adapter = new LeftListAdapter(this, R.layout.left_list_item, mPlanetTitles);
+        mDrawerList.setAdapter(adapter);
         mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
-
-        // enable ActionBar app icon to behave as action to toggle nav drawer
         getActionBar().setDisplayHomeAsUpEnabled(true);
         getActionBar().setHomeButtonEnabled(true);
-
 
         mDrawerToggle = new ActionBarDrawerToggle(
                 this,                  
@@ -96,6 +96,7 @@ public class MainActivity extends Activity {
         if (mDrawerToggle.onOptionsItemSelected(item)) {
             return true;
         }
+        /*
         // Handle action buttons
         switch(item.getItemId()) {
         case R.id.action_websearch:
@@ -109,7 +110,9 @@ public class MainActivity extends Activity {
             return true;
         default:
             return super.onOptionsItemSelected(item);
-        }
+        }*/
+        
+        return super.onOptionsItemSelected(item);
     }
 
     /* The click listner for ListView in the navigation drawer */
@@ -130,7 +133,7 @@ public class MainActivity extends Activity {
         final FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
         mDrawerList.setItemChecked(position, true);
-        setTitle(mPlanetTitles[position]);
+        setTitle(mPlanetTitles[position].getTitle());
         mDrawerLayout.closeDrawer(mDrawerList);
     }
 
