@@ -1,5 +1,17 @@
 package it.marcoberri.santhiaapp.view;
 
+import it.marcoberri.santhiaapp.R;
+import it.marcoberri.santhiaapp.model.PlaceModel;
+import android.app.Fragment;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TabHost;
+import android.widget.TabHost.TabSpec;
+import android.widget.TextView;
+
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
@@ -8,24 +20,12 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-import it.marcoberri.santhiaapp.R;
-import it.marcoberri.santhiaapp.model.PlaceListModel;
-import android.app.Fragment;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TabHost;
-import android.widget.TextView;
-import android.widget.TabHost.TabSpec;
-
 public class FragmentPlaceDetail extends Fragment {
 
 	protected final static String TAG = FragmentPlaceDetail.class.getName();
 
 	private int position;
-	private PlaceListModel placeListModel;
+	private PlaceModel placeModel;
 	static final LatLng CHIESA = new LatLng(45.366255, 8.174720);
 
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -37,7 +37,7 @@ public class FragmentPlaceDetail extends Fragment {
 
 		final TextView title = (TextView) v
 				.findViewById(R.id.place_detail_title);
-		title.setText(placeListModel.getTitle());
+		title.setText(placeModel.getTitle());
 
 		final TabHost mTabHost = (TabHost) v.findViewById(android.R.id.tabhost);
 		setupTabs(mTabHost);
@@ -109,8 +109,8 @@ public class FragmentPlaceDetail extends Fragment {
 		this.position = position;
 	}
 
-	public void setPlaceModel(PlaceListModel placeListModel) {
-		this.placeListModel = placeListModel;
+	public void setPlaceModel(PlaceModel placeModel) {
+		this.placeModel = placeModel;
 
 	}
 

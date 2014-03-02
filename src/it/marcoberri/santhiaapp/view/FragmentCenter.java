@@ -69,8 +69,10 @@ public class FragmentCenter extends Fragment {
 		if (index == 1) {
 			final String title = MainActivity.mPlanetTitles[index].getTitle();
 			getActivity().setTitle(title);
+			FragmentPlace fplace = new FragmentPlace();
+			
 			final FragmentTransaction ft = getFragmentManager().beginTransaction();
-			ft.replace(R.id.content_frame, new FragmentPlace()).addToBackStack(null);
+			ft.replace(R.id.content_frame, fplace).addToBackStack(null);
 			ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
 			ft.commit();
 		}	

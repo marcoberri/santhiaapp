@@ -1,7 +1,7 @@
 package it.marcoberri.santhiaapp.adapter;
 
 import it.marcoberri.santhiaapp.R;
-import it.marcoberri.santhiaapp.model.PlaceListModel;
+import it.marcoberri.santhiaapp.model.PlaceModel;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,13 +10,13 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class PlaceListAdapter extends ArrayAdapter<PlaceListModel>  {
+public class PlaceListAdapter extends ArrayAdapter<PlaceModel>  {
 	private final Context context;
-	private final PlaceListModel[] data;
+	private final PlaceModel[] data;
 	//private int count = 5;
 
 	public PlaceListAdapter(Context context, int textViewResourceId,
-			PlaceListModel[] data) {
+			PlaceModel[] data) {
 		super(context, textViewResourceId, data);
 		this.context = context;
 		this.data = data;
@@ -26,7 +26,7 @@ public class PlaceListAdapter extends ArrayAdapter<PlaceListModel>  {
 		return count;
 	}
 */
-	public PlaceListModel getItem(int pos) {
+	public PlaceModel getItem(int pos) {
 		return this.getItem(pos);
 	}
 /*

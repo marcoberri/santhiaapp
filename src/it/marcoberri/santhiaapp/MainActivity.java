@@ -1,8 +1,14 @@
 package it.marcoberri.santhiaapp;
 
+import java.io.IOException;
+
+import com.google.gson.Gson;
+
 import it.marcoberri.santhiaapp.adapter.LeftListAdapter;
 import it.marcoberri.santhiaapp.model.LeftListModel;
+import it.marcoberri.santhiaapp.utils.HttpUtils;
 import it.marcoberri.santhiaapp.view.FragmentCenter;
+import it.marcoberri.santhiaapp.wrapper.PlacesWrapper;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
@@ -11,6 +17,7 @@ import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -18,142 +25,149 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-
 public class MainActivity extends Activity {
-    private DrawerLayout mDrawerLayout;
-    private ListView mDrawerList;
-    private ActionBarDrawerToggle mDrawerToggle;
 
-    private CharSequence mDrawerTitle;
-    private CharSequence mTitle;
-    
+	private static final String TAG = MainActivity.class.getName();
+
+	private DrawerLayout mDrawerLayout;
+	private ListView mDrawerList;
+	private ActionBarDrawerToggle mDrawerToggle;
+
+	private CharSequence mDrawerTitle;
+	private CharSequence mTitle;
 
 	public final static LeftListModel[] mPlanetTitles = {
-			new LeftListModel("Home", 0, 0),
-			new LeftListModel("Place", 0, 1),
+			new LeftListModel("Home", 0, 0), new LeftListModel("Place", 0, 1),
 			new LeftListModel("Carnevale", 0, 2),
 			new LeftListModel("Tour", 0, 3)
 
 	};
-	
-	
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        mTitle = mDrawerTitle = getTitle();
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        mDrawerList = (ListView) findViewById(R.id.left_drawer);
-        mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
-        
-        final LeftListAdapter adapter = new LeftListAdapter(this, R.layout.left_list_item, mPlanetTitles);
-        mDrawerList.setAdapter(adapter);
-        mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
-        getActionBar().setDisplayHomeAsUpEnabled(true);
-        getActionBar().setHomeButtonEnabled(true);
 
-        mDrawerToggle = new ActionBarDrawerToggle(
-                this,                  
-                mDrawerLayout,         
-                R.drawable.ic_drawer,  
-                R.string.drawer_open,  
-                R.string.drawer_close  
-                ) {
-            public void onDrawerClosed(View view) {
-                getActionBar().setTitle(mTitle);
-                invalidateOptionsMenu();
-            }
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
 
-            public void onDrawerOpened(View drawerView) {
-                getActionBar().setTitle(mDrawerTitle);
-                invalidateOptionsMenu(); 
-            }
-        };
-        mDrawerLayout.setDrawerListener(mDrawerToggle);
+	/*	try {
+			String s = HttpUtils
+					.getDataFromUrl("http://www.marcoberri.it/santhiaapp/places.json");
+			PlacesWrapper placesWrapper = new Gson().fromJson(s,
+					PlacesWrapper.class);
+			Log.d(TAG, "PlaceWrapper " + placesWrapper);
 
-        if (savedInstanceState == null) {
-            selectItem(0);
-        }
-    }
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+*/
+		setContentView(R.layout.activity_main);
+		mTitle = mDrawerTitle = getTitle();
+		mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+		mDrawerList = (ListView) findViewById(R.id.left_drawer);
+		mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow,
+				GravityCompat.START);
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.main, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
+		final LeftListAdapter adapter = new LeftListAdapter(this,
+				R.layout.left_list_item, mPlanetTitles);
+		mDrawerList.setAdapter(adapter);
+		mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
+		getActionBar().setDisplayHomeAsUpEnabled(true);
+		getActionBar().setHomeButtonEnabled(true);
 
-    /* Called whenever we call invalidateOptionsMenu() */
-    @Override
-    public boolean onPrepareOptionsMenu(Menu menu) {
-        boolean drawerOpen = mDrawerLayout.isDrawerOpen(mDrawerList);
-        menu.findItem(R.id.action_websearch).setVisible(!drawerOpen);
-        return super.onPrepareOptionsMenu(menu);
-    }
+		mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
+				R.drawable.ic_drawer, R.string.drawer_open,
+				R.string.drawer_close) {
+			public void onDrawerClosed(View view) {
+				getActionBar().setTitle(mTitle);
+				invalidateOptionsMenu();
+			}
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (mDrawerToggle.onOptionsItemSelected(item)) {
-            return true;
-        }
-        /*
-        // Handle action buttons
-        switch(item.getItemId()) {
-        case R.id.action_websearch:
-            Intent intent = new Intent(Intent.ACTION_WEB_SEARCH);
-            intent.putExtra(SearchManager.QUERY, getActionBar().getTitle());
-            if (intent.resolveActivity(getPackageManager()) != null) {
-                startActivity(intent);
-            } else {
-                Toast.makeText(this, R.string.app_not_available, Toast.LENGTH_LONG).show();
-            }
-            return true;
-        default:
-            return super.onOptionsItemSelected(item);
-        }*/
-        
-        return super.onOptionsItemSelected(item);
-    }
+			public void onDrawerOpened(View drawerView) {
+				getActionBar().setTitle(mDrawerTitle);
+				invalidateOptionsMenu();
+			}
+		};
+		mDrawerLayout.setDrawerListener(mDrawerToggle);
 
-    /* The click listner for ListView in the navigation drawer */
-    private class DrawerItemClickListener implements ListView.OnItemClickListener {
-        @Override
-        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            selectItem(position);
-        }
-    }
+		if (savedInstanceState == null) {
+			selectItem(0);
+		}
+	}
 
-    private void selectItem(int position) {
-        // update the main content by replacing fragments
-        final Fragment fragment = new FragmentCenter();
-        final Bundle args = new Bundle();
-        args.putInt(FragmentCenter.ARG_VOICE_NUMBER, position);
-        fragment.setArguments(args);
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.main, menu);
+		return super.onCreateOptionsMenu(menu);
+	}
 
-        final FragmentManager fragmentManager = getFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
-        mDrawerList.setItemChecked(position, true);
-        setTitle(mPlanetTitles[position].getTitle());
-        mDrawerLayout.closeDrawer(mDrawerList);
-    }
+	/* Called whenever we call invalidateOptionsMenu() */
+	@Override
+	public boolean onPrepareOptionsMenu(Menu menu) {
+		boolean drawerOpen = mDrawerLayout.isDrawerOpen(mDrawerList);
+		menu.findItem(R.id.action_websearch).setVisible(!drawerOpen);
+		return super.onPrepareOptionsMenu(menu);
+	}
 
-    @Override
-    public void setTitle(CharSequence title) {
-        mTitle = title;
-        getActionBar().setTitle(mTitle);
-    }
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		if (mDrawerToggle.onOptionsItemSelected(item)) {
+			return true;
+		}
+		/*
+		 * // Handle action buttons switch(item.getItemId()) { case
+		 * R.id.action_websearch: Intent intent = new
+		 * Intent(Intent.ACTION_WEB_SEARCH);
+		 * intent.putExtra(SearchManager.QUERY, getActionBar().getTitle()); if
+		 * (intent.resolveActivity(getPackageManager()) != null) {
+		 * startActivity(intent); } else { Toast.makeText(this,
+		 * R.string.app_not_available, Toast.LENGTH_LONG).show(); } return true;
+		 * default: return super.onOptionsItemSelected(item); }
+		 */
 
-    @Override
-    protected void onPostCreate(Bundle savedInstanceState) {
-        super.onPostCreate(savedInstanceState);
-        mDrawerToggle.syncState();
-    }
+		return super.onOptionsItemSelected(item);
+	}
 
-    @Override
-    public void onConfigurationChanged(Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
-        mDrawerToggle.onConfigurationChanged(newConfig);
-    }
+	/* The click listner for ListView in the navigation drawer */
+	private class DrawerItemClickListener implements
+			ListView.OnItemClickListener {
+		@Override
+		public void onItemClick(AdapterView<?> parent, View view, int position,
+				long id) {
+			selectItem(position);
+		}
+	}
 
-  
+	private void selectItem(int position) {
+		// update the main content by replacing fragments
+		final Fragment fragment = new FragmentCenter();
+		final Bundle args = new Bundle();
+		args.putInt(FragmentCenter.ARG_VOICE_NUMBER, position);
+		fragment.setArguments(args);
+
+		final FragmentManager fragmentManager = getFragmentManager();
+		fragmentManager.beginTransaction()
+				.replace(R.id.content_frame, fragment).commit();
+		mDrawerList.setItemChecked(position, true);
+		setTitle(mPlanetTitles[position].getTitle());
+		mDrawerLayout.closeDrawer(mDrawerList);
+	}
+
+	@Override
+	public void setTitle(CharSequence title) {
+		mTitle = title;
+		getActionBar().setTitle(mTitle);
+	}
+
+	@Override
+	protected void onPostCreate(Bundle savedInstanceState) {
+		super.onPostCreate(savedInstanceState);
+		mDrawerToggle.syncState();
+	}
+
+	@Override
+	public void onConfigurationChanged(Configuration newConfig) {
+		super.onConfigurationChanged(newConfig);
+		mDrawerToggle.onConfigurationChanged(newConfig);
+	}
+
 }
