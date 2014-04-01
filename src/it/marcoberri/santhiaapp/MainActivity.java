@@ -50,33 +50,6 @@ public class MainActivity extends Activity {
 	
 	
 	
-	protected void removeSplashScreen() {
-		if (mSplashDialog != null) {
-			mSplashDialog.dismiss();
-			mSplashDialog = null;
-		}
-	}
-
-	protected void showSplashScreen() {
-		mSplashDialog = new Dialog(this, R.style.SplashScreen);
-		mSplashDialog.setContentView(R.layout.splashscreen);
-		mSplashDialog.setCancelable(false);
-		mSplashDialog.show();
-		final Handler handler = new Handler();
-		
-		handler.postDelayed(new Runnable() {
-
-			@Override
-			public void run() {
-				removeSplashScreen();
-				
-			}}, 3000);
-		
-	}
-
-	
-
-	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 	
@@ -90,6 +63,7 @@ public class MainActivity extends Activity {
 	
 		
 		setContentView(R.layout.activity_main);
+		
 
 	
 		
@@ -125,28 +99,8 @@ public class MainActivity extends Activity {
 			selectItem(0);
 		}
 
-		// new HttpAsyncTask().execute(URL);
-		// String s = HttpUtils.getDataFromUrl(URL);
-		// Log.d(TAG, "result: " + s);
-
 	}
 
-	/*private class HttpAsyncTask extends AsyncTask<String, Void, String> {
-		@Override
-		protected String doInBackground(String... urls) {
-
-			return HttpUtils.getDataFromUrl(urls[0]);
-		}
-
-		// onPostExecute displays the results of the AsyncTask.
-		@Override
-		protected void onPostExecute(String result) {
-			Toast.makeText(getBaseContext(), "Received!", Toast.LENGTH_LONG)
-					.show();
-			// etResponse.setText(result);
-		}
-	}
-*/
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		MenuInflater inflater = getMenuInflater();
@@ -167,16 +121,6 @@ public class MainActivity extends Activity {
 		if (mDrawerToggle.onOptionsItemSelected(item)) {
 			return true;
 		}
-		/*
-		 * // Handle action buttons switch(item.getItemId()) { case
-		 * R.id.action_websearch: Intent intent = new
-		 * Intent(Intent.ACTION_WEB_SEARCH);
-		 * intent.putExtra(SearchManager.QUERY, getActionBar().getTitle()); if
-		 * (intent.resolveActivity(getPackageManager()) != null) {
-		 * startActivity(intent); } else { Toast.makeText(this,
-		 * R.string.app_not_available, Toast.LENGTH_LONG).show(); } return true;
-		 * default: return super.onOptionsItemSelected(item); }
-		 */
 
 		return super.onOptionsItemSelected(item);
 	}

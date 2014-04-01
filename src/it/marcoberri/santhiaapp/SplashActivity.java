@@ -1,19 +1,27 @@
 package it.marcoberri.santhiaapp;
 
 import java.io.BufferedInputStream;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URL;
 import java.net.URLConnection;
+import java.nio.MappedByteBuffer;
+import java.nio.channels.FileChannel;
+import java.nio.charset.Charset;
 
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
 public class SplashActivity extends Activity {
 
@@ -24,10 +32,15 @@ public class SplashActivity extends Activity {
 	private ProgressDialog pDialog;
 	public static final int progress_bar_type = 0;
 
+	private TextView logText;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.splashscreen);
+
+		logText = (TextView) findViewById(R.id.editText1);
+
 		new DownloadFileFromURL().execute(URL_PLACE);
 
 	}
@@ -83,11 +96,15 @@ public class SplashActivity extends Activity {
 						8192);
 
 				// Output stream
-				String f_name = Environment.getExternalStorageDirectory().toString()+ "" + url.toString().substring(url.toString().lastIndexOf("/"));
-				OutputStream output = new FileOutputStream(f_name );
+				String f_name = Environment.getExternalStorageDirectory()
+						.toString()
+						+ ""
+						+ url.toString().substring(
+								url.toString().lastIndexOf("/"));
+				OutputStream output = new FileOutputStream(f_name);
 				Log.d(TAG, "Save file to: " + f_name);
 				Log.d(TAG, "lenghtOfFile: " + lenghtOfFile);
-				
+
 				byte data[] = new byte[1024];
 
 				long total = 0;
@@ -108,6 +125,20 @@ public class SplashActivity extends Activity {
 				// closing streams
 				output.close();
 				input.close();
+
+				FileInputStream stream = new FileInputStream(f_name);
+				String jString = null;
+				try {
+					FileChannel fc = stream.getChannel();
+					MappedByteBuffer bb = fc.map(FileChannel.MapMode.READ_ONLY,
+							0, fc.size());
+					/* Instead of using default, pass in a decoder. */
+					jString = Charset.defaultCharset().decode(bb).toString();
+				} finally {
+					stream.close();
+				}
+
+				logText.setText(jString);
 
 			} catch (Exception e) {
 				Log.e("Error: ", e.getMessage());
@@ -133,5 +164,11 @@ public class SplashActivity extends Activity {
 			dismissDialog(progress_bar_type);
 
 		}
+	}
+
+	public void enterApp(View view) {
+		final Intent intent = new Intent(getBaseContext(), MainActivity.class);
+		startActivity(intent);
+
 	}
 }
