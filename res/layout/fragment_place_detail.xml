@@ -2,7 +2,8 @@
     android:id="@android:id/tabhost"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:padding="1dp" >
+    android:padding="1dp" 
+    >
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -18,7 +19,9 @@
         <FrameLayout
             android:id="@android:id/tabcontent"
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent" >
+            android:layout_height="fill_parent" 
+           
+            >
 
             <FrameLayout
                 android:id="@+id/tab_1"
@@ -83,11 +86,12 @@
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent" >
 
-                <fragment
+                <!--  fragment
+                    
                     android:id="@+id/tab_3_map"
                     android:name="com.google.android.gms.maps.MapFragment"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content" /-->
             </FrameLayout>
         </FrameLayout>
     </LinearLayout>

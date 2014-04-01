@@ -42,9 +42,8 @@ public class FragmentPlaceDetail extends Fragment {
 		final TabHost mTabHost = (TabHost) v.findViewById(android.R.id.tabhost);
 		setupTabs(mTabHost);
 
-		GoogleMap map = ((MapFragment) getFragmentManager().findFragmentById(
-				R.id.tab_3_map)).getMap();
-
+		//GoogleMap map = ((MapFragment) getFragmentManager().findFragmentById(				R.id.tab_3_map)).getMap();
+/*
 		if (map != null) {
 
 			Marker kiel = map.addMarker(new MarkerOptions()
@@ -63,7 +62,7 @@ public class FragmentPlaceDetail extends Fragment {
 			map.moveCamera(CameraUpdateFactory.newLatLngZoom(CHIESA, 30));
 
 		}
-
+*/
 		/*
 		 * this..onKeyDown(int keyCode, KeyEvent event) { switch(keyCode){ case
 		 * KeyEvent.KEYCODE_BACK: // do something here return true; } return
@@ -96,8 +95,7 @@ public class FragmentPlaceDetail extends Fragment {
 				.getDimensionPixelSize(R.dimen.tab_height);
 		mTabHost.getTabWidget().getChildAt(1).getLayoutParams().height = getResources()
 				.getDimensionPixelSize(R.dimen.tab_height);
-		mTabHost.getTabWidget().getChildAt(2).getLayoutParams().height = getResources()
-				.getDimensionPixelSize(R.dimen.tab_height);
+		mTabHost.getTabWidget().getChildAt(2).getLayoutParams().height = getResources().getDimensionPixelSize(R.dimen.tab_height);
 
 	}
 

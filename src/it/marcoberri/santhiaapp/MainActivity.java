@@ -1,19 +1,19 @@
 package it.marcoberri.santhiaapp;
 
-import java.io.IOException;
-
-import com.google.gson.Gson;
-
 import it.marcoberri.santhiaapp.adapter.LeftListAdapter;
 import it.marcoberri.santhiaapp.model.LeftListModel;
 import it.marcoberri.santhiaapp.utils.HttpUtils;
 import it.marcoberri.santhiaapp.view.FragmentCenter;
-import it.marcoberri.santhiaapp.wrapper.PlacesWrapper;
+
+import java.io.IOException;
+
 import android.app.Activity;
+import android.app.Dialog;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -29,12 +29,16 @@ public class MainActivity extends Activity {
 
 	private static final String TAG = MainActivity.class.getName();
 
+	protected Dialog mSplashDialog;
+
 	private DrawerLayout mDrawerLayout;
 	private ListView mDrawerList;
 	private ActionBarDrawerToggle mDrawerToggle;
 
 	private CharSequence mDrawerTitle;
 	private CharSequence mTitle;
+
+
 
 	public final static LeftListModel[] mPlanetTitles = {
 			new LeftListModel("Home", 0, 0), new LeftListModel("Place", 0, 1),
@@ -43,31 +47,58 @@ public class MainActivity extends Activity {
 
 	};
 
+	
+	
+	
+	protected void removeSplashScreen() {
+		if (mSplashDialog != null) {
+			mSplashDialog.dismiss();
+			mSplashDialog = null;
+		}
+	}
+
+	protected void showSplashScreen() {
+		mSplashDialog = new Dialog(this, R.style.SplashScreen);
+		mSplashDialog.setContentView(R.layout.splashscreen);
+		mSplashDialog.setCancelable(false);
+		mSplashDialog.show();
+		final Handler handler = new Handler();
+		
+		handler.postDelayed(new Runnable() {
+
+			@Override
+			public void run() {
+				removeSplashScreen();
+				
+			}}, 3000);
+		
+	}
+
+	
+
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+	
+        // create and auto start loader
+       
 		super.onCreate(savedInstanceState);
+	
 
-	/*	try {
-			String s = HttpUtils
-					.getDataFromUrl("http://www.marcoberri.it/santhiaapp/places.json");
-			PlacesWrapper placesWrapper = new Gson().fromJson(s,
-					PlacesWrapper.class);
-			Log.d(TAG, "PlaceWrapper " + placesWrapper);
-
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-*/
+		//showSplashScreen();
+		
+	
+		
 		setContentView(R.layout.activity_main);
+
+	
+		
 		mTitle = mDrawerTitle = getTitle();
 		mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 		mDrawerList = (ListView) findViewById(R.id.left_drawer);
-		mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow,
-				GravityCompat.START);
+		mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
 
-		final LeftListAdapter adapter = new LeftListAdapter(this,
-				R.layout.left_list_item, mPlanetTitles);
+		final LeftListAdapter adapter = new LeftListAdapter(this,R.layout.left_list_item, mPlanetTitles);
 		mDrawerList.setAdapter(adapter);
 		mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
 		getActionBar().setDisplayHomeAsUpEnabled(true);
@@ -86,13 +117,36 @@ public class MainActivity extends Activity {
 				invalidateOptionsMenu();
 			}
 		};
+		
+		
 		mDrawerLayout.setDrawerListener(mDrawerToggle);
 
 		if (savedInstanceState == null) {
 			selectItem(0);
 		}
+
+		// new HttpAsyncTask().execute(URL);
+		// String s = HttpUtils.getDataFromUrl(URL);
+		// Log.d(TAG, "result: " + s);
+
 	}
 
+	/*private class HttpAsyncTask extends AsyncTask<String, Void, String> {
+		@Override
+		protected String doInBackground(String... urls) {
+
+			return HttpUtils.getDataFromUrl(urls[0]);
+		}
+
+		// onPostExecute displays the results of the AsyncTask.
+		@Override
+		protected void onPostExecute(String result) {
+			Toast.makeText(getBaseContext(), "Received!", Toast.LENGTH_LONG)
+					.show();
+			// etResponse.setText(result);
+		}
+	}
+*/
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		MenuInflater inflater = getMenuInflater();
@@ -169,5 +223,7 @@ public class MainActivity extends Activity {
 		super.onConfigurationChanged(newConfig);
 		mDrawerToggle.onConfigurationChanged(newConfig);
 	}
+
+
 
 }

@@ -36,10 +36,9 @@ public class FragmentPlace extends Fragment implements OnScrollListener {
 
 	final static PlaceModel[] list = /*getData();*/{
 		
-			new PlaceModel("Chiesa di Sant'Agata e Giorgio",
-					"Parrochia di Santhi�", R.drawable.ic_church_item, 1),
-			new PlaceModel("Chiesa Santissima Trinit�",
-					"da poco ristrutturata", 0, 2),
+			new PlaceModel("Chiesa di Sant'Agata e Giorgio","Parrochia di Santhi�", R.drawable.ic_church_item, 1),
+			new PlaceModel("Chiesa Santissima Trinit�",	"da poco ristrutturata", 0, 2),
+			
 			new PlaceModel("Chiesa di San Grato", "Oratorio",  R.drawable.ic_church_item, 3),
 			new PlaceModel("Galleria di Arte Moderna", "Premio nazionale",
 					R.drawable.ic_galley_item, 4),
@@ -158,10 +157,10 @@ public class FragmentPlace extends Fragment implements OnScrollListener {
 
 				final FragmentTransaction ft = getFragmentManager()
 						.beginTransaction();
-				FragmentPlaceDetail detail = new FragmentPlaceDetail();
+				
+				final FragmentPlaceDetail detail = new FragmentPlaceDetail();
 				detail.setPlaceModel(FragmentPlace.list[position]);
-				ft.replace(R.id.content_frame, detail);
-
+				ft.replace(R.id.content_frame, detail,"CENTER").addToBackStack(null);
 				ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
 				ft.commit();
 

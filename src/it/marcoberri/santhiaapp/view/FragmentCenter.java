@@ -30,10 +30,8 @@ public class FragmentCenter extends Fragment {
 			final String title = getResources().getStringArray(R.array.leftmenu)[index];
 			getActivity().setTitle(title);
 			final FragmentTransaction ft = getFragmentManager().beginTransaction();
-			
 			ft.replace(R.id.content_frame, new FragmentHome()).addToBackStack(null);
 			ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-			
 			ft.commit();
 		}		
 
