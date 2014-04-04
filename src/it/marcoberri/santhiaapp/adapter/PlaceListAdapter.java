@@ -13,7 +13,7 @@ import android.widget.TextView;
 public class PlaceListAdapter extends ArrayAdapter<PlaceModel>  {
 	private final Context context;
 	private final PlaceModel[] data;
-	//private int count = 5;
+
 
 	public PlaceListAdapter(Context context, int textViewResourceId,
 			PlaceModel[] data) {
@@ -22,20 +22,9 @@ public class PlaceListAdapter extends ArrayAdapter<PlaceModel>  {
 		this.data = data;
 	}
 
-	/*public int getCount() {
-		return count;
-	}
-*/
 	public PlaceModel getItem(int pos) {
 		return this.getItem(pos);
 	}
-/*
-	public long getItemId(int pos) {
-		return pos;
-	}
-*/
-	
-	
 	 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
@@ -61,11 +50,6 @@ public class PlaceListAdapter extends ArrayAdapter<PlaceModel>  {
 
 		return rowView;
 	}
-
-	/*public void setCount(int count) {
-		this.count = count;
-	}*/
-
 
 	 
 }

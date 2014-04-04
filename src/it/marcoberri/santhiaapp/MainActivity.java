@@ -40,15 +40,13 @@ public class MainActivity extends Activity {
 
 
 
-	public final static LeftListModel[] mPlanetTitles = {
-			new LeftListModel("Home", 0, 0), new LeftListModel("Place", 0, 1),
+	public final static LeftListModel[] mMenuTitles = {
+			new LeftListModel("Home", 0, 0), 
+			new LeftListModel("Place", 0, 1),
 			new LeftListModel("Carnevale", 0, 2),
 			new LeftListModel("Tour", 0, 3)
 
 	};
-
-	
-	
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -56,23 +54,14 @@ public class MainActivity extends Activity {
         // create and auto start loader
        
 		super.onCreate(savedInstanceState);
-	
-
-		//showSplashScreen();
-		
-	
-		
 		setContentView(R.layout.activity_main);
-		
-
-	
-		
+			
 		mTitle = mDrawerTitle = getTitle();
 		mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 		mDrawerList = (ListView) findViewById(R.id.left_drawer);
 		mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
 
-		final LeftListAdapter adapter = new LeftListAdapter(this,R.layout.left_list_item, mPlanetTitles);
+		final LeftListAdapter adapter = new LeftListAdapter(this,R.layout.left_list_item, mMenuTitles);
 		mDrawerList.setAdapter(adapter);
 		mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
 		getActionBar().setDisplayHomeAsUpEnabled(true);
@@ -146,7 +135,7 @@ public class MainActivity extends Activity {
 		fragmentManager.beginTransaction()
 				.replace(R.id.content_frame, fragment).commit();
 		mDrawerList.setItemChecked(position, true);
-		setTitle(mPlanetTitles[position].getTitle());
+		setTitle(mMenuTitles[position].getTitle());
 		mDrawerLayout.closeDrawer(mDrawerList);
 	}
 

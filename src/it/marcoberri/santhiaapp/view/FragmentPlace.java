@@ -1,16 +1,13 @@
 package it.marcoberri.santhiaapp.view;
 
+import java.util.List;
+
 import it.marcoberri.santhiaapp.R;
 import it.marcoberri.santhiaapp.adapter.PlaceListAdapter;
+import it.marcoberri.santhiaapp.db.model.PlaceModelDataSource;
 import it.marcoberri.santhiaapp.model.PlaceModel;
-import it.marcoberri.santhiaapp.task.LoadDataUrlTask;
-import it.marcoberri.santhiaapp.wrapper.PlacesWrapper;
-
-import java.util.concurrent.ExecutionException;
-
 import android.app.Fragment;
 import android.app.FragmentTransaction;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -25,8 +22,6 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.EditText;
 import android.widget.ListView;
 
-import com.google.gson.Gson;
-
 public class FragmentPlace extends Fragment implements OnScrollListener {
 
 	protected final static String TAG = FragmentPlace.class.getName();
@@ -34,7 +29,15 @@ public class FragmentPlace extends Fragment implements OnScrollListener {
 	private ListView listview;
 	private EditText inputSearch;
 
-	final static PlaceModel[] list = /*getData();*/{
+	private PlaceModel[] list;
+	
+	
+/*	private PlaceModel[] getData(){
+		final PlaceModelDataSource ds = new PlaceModelDataSource(getActivity().getApplicationContext());
+		return (PlaceModel[])ds.getPlaces().toArray();
+	}
+	*/
+	/*
 		
 			new PlaceModel("Chiesa di Sant'Agata e Giorgio","Parrochia di Santhi�", R.drawable.ic_church_item, 1),
 			new PlaceModel("Chiesa Santissima Trinit�",	"da poco ristrutturata", 0, 2),
@@ -77,41 +80,20 @@ public class FragmentPlace extends Fragment implements OnScrollListener {
 			new PlaceModel("Il Mulino Ugliengo", "ex Consorzio agrario", R.drawable.ic_windmill_item,
 					21)
 
-	};
+	};*/
 
-	/*public static PlaceModel[] getData() {
-		
-		LoadDataUrlTask load = new LoadDataUrlTask();
-		load.execute("http://www.marcoberri.it/santhiaapp/places.json");
-		
-		try {
-			String  result = load.get();
-			//Toast.makeText(this, result, Toast.LENGTH_LONG).show();
-			 while(load.getStatus() == AsyncTask.Status.FINISHED){
-					Log.d(TAG, "Loading data");
-					
-			 }
-			 
-			PlacesWrapper placesWrapper = new Gson().fromJson(result, PlacesWrapper.class);
-			Log.d(TAG, "PlaceWrapper " + placesWrapper);
-			
-			return placesWrapper.getPlacesArray();
-			
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ExecutionException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		return null;
-	}
-	*/
+	
+	
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-
 		Log.i(TAG, "onCreateView()");
+		
+		final PlaceModelDataSource ds = new PlaceModelDataSource(getActivity().getApplicationContext());
+		
+		final List<PlaceModel> tmp_list = ds.getPlaces();
+		list = (PlaceModel[])ds.getPlaces().toArray( new PlaceModel[tmp_list.size()] );
+		Log.i(TAG, "list" + list);
+		
 		View v = inflater.inflate(R.layout.fragment_place_list, container,
 				false);
 
@@ -159,7 +141,7 @@ public class FragmentPlace extends Fragment implements OnScrollListener {
 						.beginTransaction();
 				
 				final FragmentPlaceDetail detail = new FragmentPlaceDetail();
-				detail.setPlaceModel(FragmentPlace.list[position]);
+				detail.setPlaceModel(list[position]);
 				ft.replace(R.id.content_frame, detail,"CENTER").addToBackStack(null);
 				ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
 				ft.commit();

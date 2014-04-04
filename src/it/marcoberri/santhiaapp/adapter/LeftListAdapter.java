@@ -23,8 +23,6 @@ public class LeftListAdapter extends ArrayAdapter<LeftListModel>  {
 	public LeftListModel getItem(int pos) {
 		return this.getItem(pos);
 	}
-
-	
 	 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
@@ -38,19 +36,10 @@ public class LeftListAdapter extends ArrayAdapter<LeftListModel>  {
 				.findViewById(R.id.left_list_item_text_view);
 
 		text.setText(data[position].getTitle());
-	
-/*		if(data[position].getImage() != 0){
-			ImageView image = (ImageView)rowView.findViewById(R.id.place_list_item_image_view);
-			image.setBackgroundResource(data[position].getImage());
-		}*/
+
 
 		return rowView;
 	}
-
-	/*public void setCount(int count) {
-		this.count = count;
-	}*/
-
 
 	 
 }
