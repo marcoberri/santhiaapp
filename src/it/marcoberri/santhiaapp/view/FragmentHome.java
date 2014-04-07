@@ -1,16 +1,22 @@
 package it.marcoberri.santhiaapp.view;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 import com.google.gson.Gson;
 
 import it.marcoberri.santhiaapp.R;
+import it.marcoberri.santhiaapp.adapter.HomeGalleryPageAdapter;
 import it.marcoberri.santhiaapp.task.LoadDataUrlTask;
 import it.marcoberri.santhiaapp.wrapper.PlacesWrapper;
+import android.app.Activity;
 import android.app.Application;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,7 +28,9 @@ import android.widget.Toast;
 public class FragmentHome extends Fragment {
 
 	protected static final String TAG = FragmentHome.class.getName();
-
+	private FragmentActivity myContext;
+	private HomeGalleryPageAdapter galleryPageAdapter;
+	
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 
@@ -36,9 +44,8 @@ public class FragmentHome extends Fragment {
 
 			@Override
 			public void onClick(View v) {
-				final String title = getResources().getStringArray(
-						R.array.leftmenu)[2];
-				getActivity().setTitle(title);
+				final String title = getResources().getStringArray(R.array.leftmenu)[2];
+				//getActivity().setTitle(title);
 				final FragmentTransaction ft = getFragmentManager()
 						.beginTransaction();
 				ft.replace(R.id.content_frame, new FragmentPlace());
@@ -68,11 +75,9 @@ public class FragmentHome extends Fragment {
 					Log.d(TAG, "PlaceWrapper " + placesWrapper);
 					
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					Log.e(TAG,"",e);
 				} catch (ExecutionException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					Log.e(TAG,"",e);
 				}
 				
 
@@ -81,7 +86,25 @@ public class FragmentHome extends Fragment {
 
 		
 		
+		//gallery view in home
+		final List<FragmentHomeGallery> fragments = new ArrayList<FragmentHomeGallery>();
+		fragments.add(FragmentHomeGallery.newInstance(R.drawable.church_parrochia));
+		fragments.add(FragmentHomeGallery.newInstance(R.drawable.church_sanrocco));
+		fragments.add(FragmentHomeGallery.newInstance(R.drawable.church_santannajpg));
+		this.galleryPageAdapter  = new HomeGalleryPageAdapter(myContext.getSupportFragmentManager(), fragments);
+		
+		final ViewPager pager = (ViewPager)v.findViewById(R.id.home_gallery);
+        pager.setAdapter(this.galleryPageAdapter);
+		
+		
 		return v;
 	}
 
+	
+	@Override
+	public void onAttach(Activity activity) {
+	    myContext=(FragmentActivity) activity;
+	    super.onAttach(activity);
+	}
+	
 }

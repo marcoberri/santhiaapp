@@ -1,6 +1,6 @@
 package it.marcoberri.santhiaapp.view;
 
-import it.marcoberri.santhiaapp.MainActivity;
+import it.marcoberri.santhiaapp.HomeActivity;
 import it.marcoberri.santhiaapp.R;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
@@ -65,7 +65,7 @@ public class FragmentCenter extends Fragment {
 		*/
 
 		if (index == 1) {
-			final String title = MainActivity.mMenuTitles[index].getTitle();
+			final String title = HomeActivity.mMenuTitles[index].getTitle();
 			getActivity().setTitle(title);
 			FragmentPlace fplace = new FragmentPlace();
 			
@@ -76,7 +76,7 @@ public class FragmentCenter extends Fragment {
 		}	
 
 		if (index == 2) {
-			final String title = MainActivity.mMenuTitles[index].getTitle();
+			final String title = HomeActivity.mMenuTitles[index].getTitle();
 			getActivity().setTitle(title);
 			final FragmentTransaction ft = getFragmentManager().beginTransaction();
 			ft.replace(R.id.content_frame, new FragmentCarnevale()).addToBackStack(null);
@@ -85,7 +85,7 @@ public class FragmentCenter extends Fragment {
 		}	
 		
 		if (index == 3) {
-			final String title = MainActivity.mMenuTitles[index].getTitle();
+			final String title = HomeActivity.mMenuTitles[index].getTitle();
 			getActivity().setTitle(title);
 			final FragmentTransaction ft = getFragmentManager().beginTransaction();
 			ft.replace(R.id.content_frame, new FragmentTour()).addToBackStack(null);

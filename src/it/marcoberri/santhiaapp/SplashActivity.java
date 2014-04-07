@@ -181,7 +181,7 @@ public class SplashActivity extends Activity {
 	}
 
 	public void enterApp(View view) {
-		final Intent intent = new Intent(getBaseContext(), MainActivity.class);
+		final Intent intent = new Intent(getBaseContext(), HomeActivity.class);
 		startActivity(intent);
 
 	}
