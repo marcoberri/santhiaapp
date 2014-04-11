@@ -12,6 +12,7 @@ import android.util.Log;
 public class HomeGalleryPageAdapter extends FragmentPagerAdapter {
 
 	private static final String TAG = HomeGalleryPageAdapter.class.getName();
+	
 	private List<FragmentHomeGallery> fragments;
 
 	public HomeGalleryPageAdapter(FragmentManager fm, List<FragmentHomeGallery> fragments) {

@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 import com.google.gson.Gson;
+import com.viewpagerindicator.CirclePageIndicator;
 
 import it.marcoberri.santhiaapp.R;
 import it.marcoberri.santhiaapp.adapter.HomeGalleryPageAdapter;
@@ -28,8 +29,9 @@ import android.widget.Toast;
 public class FragmentHome extends Fragment {
 
 	protected static final String TAG = FragmentHome.class.getName();
-	private FragmentActivity myContext;
+	private FragmentActivity context;
 	private HomeGalleryPageAdapter galleryPageAdapter;
+	private CirclePageIndicator mIndicator;
 	
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -91,11 +93,12 @@ public class FragmentHome extends Fragment {
 		fragments.add(FragmentHomeGallery.newInstance(R.drawable.church_parrochia));
 		fragments.add(FragmentHomeGallery.newInstance(R.drawable.church_sanrocco));
 		fragments.add(FragmentHomeGallery.newInstance(R.drawable.church_santannajpg));
-		this.galleryPageAdapter  = new HomeGalleryPageAdapter(myContext.getSupportFragmentManager(), fragments);
+		this.galleryPageAdapter  = new HomeGalleryPageAdapter(context.getSupportFragmentManager(), fragments);
 		
 		final ViewPager pager = (ViewPager)v.findViewById(R.id.home_gallery);
         pager.setAdapter(this.galleryPageAdapter);
-		
+        mIndicator = (CirclePageIndicator)v.findViewById(R.id.imageview_gallery_home_indicator);
+        mIndicator.setViewPager(pager);
 		
 		return v;
 	}
@@ -103,7 +106,7 @@ public class FragmentHome extends Fragment {
 	
 	@Override
 	public void onAttach(Activity activity) {
-	    myContext=(FragmentActivity) activity;
+		context=(FragmentActivity) activity;
 	    super.onAttach(activity);
 	}
 	

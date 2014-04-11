@@ -1,6 +1,7 @@
 package it.marcoberri.santhiaapp;
 
 import it.marcoberri.santhiaapp.db.helper.DatabaseHelper;
+import it.marcoberri.santhiaapp.db.model.PlaceGpsModelDataSource;
 import it.marcoberri.santhiaapp.db.model.PlaceImageModelDataSource;
 import it.marcoberri.santhiaapp.db.model.PlaceModelDataSource;
 import it.marcoberri.santhiaapp.db.model.PlaceModelDataSource.PlaceModelDBEntry;
@@ -158,17 +159,21 @@ public class SplashActivity extends Activity {
 			final PlaceModelList placeModelList = gson.fromJson(places,
 					PlaceModelList.class);
 			
-			final PlaceModelDataSource placeDS = new PlaceModelDataSource(
-					getApplicationContext());
-			final PlaceImageModelDataSource placeImageDS = new PlaceImageModelDataSource(
-					getApplicationContext());
+			final PlaceModelDataSource placeDS = new PlaceModelDataSource(getApplicationContext());
+			final PlaceImageModelDataSource placeImageDS = new PlaceImageModelDataSource(getApplicationContext());
+			final PlaceGpsModelDataSource placeGpsDS = new PlaceGpsModelDataSource(getApplicationContext());
+			
+			
+			
 			
 			for (PlaceModel model : placeModelList.getPlaces()) {
-				placeDS.insertPlace(model.getId(), model.getTitle(),model.getText(), model.getSubtitle());
+				placeDS.insertPlace(model.getId(), model.getTitle(),model.getText(), model.getSubtitle(), (model.getLocale() == null) ? "it_IT" : model.getLocale());
 
 				for(PlaceImageModel modelImage : model.getImages()){
 					placeImageDS.insertPlaceImage(modelImage.getId(), model.getId(), modelImage.getUrl(), modelImage.getDisclamer(), modelImage.getTitle(), modelImage.getText());
 				}
+				
+				placeGpsDS.insertPlaceGps(model.getId(), model.getGps().getLat(), model.getGps().getLng());
 				
 			}
 

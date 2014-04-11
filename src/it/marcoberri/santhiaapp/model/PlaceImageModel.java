@@ -7,6 +7,7 @@ public class PlaceImageModel {
 	private String url;
 	private String text;
 	private String disclamer;
+	private int placeId;
 
 	public String toString() {
 		return "id: " + id + " - title: " + title + " - url: " + url
@@ -55,6 +56,14 @@ public class PlaceImageModel {
 
 	public void setDisclamer(String disclamer) {
 		this.disclamer = disclamer;
+	}
+
+	public int getPlaceId() {
+		return placeId;
+	}
+
+	public void setPlaceId(int placeId) {
+		this.placeId = placeId;
 	}
 
 }

@@ -18,23 +18,18 @@
 
         <ImageView
             android:id="@+id/place_list_item_image_view"
-            android:contentDescription="@string/app_name"
             android:layout_width="40dip"
             android:layout_height="40dip"
             android:layout_gravity="center_horizontal"
             android:background="@drawable/ic_museum_item"
-            
-             />
+            android:contentDescription="@string/app_name" />
     </LinearLayout>
 
-    
-
-        
     <LinearLayout
+        android:id="@+id/center_list"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_marginLeft="10dp"
-        android:id="@+id/center_list"
         android:layout_toRightOf="@id/thumbnail"
         android:orientation="vertical" >
 
@@ -43,13 +38,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="left"
-            
             android:text="@string/dummy_title"
             android:textColor="#040404"
             android:textSize="20sp"
-            android:textStyle="bold" 
-            android:typeface="sans"
-            />
+            android:textStyle="bold"
+            android:typeface="sans" />
 
         <TextView
             android:id="@+id/place_list_item_bottom_text_view"
@@ -59,10 +52,8 @@
             android:text="@string/dummy_title"
             android:textColor="#343434"
             android:textSize="12sp"
-            android:typeface="sans"
-             />
+            android:typeface="sans" />
         
-
     </LinearLayout>
 
     <ImageView
@@ -74,5 +65,5 @@
         android:contentDescription="@string/app_name"
         android:paddingRight="5dp"
         android:src="@drawable/ic_right_arrow_blue" />
-                    
+
 </RelativeLayout>

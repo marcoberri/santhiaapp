@@ -1,14 +1,8 @@
 package it.marcoberri.santhiaapp.db.model;
 
-import java.util.LinkedList;
-import java.util.List;
-
 import it.marcoberri.santhiaapp.db.helper.DatabaseHelper;
-import it.marcoberri.santhiaapp.db.model.PlaceModelDataSource.PlaceModelDBEntry;
-import it.marcoberri.santhiaapp.model.PlaceModel;
 import android.content.ContentValues;
 import android.content.Context;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.provider.BaseColumns;
 import android.util.Log;
@@ -35,8 +29,7 @@ public class PlaceGpsModelDataSource {
 	};
 	
 
-	public long insertPlaceImage(Integer id, Integer place_id, Float lat, Float lng) {
-
+	public long insertPlaceGps(Integer place_id, Double lat, Double lng) {
 		final SQLiteDatabase db = helper.getWritableDatabase();
 		final ContentValues values = new ContentValues();
 		values.put(PlaceGpsModelDBEntry.COLUMN_NAME_PLACE_ID, place_id);

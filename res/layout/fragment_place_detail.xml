@@ -2,8 +2,7 @@
     android:id="@android:id/tabhost"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:padding="1dp" 
-    >
+    android:padding="1dp" >
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -19,9 +18,7 @@
         <FrameLayout
             android:id="@android:id/tabcontent"
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent" 
-           
-            >
+            android:layout_height="fill_parent" >
 
             <FrameLayout
                 android:id="@+id/tab_1"
@@ -66,18 +63,23 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical" >
 
-                    <Gallery
-                        android:id="@+id/tab_2_gallery"
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content" />
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
 
-                    <ImageView
-                        android:id="@+id/imageView1"
-                                                android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:src="@drawable/church_trinita" />
-                    
+                        <android.support.v4.view.ViewPager
+                            android:id="@+id/place_detail_gallery"
+                            android:layout_width="fill_parent"
+                            android:layout_height="fill_parent" >
+                        </android.support.v4.view.ViewPager>
+
+                        <com.viewpagerindicator.CirclePageIndicator
+                            android:id="@+id/place_detail_gallery_indicator"
+                            style="@style/CustomCirclePageIndicator"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp" />
+                    </RelativeLayout>
                 </LinearLayout>
             </FrameLayout>
 
@@ -86,12 +88,14 @@
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent" >
 
-                <!--  fragment
+                <!--
+                      fragment
                     
                     android:id="@+id/tab_3_map"
                     android:name="com.google.android.gms.maps.MapFragment"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" /-->
+                    android:layout_height="wrap_content" /
+                -->
             </FrameLayout>
         </FrameLayout>
     </LinearLayout>

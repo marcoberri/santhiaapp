@@ -7,14 +7,22 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Filter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 public class PlaceListAdapter extends ArrayAdapter<PlaceModel>  {
+	
+	
 	private final Context context;
 	private final PlaceModel[] data;
 
 
+	/**
+	 * @param context
+	 * @param textViewResourceId
+	 * @param data
+	 */
 	public PlaceListAdapter(Context context, int textViewResourceId,
 			PlaceModel[] data) {
 		super(context, textViewResourceId, data);
@@ -22,10 +30,16 @@ public class PlaceListAdapter extends ArrayAdapter<PlaceModel>  {
 		this.data = data;
 	}
 
+	/* (non-Javadoc)
+	 * @see android.widget.ArrayAdapter#getItem(int)
+	 */
 	public PlaceModel getItem(int pos) {
 		return this.getItem(pos);
 	}
 	 
+	/* (non-Javadoc)
+	 * @see android.widget.ArrayAdapter#getView(int, android.view.View, android.view.ViewGroup)
+	 */
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		LayoutInflater inflater = (LayoutInflater) context
@@ -51,5 +65,11 @@ public class PlaceListAdapter extends ArrayAdapter<PlaceModel>  {
 		return rowView;
 	}
 
-	 
+	 /* (non-Javadoc)
+	 * @see android.widget.ArrayAdapter#getFilter()
+	 */
+	@Override
+	public Filter getFilter() {
+		return super.getFilter();
+	}
 }

@@ -16,6 +16,7 @@ public class PlaceModelDataSource {
 
 	private static final String TAG = PlaceModelDataSource.class.getName();
 	
+
 	DatabaseHelper helper = null;
 
 	/* Inner class that defines the table contents */
@@ -26,11 +27,12 @@ public class PlaceModelDataSource {
 		public static final String COLUMN_NAME_SUBTITLE = "subtitle";
 		public static final String COLUMN_NAME_IMAGE = "image";
 		public static final String COLUMN_NAME_TEXT = "text";
-		/*
-		 * private GpsData gps; private List<Image> images;
-		 */
+		public static final String COLUMN_NAME_LOCALE = "locale";
 	};
 
+	private static final String[] ALLFIELD = {PlaceModelDBEntry.COLUMN_NAME_ENTRY_ID,PlaceModelDBEntry.COLUMN_NAME_TITLE,PlaceModelDBEntry.COLUMN_NAME_TEXT,PlaceModelDBEntry.COLUMN_NAME_SUBTITLE,PlaceModelDBEntry.COLUMN_NAME_LOCALE	};
+
+	
 	public PlaceModelDataSource(Context context) {
 		if (helper == null) {
 			helper = new DatabaseHelper(context);
@@ -38,7 +40,7 @@ public class PlaceModelDataSource {
 	};
 	
 
-	public long insertPlace(Integer id, String title, String subtitle,String text) {
+	public long insertPlace(Integer id, String title, String subtitle,String text, String locale) {
 
 		final SQLiteDatabase db = helper.getWritableDatabase();
 		ContentValues values = new ContentValues();
@@ -46,6 +48,7 @@ public class PlaceModelDataSource {
 		values.put(PlaceModelDBEntry.COLUMN_NAME_TITLE, title);
 		values.put(PlaceModelDBEntry.COLUMN_NAME_TEXT, text);
 		values.put(PlaceModelDBEntry.COLUMN_NAME_SUBTITLE, subtitle);
+		values.put(PlaceModelDBEntry.COLUMN_NAME_LOCALE, locale);
 
 		long newRowId = db.insert(PlaceModelDBEntry.TABLE_NAME, null, values);
 
@@ -57,7 +60,7 @@ public class PlaceModelDataSource {
 	public List<PlaceModel> getPlaces() {
 
 		final SQLiteDatabase db = helper.getWritableDatabase();
-		final Cursor c = db.query(PlaceModelDBEntry.TABLE_NAME, new String[] {PlaceModelDBEntry.COLUMN_NAME_ENTRY_ID,PlaceModelDBEntry.COLUMN_NAME_TITLE,PlaceModelDBEntry.COLUMN_NAME_TEXT,PlaceModelDBEntry.COLUMN_NAME_SUBTITLE}, null, null, null, null, PlaceModelDBEntry.COLUMN_NAME_ENTRY_ID);
+		final Cursor c = db.query(PlaceModelDBEntry.TABLE_NAME, ALLFIELD, null, null, null, null, PlaceModelDBEntry.COLUMN_NAME_ENTRY_ID);
 
 		
 		final List<PlaceModel> places = new LinkedList<PlaceModel>();
@@ -69,6 +72,7 @@ public class PlaceModelDataSource {
 	        	   place.setTitle(c.getString(1));
 	        	   place.setText(c.getString(2));
 	        	   place.setSubtitle(c.getString(3));
+	        	   place.setLocale(c.getString(4));
 	        	   places.add(place);
 	           } while (c.moveToNext());
 	       }

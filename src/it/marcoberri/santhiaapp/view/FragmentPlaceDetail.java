@@ -1,9 +1,18 @@
 package it.marcoberri.santhiaapp.view;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import it.marcoberri.santhiaapp.R;
+import it.marcoberri.santhiaapp.adapter.PlaceDetailGalleryPageAdapter;
+import it.marcoberri.santhiaapp.db.model.PlaceImageModelDataSource;
+import it.marcoberri.santhiaapp.model.PlaceImageModel;
 import it.marcoberri.santhiaapp.model.PlaceModel;
+import android.app.Activity;
 import android.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +28,7 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.viewpagerindicator.CirclePageIndicator;
 
 public class FragmentPlaceDetail extends Fragment {
 
@@ -26,8 +36,12 @@ public class FragmentPlaceDetail extends Fragment {
 
 	private int position;
 	private PlaceModel placeModel;
+	
 	static final LatLng CHIESA = new LatLng(45.366255, 8.174720);
-
+	private PlaceDetailGalleryPageAdapter galleryPageAdapter;
+	private CirclePageIndicator mIndicator;
+	private FragmentActivity context;
+	
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 
@@ -38,6 +52,10 @@ public class FragmentPlaceDetail extends Fragment {
 		final TextView title = (TextView) v
 				.findViewById(R.id.place_detail_title);
 		title.setText(placeModel.getTitle());
+		
+
+		
+		
 
 		final TabHost mTabHost = (TabHost) v.findViewById(android.R.id.tabhost);
 		setupTabs(mTabHost);
@@ -69,6 +87,22 @@ public class FragmentPlaceDetail extends Fragment {
 		 * super.onKeyDown(keyCode, event); }
 		 */
 
+		Log.d(TAG, "Place Model " + placeModel);
+		
+		final List<FragmentPlaceDetailGallery> fragments = new ArrayList<FragmentPlaceDetailGallery>();
+		
+		for(PlaceImageModel image : placeModel.getImages()){
+			Log.d(TAG, "image " + image.getUrl());
+			fragments.add(FragmentPlaceDetailGallery.newInstance(image.getUrl()));
+		}
+
+		this.galleryPageAdapter  = new PlaceDetailGalleryPageAdapter(context.getSupportFragmentManager(), fragments);
+		
+		final ViewPager pager = (ViewPager)v.findViewById(R.id.place_detail_gallery);
+        pager.setAdapter(this.galleryPageAdapter);
+        mIndicator = (CirclePageIndicator)v.findViewById(R.id.place_detail_gallery_indicator);
+        mIndicator.setViewPager(pager);
+        
 		return v;
 	}
 
@@ -111,5 +145,13 @@ public class FragmentPlaceDetail extends Fragment {
 		this.placeModel = placeModel;
 
 	}
+	
+	@Override
+	public void onAttach(Activity activity) {
+		context=(FragmentActivity) activity;
+	    super.onAttach(activity);
+	}
+
+
 
 }

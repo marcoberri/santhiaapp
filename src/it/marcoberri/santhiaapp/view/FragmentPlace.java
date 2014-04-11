@@ -4,7 +4,9 @@ import java.util.List;
 
 import it.marcoberri.santhiaapp.R;
 import it.marcoberri.santhiaapp.adapter.PlaceListAdapter;
+import it.marcoberri.santhiaapp.db.model.PlaceImageModelDataSource;
 import it.marcoberri.santhiaapp.db.model.PlaceModelDataSource;
+import it.marcoberri.santhiaapp.model.PlaceImageModel;
 import it.marcoberri.santhiaapp.model.PlaceModel;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
@@ -29,7 +31,7 @@ public class FragmentPlace extends Fragment implements OnScrollListener {
 	private ListView listview;
 	private EditText inputSearch;
 
-	private PlaceModel[] list;
+	private PlaceModel[] placeModelArray;
 	
 	
 /*	private PlaceModel[] getData(){
@@ -88,19 +90,18 @@ public class FragmentPlace extends Fragment implements OnScrollListener {
 			Bundle savedInstanceState) {
 		Log.i(TAG, "onCreateView()");
 		
-		final PlaceModelDataSource ds = new PlaceModelDataSource(getActivity().getApplicationContext());
+		final PlaceModelDataSource dsPlace = new PlaceModelDataSource(getActivity().getApplicationContext());
 		
-		final List<PlaceModel> tmp_list = ds.getPlaces();
-		list = (PlaceModel[])ds.getPlaces().toArray( new PlaceModel[tmp_list.size()] );
-		Log.i(TAG, "list" + list);
-		
+		final List<PlaceModel> tmp_list = dsPlace.getPlaces();
+		placeModelArray = (PlaceModel[])dsPlace.getPlaces().toArray( new PlaceModel[tmp_list.size()] );
+		Log.i(TAG, "list" + placeModelArray);
 		View v = inflater.inflate(R.layout.fragment_place_list, container,
 				false);
 
 		listview = (ListView) v.findViewById(R.id.listViewPlace);
 
 		adapter = new PlaceListAdapter(v.getContext(),
-				R.layout.fragment_place_list, list);
+				R.layout.fragment_place_list, placeModelArray);
 
 		listview.setOnScrollListener(this);
 		listview.setAdapter(adapter);
@@ -112,14 +113,14 @@ public class FragmentPlace extends Fragment implements OnScrollListener {
 			@Override
 			public void onTextChanged(CharSequence cs, int arg1, int arg2,
 					int arg3) {
-				// When user changed the Text
+	
 				adapter.getFilter().filter(cs);
 			}
 
 			@Override
 			public void beforeTextChanged(CharSequence arg0, int arg1,
 					int arg2, int arg3) {
-				// TODO Auto-generated method stub
+	
 
 			}
 
@@ -134,14 +135,18 @@ public class FragmentPlace extends Fragment implements OnScrollListener {
 		listview.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
-			public void onItemClick(AdapterView<?> arg0, View arg1,
-					int position, long arg3) {
+			public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
 
-				final FragmentTransaction ft = getFragmentManager()
-						.beginTransaction();
-				
+				final FragmentTransaction ft = getFragmentManager().beginTransaction();
 				final FragmentPlaceDetail detail = new FragmentPlaceDetail();
-				detail.setPlaceModel(list[position]);
+				
+				PlaceModel placeModel = placeModelArray[position]; 
+				
+				final PlaceImageModelDataSource dsImage = new PlaceImageModelDataSource(getActivity().getApplicationContext());
+				final List<PlaceImageModel> placeImageModelList = dsImage.getImagesByPlaceId(placeModelArray[position].getId());
+				placeModel.setImages(placeImageModelList);
+				
+				detail.setPlaceModel(placeModel);
 				ft.replace(R.id.content_frame, detail,"CENTER").addToBackStack(null);
 				ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
 				ft.commit();
@@ -153,23 +158,22 @@ public class FragmentPlace extends Fragment implements OnScrollListener {
 		return v;
 	}
 
-	@Override
-	public void onScroll(AbsListView view, int firstVisibleItem,
-			int visibleItemCount, int totalItemCount) {
-		/*
-		 * boolean loadMore = (firstVisibleItem + visibleItemCount <=
-		 * totalItemCount);
-		 * 
-		 * if (loadMore) { adapter.setCount(adapter.getCount() +
-		 * visibleItemCount); adapter.notifyDataSetChanged(); }
-		 */
-	}
+
+@Override
+public void onScroll(AbsListView view, int firstVisibleItem,
+		int visibleItemCount, int totalItemCount) {
+	// TODO Auto-generated method stub
+	
+}
+
+
+@Override
+public void onScrollStateChanged(AbsListView view, int scrollState) {
+	// TODO Auto-generated method stub
+	
+}
 
 	
 	
-	@Override
-	public void onScrollStateChanged(AbsListView view, int scrollState) {
-
-	}
 
 }

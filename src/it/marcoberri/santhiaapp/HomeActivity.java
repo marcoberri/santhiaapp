@@ -1,36 +1,22 @@
 package it.marcoberri.santhiaapp;
 
-import it.marcoberri.santhiaapp.adapter.HomeGalleryPageAdapter;
 import it.marcoberri.santhiaapp.adapter.LeftListAdapter;
 import it.marcoberri.santhiaapp.model.LeftListModel;
-import it.marcoberri.santhiaapp.utils.HttpUtils;
 import it.marcoberri.santhiaapp.view.FragmentCenter;
-import it.marcoberri.santhiaapp.view.FragmentHomeGallery;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Vector;
-
-import android.app.Activity;
 import android.app.Dialog;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.GravityCompat;
-import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Gallery;
 import android.widget.ListView;
 
 public class HomeActivity extends FragmentActivity {

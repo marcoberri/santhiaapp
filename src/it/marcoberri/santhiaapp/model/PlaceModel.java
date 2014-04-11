@@ -9,19 +9,22 @@ public class PlaceModel {
 	private String subtitle;
 	private int image;
 	private String text;
+	private String locale;
 	private List<PlaceImageModel> images;
+	private PlaceGpsModel gps;
 
 	public String toString() {
 		return "id: " + id + " - title: " + title + " - subtitle: " + subtitle
-				+ " - image: " + image + " - images: " + images;
+				+ " - image: " + image + " - images: " + images + " locale: " + locale;
 	}
 
-	public PlaceModel(String title, String subtitle, int image, int id) {
+	public PlaceModel(String title, String subtitle, int image, int id, String locale) {
 		super();
 		this.title = title;
 		this.subtitle = subtitle;
 		this.image = image;
 		this.id = id;
+		this.locale = locale;
 	}
 
 	public String getText() {
@@ -75,5 +78,22 @@ public class PlaceModel {
 	public List<PlaceImageModel> getImages() {
 		return this.images;
 	}
+
+	public String getLocale(){
+		return this.locale;
+	}
+	
+	public void setLocale(String locale){
+		this.locale = locale;
+	}
+
+	public PlaceGpsModel getGps() {
+		return gps;
+	}
+
+	public void setGps(PlaceGpsModel gps) {
+		this.gps = gps;
+	}
+	
 
 }
