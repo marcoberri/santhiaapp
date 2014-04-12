@@ -4,9 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import it.marcoberri.santhiaapp.db.helper.DatabaseHelper;
-import it.marcoberri.santhiaapp.db.model.PlaceModelDataSource.PlaceModelDBEntry;
 import it.marcoberri.santhiaapp.model.PlaceImageModel;
-import it.marcoberri.santhiaapp.model.PlaceModel;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;

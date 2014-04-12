@@ -3,8 +3,8 @@ package it.marcoberri.santhiaapp.model;
 public class PlaceGpsModel {
 
 	private int place_id;
-	private double lat;
-	private double lng;
+	private float lat;
+	private float lng;
 	
 	public int getPlace_id() {
 		return place_id;
@@ -18,7 +18,7 @@ public class PlaceGpsModel {
 		return lat;
 	}
 
-	public void setLat(double lat) {
+	public void setLat(float lat) {
 		this.lat = lat;
 	}
 
@@ -26,7 +26,7 @@ public class PlaceGpsModel {
 		return lng;
 	}
 
-	public void setLng(double lng) {
+	public void setLng(float lng) {
 		this.lng = lng;
 	}
 

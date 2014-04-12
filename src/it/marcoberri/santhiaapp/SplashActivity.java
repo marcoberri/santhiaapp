@@ -103,6 +103,7 @@ public class SplashActivity extends Activity {
 		protected void onPreExecute() {
 			super.onPreExecute();
 			//pDialog.show();
+			
 			showDialog(progress_bar_type);
 		}
 
@@ -169,9 +170,6 @@ public class SplashActivity extends Activity {
 			final PlaceModelDataSource placeDS = new PlaceModelDataSource(getApplicationContext());
 			final PlaceImageModelDataSource placeImageDS = new PlaceImageModelDataSource(getApplicationContext());
 			final PlaceGpsModelDataSource placeGpsDS = new PlaceGpsModelDataSource(getApplicationContext());
-			
-			
-			
 			
 			for (PlaceModel model : placeModelList.getPlaces()) {
 				placeDS.insertPlace(model.getId(), model.getTitle(),model.getSubtitle(), model.getText(), model.getAddress(),(model.getLocale() == null) ? "it_IT" : model.getLocale());

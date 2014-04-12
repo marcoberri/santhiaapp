@@ -4,6 +4,7 @@ import java.util.List;
 
 import it.marcoberri.santhiaapp.R;
 import it.marcoberri.santhiaapp.adapter.PlaceListAdapter;
+import it.marcoberri.santhiaapp.db.model.PlaceGpsModelDataSource;
 import it.marcoberri.santhiaapp.db.model.PlaceImageModelDataSource;
 import it.marcoberri.santhiaapp.db.model.PlaceModelDataSource;
 import it.marcoberri.santhiaapp.model.PlaceImageModel;
@@ -141,6 +142,11 @@ public class FragmentPlace extends Fragment implements OnScrollListener {
 						.getImagesByPlaceId(placeModelArray[position].getId());
 				placeModel.setImages(placeImageModelList);
 
+				final PlaceGpsModelDataSource dsGps = new PlaceGpsModelDataSource(
+						getActivity().getApplicationContext());
+				
+				placeModel.setGps(dsGps.getGpsByPlaceId(placeModel.getId()));
+				
 				detail.setPlaceModel(placeModel);
 				ft.replace(R.id.content_frame, detail, "CENTER")
 						.addToBackStack(null);
