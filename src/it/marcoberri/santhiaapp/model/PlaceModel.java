@@ -2,6 +2,8 @@ package it.marcoberri.santhiaapp.model;
 
 import java.util.List;
 
+import com.google.android.gms.drive.internal.AddEventListenerRequest;
+
 public class PlaceModel {
 
 	private int id;
@@ -12,19 +14,21 @@ public class PlaceModel {
 	private String locale;
 	private List<PlaceImageModel> images;
 	private PlaceGpsModel gps;
+	private String address;
 
 	public String toString() {
 		return "id: " + id + " - title: " + title + " - subtitle: " + subtitle
-				+ " - image: " + image + " - images: " + images + " locale: " + locale;
+				+ " - image: " + image + " - images: " + images + " locale: " + locale + "address"+address;
 	}
 
-	public PlaceModel(String title, String subtitle, int image, int id, String locale) {
+	public PlaceModel(String title, String subtitle, int image, int id, String address,String locale) {
 		super();
 		this.title = title;
 		this.subtitle = subtitle;
 		this.image = image;
 		this.id = id;
 		this.locale = locale;
+		this.address = address;
 	}
 
 	public String getText() {
@@ -93,6 +97,14 @@ public class PlaceModel {
 
 	public void setGps(PlaceGpsModel gps) {
 		this.gps = gps;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
 	}
 	
 

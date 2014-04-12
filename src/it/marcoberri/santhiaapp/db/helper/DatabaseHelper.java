@@ -23,9 +23,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 			+ PlaceModelDBEntry.TABLE_NAME + " (" + 
 			PlaceModelDBEntry.COLUMN_NAME_ENTRY_ID + INTEGER_TYPE + NOTNULL_TYPE  + COMMA_SEP + 
 			PlaceModelDBEntry.COLUMN_NAME_TITLE	+ TEXT_TYPE + COMMA_SEP + 
-			PlaceModelDBEntry.COLUMN_NAME_TEXT	+ TEXT_TYPE + COMMA_SEP + 
-			PlaceModelDBEntry.COLUMN_NAME_SUBTITLE	+ TEXT_TYPE + COMMA_SEP +
+			PlaceModelDBEntry.COLUMN_NAME_SUBTITLE	+ TEXT_TYPE + COMMA_SEP + 
+			PlaceModelDBEntry.COLUMN_NAME_TEXT	+ TEXT_TYPE + COMMA_SEP +
 			PlaceModelDBEntry.COLUMN_NAME_IMAGE	+ TEXT_TYPE+ COMMA_SEP +
+			PlaceModelDBEntry.COLUMN_NAME_ADDRESS	+ TEXT_TYPE+ COMMA_SEP +
 			PlaceModelDBEntry.COLUMN_NAME_LOCALE	+ TEXT_TYPE + "  NOT NULL" + COMMA_SEP +
 			" PRIMARY KEY ( "+PlaceModelDBEntry.COLUMN_NAME_ENTRY_ID+ COMMA_SEP + PlaceModelDBEntry.COLUMN_NAME_LOCALE + ")" +
 			")";

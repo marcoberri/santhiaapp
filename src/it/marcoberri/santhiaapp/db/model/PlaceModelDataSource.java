@@ -27,10 +27,11 @@ public class PlaceModelDataSource {
 		public static final String COLUMN_NAME_SUBTITLE = "subtitle";
 		public static final String COLUMN_NAME_IMAGE = "image";
 		public static final String COLUMN_NAME_TEXT = "text";
+		public static final String COLUMN_NAME_ADDRESS = "address";
 		public static final String COLUMN_NAME_LOCALE = "locale";
 	};
 
-	private static final String[] ALLFIELD = {PlaceModelDBEntry.COLUMN_NAME_ENTRY_ID,PlaceModelDBEntry.COLUMN_NAME_TITLE,PlaceModelDBEntry.COLUMN_NAME_TEXT,PlaceModelDBEntry.COLUMN_NAME_SUBTITLE,PlaceModelDBEntry.COLUMN_NAME_LOCALE	};
+	private static final String[] ALLFIELD = {PlaceModelDBEntry.COLUMN_NAME_ENTRY_ID,PlaceModelDBEntry.COLUMN_NAME_TITLE,PlaceModelDBEntry.COLUMN_NAME_SUBTITLE,PlaceModelDBEntry.COLUMN_NAME_TEXT,PlaceModelDBEntry.COLUMN_NAME_ADDRESS,PlaceModelDBEntry.COLUMN_NAME_LOCALE	};
 
 	
 	public PlaceModelDataSource(Context context) {
@@ -40,14 +41,15 @@ public class PlaceModelDataSource {
 	};
 	
 
-	public long insertPlace(Integer id, String title, String subtitle,String text, String locale) {
+	public long insertPlace(Integer id, String title, String subtitle,String text, String address,String locale) {
 
 		final SQLiteDatabase db = helper.getWritableDatabase();
 		ContentValues values = new ContentValues();
 		values.put(PlaceModelDBEntry.COLUMN_NAME_ENTRY_ID, id);
 		values.put(PlaceModelDBEntry.COLUMN_NAME_TITLE, title);
-		values.put(PlaceModelDBEntry.COLUMN_NAME_TEXT, text);
 		values.put(PlaceModelDBEntry.COLUMN_NAME_SUBTITLE, subtitle);
+		values.put(PlaceModelDBEntry.COLUMN_NAME_TEXT, text);
+		values.put(PlaceModelDBEntry.COLUMN_NAME_ADDRESS, address);
 		values.put(PlaceModelDBEntry.COLUMN_NAME_LOCALE, locale);
 
 		long newRowId = db.insert(PlaceModelDBEntry.TABLE_NAME, null, values);
@@ -70,9 +72,10 @@ public class PlaceModelDataSource {
 	        	   final PlaceModel place = new PlaceModel();
 	        	   place.setId(Integer.parseInt(c.getString(0)));
 	        	   place.setTitle(c.getString(1));
-	        	   place.setText(c.getString(2));
-	        	   place.setSubtitle(c.getString(3));
-	        	   place.setLocale(c.getString(4));
+	        	   place.setSubtitle(c.getString(2));
+	        	   place.setText(c.getString(3));
+	        	   place.setAddress(c.getString(4));
+	        	   place.setLocale(c.getString(5));
 	        	   places.add(place);
 	           } while (c.moveToNext());
 	       }
@@ -82,6 +85,4 @@ public class PlaceModelDataSource {
 		return places;
 
 	}
-
-	
 }

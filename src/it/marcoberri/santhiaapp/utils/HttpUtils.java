@@ -10,6 +10,10 @@ import java.io.Writer;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import android.app.Activity;
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.util.Log;
 
 public class HttpUtils {
@@ -54,5 +58,14 @@ public class HttpUtils {
         return writer.toString();
 }
 	
-	
+
+	public static boolean isOnline(Activity activity) {
+	    ConnectivityManager cm =
+	        (ConnectivityManager) activity.getSystemService(Context.CONNECTIVITY_SERVICE);
+	    NetworkInfo netInfo = cm.getActiveNetworkInfo();
+	    if (netInfo != null && netInfo.isConnectedOrConnecting()) {
+	        return true;
+	    }
+	    return false;
+	}
 }

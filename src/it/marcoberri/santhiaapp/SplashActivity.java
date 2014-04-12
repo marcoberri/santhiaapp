@@ -8,6 +8,7 @@ import it.marcoberri.santhiaapp.db.model.PlaceModelDataSource.PlaceModelDBEntry;
 import it.marcoberri.santhiaapp.model.PlaceImageModel;
 import it.marcoberri.santhiaapp.model.PlaceModel;
 import it.marcoberri.santhiaapp.model.PlaceModelList;
+import it.marcoberri.santhiaapp.utils.HttpUtils;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
@@ -44,6 +45,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class SplashActivity extends Activity {
 
@@ -61,8 +63,13 @@ public class SplashActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.splashscreen);
 		logText = (TextView) findViewById(R.id.editText1);
+		
+		boolean checkOnline = HttpUtils.isOnline(this);
+		if(checkOnline)
 		new DownloadFileFromURL().execute(URL_PLACE);
-
+		else{
+			Toast.makeText(this, "No internet connection", Toast.LENGTH_LONG).show();
+		}
 	}
 
 	@Override
@@ -167,7 +174,7 @@ public class SplashActivity extends Activity {
 			
 			
 			for (PlaceModel model : placeModelList.getPlaces()) {
-				placeDS.insertPlace(model.getId(), model.getTitle(),model.getText(), model.getSubtitle(), (model.getLocale() == null) ? "it_IT" : model.getLocale());
+				placeDS.insertPlace(model.getId(), model.getTitle(),model.getSubtitle(), model.getText(), model.getAddress(),(model.getLocale() == null) ? "it_IT" : model.getLocale());
 
 				for(PlaceImageModel modelImage : model.getImages()){
 					placeImageDS.insertPlaceImage(modelImage.getId(), model.getId(), modelImage.getUrl(), modelImage.getDisclamer(), modelImage.getTitle(), modelImage.getText());

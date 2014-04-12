@@ -37,7 +37,6 @@ public class FragmentPlaceDetail extends Fragment {
 	private int position;
 	private PlaceModel placeModel;
 	
-	static final LatLng CHIESA = new LatLng(45.366255, 8.174720);
 	private PlaceDetailGalleryPageAdapter galleryPageAdapter;
 	private CirclePageIndicator mIndicator;
 	private FragmentActivity context;
@@ -53,34 +52,35 @@ public class FragmentPlaceDetail extends Fragment {
 				.findViewById(R.id.place_detail_title);
 		title.setText(placeModel.getTitle());
 		
-
-		
-		
+		final TextView text = (TextView) v
+				.findViewById(R.id.place_detail_text);
+		text.setText(placeModel.getText());
 
 		final TabHost mTabHost = (TabHost) v.findViewById(android.R.id.tabhost);
 		setupTabs(mTabHost);
 
-		//GoogleMap map = ((MapFragment) getFragmentManager().findFragmentById(				R.id.tab_3_map)).getMap();
-/*
+		GoogleMap map = ((MapFragment) getFragmentManager().findFragmentById(R.id.tab_3_map)).getMap();
+
 		if (map != null) {
+			final LatLng GpsPos = new LatLng(placeModel.getGps().getLat(), placeModel.getGps().getLng());
 
 			Marker kiel = map.addMarker(new MarkerOptions()
-					.position(CHIESA)
-					.title("Chiesa di Sant'Agata")
-					.snippet("Kiel is cool")
-					.icon(BitmapDescriptorFactory
-							.fromResource(R.drawable.ic_launcher)
+					.position(GpsPos)
+					.title(placeModel.getTitle())
+					.snippet(placeModel.getSubtitle() + " " + placeModel.getAddress())
+					//.icon(BitmapDescriptorFactory
+						//	.fromResource(R.drawable.ic_launcher)
 
-					)
+					//)
 
 			);
 
 			kiel.setVisible(true);
 
-			map.moveCamera(CameraUpdateFactory.newLatLngZoom(CHIESA, 30));
+			map.moveCamera(CameraUpdateFactory.newLatLngZoom(GpsPos, 20));
 
 		}
-*/
+
 		/*
 		 * this..onKeyDown(int keyCode, KeyEvent event) { switch(keyCode){ case
 		 * KeyEvent.KEYCODE_BACK: // do something here return true; } return
@@ -113,6 +113,7 @@ public class FragmentPlaceDetail extends Fragment {
 		tabSpec1.setContent(R.id.tab_1);
 		tabSpec1.setIndicator("Storia");
 
+		
 		final TabSpec tabSpec2 = mTabHost.newTabSpec("Near");
 		tabSpec2.setContent(R.id.tab_2);
 		tabSpec2.setIndicator("Foto");
