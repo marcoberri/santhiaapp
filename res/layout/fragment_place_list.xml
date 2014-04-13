@@ -8,7 +8,7 @@
         android:id="@+id/listViewPlace_search"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:hint="Search products.."
+        android:hint="Search place.."
         android:inputType="textVisiblePassword" />
 
     <ListView

@@ -1,20 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.SlidingPaneLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-
-    <ImageView
-        android:id="@+id/imageview_gallery_place_detail"
-        android:layout_width="fill_parent"
+    <RelativeLayout
+        android:layout_width="wrap_content"
         android:layout_height="fill_parent"
-        android:layout_margin="5dp"
-        android:background="#fff"
-        android:contentDescription=""
-        android:paddingBottom="10dp"
-        android:paddingLeft="3dp"
-        android:paddingRight="3dp"
-        android:paddingTop="3dp"
-/>
-</RelativeLayout>
+        android:layout_gravity="center_horizontal"
+        android:orientation="vertical" >
+
+        <ImageView
+            android:id="@+id/imageview_gallery_place_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            
+            android:background="#fff"
+            android:contentDescription=""
+            android:paddingBottom="3dp"
+            android:paddingLeft="3dp"
+            android:paddingRight="3dp"
+            android:paddingTop="3dp" />
+
+        <TextView
+            android:id="@+id/imageview_gallery_place_detail_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/imageview_gallery_place_detail"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:text="@string/dummy_title" />
+
+        <TextView
+            android:id="@+id/imageview_gallery_place_detail_disclamer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/imageview_gallery_place_detail_title"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="3dp"
+            android:text="@string/dummy_title" />
+    </RelativeLayout>
+
+</android.support.v4.widget.SlidingPaneLayout>

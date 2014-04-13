@@ -9,10 +9,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 public class FragmentPlaceDetailGallery extends Fragment {
 	public static final String EXTRA_MESSAGE = "EXTRA_MESSAGE";
 	public static final String EXTRA_MESSAGE_URL = "EXTRA_MESSAGE_URL";
+	public static final String EXTRA_MESSAGE_DISCLAMER = "EXTRA_MESSAGE_DISCLAMER";
+	public static final String EXTRA_MESSAGE_TITLE = "EXTRA_MESSAGE_TITLE";
 	private static final String TAG = FragmentPlaceDetailGallery.class.getName();
 
 	public static final FragmentPlaceDetailGallery newInstance(int resource) {
@@ -24,10 +27,12 @@ public class FragmentPlaceDetailGallery extends Fragment {
 	}
 	
 	
-	public static final FragmentPlaceDetailGallery newInstance(String url) {
+	public static final FragmentPlaceDetailGallery newInstance(String url, String title, String disclamer) {
 		FragmentPlaceDetailGallery f = new FragmentPlaceDetailGallery();
 		Bundle bdl = new Bundle(1);
 		bdl.putString(EXTRA_MESSAGE_URL, url);
+		bdl.putString(EXTRA_MESSAGE_TITLE, title);
+		bdl.putString(EXTRA_MESSAGE_DISCLAMER, disclamer);
 		f.setArguments(bdl);
 		return f;
 	}
@@ -42,6 +47,15 @@ public class FragmentPlaceDetailGallery extends Fragment {
 		final String url = getArguments().getString(EXTRA_MESSAGE_URL);
 		final Integer resource = getArguments().getInt(EXTRA_MESSAGE);
 
+		final String disclamer = getArguments().getString(EXTRA_MESSAGE_DISCLAMER);
+		final TextView disclameText = (TextView) v.findViewById(R.id.imageview_gallery_place_detail_disclamer);
+		disclameText.setText(disclamer);
+		
+		final String title = getArguments().getString(EXTRA_MESSAGE_TITLE);
+		final TextView titleText = (TextView) v.findViewById(R.id.imageview_gallery_place_detail_title);
+		titleText.setText(title);
+		
+		
 		if(url != null){
 			new DownloadImageTask((ImageView)  image).execute(url);
 		}

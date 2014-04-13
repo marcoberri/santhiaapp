@@ -67,7 +67,7 @@ public class FragmentPlaceDetail extends Fragment {
 			Marker kiel = map.addMarker(new MarkerOptions()
 					.position(GpsPos)
 					.title(placeModel.getTitle())
-					.snippet(placeModel.getSubtitle() + " " + placeModel.getAddress())
+					.snippet(placeModel.getSubtitle() + "\n" + placeModel.getAddress())
 					//.icon(BitmapDescriptorFactory
 						//	.fromResource(R.drawable.ic_launcher)
 
@@ -77,7 +77,7 @@ public class FragmentPlaceDetail extends Fragment {
 
 			kiel.setVisible(true);
 
-			map.moveCamera(CameraUpdateFactory.newLatLngZoom(GpsPos, 20));
+			map.moveCamera(CameraUpdateFactory.newLatLngZoom(GpsPos, 10));
 
 		}
 
@@ -92,8 +92,8 @@ public class FragmentPlaceDetail extends Fragment {
 		final List<FragmentPlaceDetailGallery> fragments = new ArrayList<FragmentPlaceDetailGallery>();
 		
 		for(PlaceImageModel image : placeModel.getImages()){
-			Log.d(TAG, "image " + image.getUrl());
-			fragments.add(FragmentPlaceDetailGallery.newInstance(image.getUrl()));
+			Log.d(TAG, "image " + image);
+			fragments.add(FragmentPlaceDetailGallery.newInstance(image.getUrl(),image.getTitle(), image.getDisclamer()));
 		}
 
 		this.galleryPageAdapter  = new PlaceDetailGalleryPageAdapter(context.getSupportFragmentManager(), fragments);

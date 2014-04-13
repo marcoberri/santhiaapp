@@ -40,7 +40,8 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
                             android:layout_margin="8dp"
-                            android:text="@string/dummy_title" />
+                            android:text="@string/dummy_title"
+                            android:textStyle="bold" />
 
                         <TextView
                             android:id="@+id/place_detail_text"
@@ -78,8 +79,9 @@
                             style="@style/CustomCirclePageIndicator"
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp" />
-                    </RelativeLayout>
+                            android:paddingTop="10dp" />
+
+                                   </RelativeLayout>
                 </LinearLayout>
             </FrameLayout>
 
@@ -89,7 +91,6 @@
                 android:layout_height="fill_parent" >
 
                 <fragment
-                    
                     android:id="@+id/tab_3_map"
                     android:name="com.google.android.gms.maps.MapFragment"
                     android:layout_width="wrap_content"
