@@ -36,11 +36,15 @@ public class FragmentPlaceDetail extends Fragment {
 
 	private int position;
 	private PlaceModel placeModel;
-	
+
 	private PlaceDetailGalleryPageAdapter galleryPageAdapter;
 	private CirclePageIndicator mIndicator;
 	private FragmentActivity context;
-	
+	private GoogleMap map;
+	private LatLng gpsPos;
+	private List<FragmentPlaceDetailGallery> fragments;
+	private ViewPager pager;
+
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 
@@ -51,58 +55,58 @@ public class FragmentPlaceDetail extends Fragment {
 		final TextView title = (TextView) v
 				.findViewById(R.id.place_detail_title);
 		title.setText(placeModel.getTitle());
-		
-		final TextView text = (TextView) v
-				.findViewById(R.id.place_detail_text);
+
+		final TextView text = (TextView) v.findViewById(R.id.place_detail_text);
 		text.setText(placeModel.getText());
 
 		final TabHost mTabHost = (TabHost) v.findViewById(android.R.id.tabhost);
 		setupTabs(mTabHost);
 
-		GoogleMap map = ((MapFragment) getFragmentManager().findFragmentById(R.id.tab_3_map)).getMap();
+		map = ((MapFragment) getFragmentManager().findFragmentById(
+				R.id.tab_3_map)).getMap();
 
 		if (map != null) {
-			final LatLng GpsPos = new LatLng(placeModel.getGps().getLat(), placeModel.getGps().getLng());
+			gpsPos = new LatLng(placeModel.getGps().getLat(), placeModel
+					.getGps().getLng());
 
 			Marker kiel = map.addMarker(new MarkerOptions()
-					.position(GpsPos)
+					.position(gpsPos)
 					.title(placeModel.getTitle())
-					.snippet(placeModel.getSubtitle() + "\n" + placeModel.getAddress())
-					//.icon(BitmapDescriptorFactory
-						//	.fromResource(R.drawable.ic_launcher)
+					.snippet(
+							placeModel.getSubtitle() + "\n"
+									+ placeModel.getAddress())
+			// .icon(BitmapDescriptorFactory
+			// .fromResource(R.drawable.ic_launcher)
 
-					//)
+					// )
 
-			);
+					);
 
 			kiel.setVisible(true);
 
-			map.moveCamera(CameraUpdateFactory.newLatLngZoom(GpsPos, 10));
+			map.moveCamera(CameraUpdateFactory.newLatLngZoom(gpsPos, 18));
 
 		}
-
-		/*
-		 * this..onKeyDown(int keyCode, KeyEvent event) { switch(keyCode){ case
-		 * KeyEvent.KEYCODE_BACK: // do something here return true; } return
-		 * super.onKeyDown(keyCode, event); }
-		 */
 
 		Log.d(TAG, "Place Model " + placeModel);
-		
-		final List<FragmentPlaceDetailGallery> fragments = new ArrayList<FragmentPlaceDetailGallery>();
-		
-		for(PlaceImageModel image : placeModel.getImages()){
+
+		fragments = new ArrayList<FragmentPlaceDetailGallery>();
+
+		for (PlaceImageModel image : placeModel.getImages()) {
 			Log.d(TAG, "image " + image);
-			fragments.add(FragmentPlaceDetailGallery.newInstance(image.getUrl(),image.getTitle(), image.getDisclamer()));
+			fragments.add(FragmentPlaceDetailGallery.newInstance(
+					image.getUrl(), image.getTitle(), image.getDisclamer()));
 		}
 
-		this.galleryPageAdapter  = new PlaceDetailGalleryPageAdapter(context.getSupportFragmentManager(), fragments);
-		
-		final ViewPager pager = (ViewPager)v.findViewById(R.id.place_detail_gallery);
-        pager.setAdapter(this.galleryPageAdapter);
-        mIndicator = (CirclePageIndicator)v.findViewById(R.id.place_detail_gallery_indicator);
-        mIndicator.setViewPager(pager);
-        
+		this.galleryPageAdapter = new PlaceDetailGalleryPageAdapter(
+				context.getSupportFragmentManager(), fragments);
+
+		pager = (ViewPager) v.findViewById(R.id.place_detail_gallery);
+		pager.setAdapter(this.galleryPageAdapter);
+		mIndicator = (CirclePageIndicator) v
+				.findViewById(R.id.place_detail_gallery_indicator);
+		mIndicator.setViewPager(pager);
+
 		return v;
 	}
 
@@ -113,7 +117,6 @@ public class FragmentPlaceDetail extends Fragment {
 		tabSpec1.setContent(R.id.tab_1);
 		tabSpec1.setIndicator("Storia");
 
-		
 		final TabSpec tabSpec2 = mTabHost.newTabSpec("Near");
 		tabSpec2.setContent(R.id.tab_2);
 		tabSpec2.setIndicator("Foto");
@@ -130,7 +133,8 @@ public class FragmentPlaceDetail extends Fragment {
 				.getDimensionPixelSize(R.dimen.tab_height);
 		mTabHost.getTabWidget().getChildAt(1).getLayoutParams().height = getResources()
 				.getDimensionPixelSize(R.dimen.tab_height);
-		mTabHost.getTabWidget().getChildAt(2).getLayoutParams().height = getResources().getDimensionPixelSize(R.dimen.tab_height);
+		mTabHost.getTabWidget().getChildAt(2).getLayoutParams().height = getResources()
+				.getDimensionPixelSize(R.dimen.tab_height);
 
 	}
 
@@ -146,13 +150,11 @@ public class FragmentPlaceDetail extends Fragment {
 		this.placeModel = placeModel;
 
 	}
-	
+
 	@Override
 	public void onAttach(Activity activity) {
-		context=(FragmentActivity) activity;
-	    super.onAttach(activity);
+		context = (FragmentActivity) activity;
+		super.onAttach(activity);
 	}
-
-
 
 }
