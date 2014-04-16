@@ -28,26 +28,33 @@ public class FragmentPlaceDetailGallery extends Fragment {
 	
 	
 	public static final FragmentPlaceDetailGallery newInstance(String url, String title, String disclamer) {
-		FragmentPlaceDetailGallery f = new FragmentPlaceDetailGallery();
-		Bundle bdl = new Bundle(1);
+		final FragmentPlaceDetailGallery f = new FragmentPlaceDetailGallery();
+		final Bundle bdl = new Bundle(1);
 		bdl.putString(EXTRA_MESSAGE_URL, url);
 		bdl.putString(EXTRA_MESSAGE_TITLE, title);
 		bdl.putString(EXTRA_MESSAGE_DISCLAMER, disclamer);
+		Log.d(TAG, EXTRA_MESSAGE_URL + " : "  + url);
+		Log.d(TAG, EXTRA_MESSAGE_TITLE + " : "  + title);
+		Log.d(TAG, EXTRA_MESSAGE_DISCLAMER + " : "  + disclamer);
 		f.setArguments(bdl);
 		return f;
 	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,	Bundle savedInstanceState) {
-		Log.d(TAG, "onCreateView");
+		Log.i(TAG, "onCreateView()");
 	
 		final View v = inflater.inflate(R.layout.fragment_place_detail_gallery,container, false);
 		final ImageView image = (ImageView) v.findViewById(R.id.imageview_gallery_place_detail);
 		
 		final String url = getArguments().getString(EXTRA_MESSAGE_URL);
-		final Integer resource = getArguments().getInt(EXTRA_MESSAGE);
+		Log.d(TAG, "getUrl  : "  + url);
+		
+		//final Integer resource = getArguments().getInt(EXTRA_MESSAGE);
 
 		final String disclamer = getArguments().getString(EXTRA_MESSAGE_DISCLAMER);
+		Log.d(TAG, "disclamer  : "  + disclamer);
+		
 		final TextView disclameText = (TextView) v.findViewById(R.id.imageview_gallery_place_detail_disclamer);
 		disclameText.setText(disclamer);
 		
@@ -55,13 +62,14 @@ public class FragmentPlaceDetailGallery extends Fragment {
 		final TextView titleText = (TextView) v.findViewById(R.id.imageview_gallery_place_detail_title);
 		titleText.setText(title);
 		
+		Log.d(TAG, "Url to load image:" + url);
 		
 		if(url != null){
 			new DownloadImageTask((ImageView)  image).execute(url);
 		}
-		if(resource != null){
+		/*if(resource != null){
 			//TODO
-		}
+		}*/
 		
 		return v;
 	}

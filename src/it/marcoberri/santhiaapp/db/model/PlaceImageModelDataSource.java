@@ -53,6 +53,7 @@ public class PlaceImageModelDataSource {
 		long newRowId = db.insert(PlaceImageModelDBEntry.TABLE_NAME, null, values);
 
 		Log.d(TAG, "Insert tot element in "+PlaceImageModelDBEntry.TABLE_NAME+ " :" + newRowId);
+		db.close();
 		return newRowId;
 
 	}
@@ -80,7 +81,7 @@ public class PlaceImageModelDataSource {
 	       }
 	       
 	       Log.d(TAG,"images :" + images );
-	       
+	       db.close();
 		return images;
 	}
 	

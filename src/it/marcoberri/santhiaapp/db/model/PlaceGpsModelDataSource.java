@@ -48,6 +48,7 @@ public class PlaceGpsModelDataSource {
 				.insert(PlaceGpsModelDBEntry.TABLE_NAME, null, values);
 		Log.d(TAG, "Insert tot element in " + PlaceGpsModelDBEntry.TABLE_NAME
 				+ " :" + newRowId);
+		db.close();
 		return newRowId;
 
 	}
@@ -59,7 +60,7 @@ public class PlaceGpsModelDataSource {
 				PlaceGpsModelDBEntry.COLUMN_NAME_PLACE_ID + " = ?",
 				new String[] { placeId.toString() }, null, null, null);
 
-		PlaceGpsModel gps = new PlaceGpsModel();
+		final PlaceGpsModel gps = new PlaceGpsModel();
 
 		if (c.moveToFirst()) {
 			gps.setPlace_id(c.getInt(c
@@ -71,7 +72,7 @@ public class PlaceGpsModelDataSource {
 		}
 
 		Log.d(TAG, "gps :" + gps);
-
+		db.close();
 		return gps;
 	}
 

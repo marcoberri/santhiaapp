@@ -5,7 +5,8 @@ import java.util.List;
 
 import it.marcoberri.santhiaapp.R;
 import it.marcoberri.santhiaapp.adapter.PlaceDetailGalleryPageAdapter;
-import it.marcoberri.santhiaapp.db.model.PlaceImageModelDataSource;
+import it.marcoberri.santhiaapp.db.model.PlaceBookmarkModelDataSource;
+import it.marcoberri.santhiaapp.model.PlaceBookmarkModel;
 import it.marcoberri.santhiaapp.model.PlaceImageModel;
 import it.marcoberri.santhiaapp.model.PlaceModel;
 import android.app.Activity;
@@ -14,7 +15,11 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
+import android.view.InflateException;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TabHost;
@@ -24,7 +29,6 @@ import android.widget.TextView;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -37,43 +41,86 @@ public class FragmentPlaceDetail extends Fragment {
 	private int position;
 	private PlaceModel placeModel;
 
-	private PlaceDetailGalleryPageAdapter galleryPageAdapter;
 	private CirclePageIndicator mIndicator;
 	private FragmentActivity context;
 	private GoogleMap map;
-	private LatLng gpsPos;
-	private List<FragmentPlaceDetailGallery> fragments;
-	private ViewPager pager;
+	private PlaceBookmarkModelDataSource dsBookMark;
+
+	private static View view;
 
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 
 		Log.i(TAG, "onCreateView()");
-		final View v = inflater.inflate(R.layout.fragment_place_detail,
-				container, false);
+		
+		if (view != null) {
+			ViewGroup parent = (ViewGroup) view.getParent();
+			if (parent != null)
+				parent.removeView(view);
+			view = null;
+		}
 
-		final TextView title = (TextView) v
+		  setHasOptionsMenu(true);
+		  
+		
+		try {
+			view = inflater.inflate(R.layout.fragment_place_detail, container,
+					false);
+		} catch (InflateException e) {
+			Log.e(TAG, "error inflattter ", e);
+			return view;
+		}
+		
+		final TextView title = (TextView) view
 				.findViewById(R.id.place_detail_title);
 		title.setText(placeModel.getTitle());
 
-		final TextView text = (TextView) v.findViewById(R.id.place_detail_text);
+		final TextView text = (TextView) view
+				.findViewById(R.id.place_detail_text);
 		text.setText(placeModel.getText());
 
-		final TabHost mTabHost = (TabHost) v.findViewById(android.R.id.tabhost);
+		final TabHost mTabHost = (TabHost) view
+				.findViewById(android.R.id.tabhost);
 		setupTabs(mTabHost);
 
+		
+		
+		Log.d(TAG, "Place Model " + placeModel);
+
+		final List<FragmentPlaceDetailGallery> fragments = new ArrayList<FragmentPlaceDetailGallery>();
+
+		for (PlaceImageModel image : placeModel.getImages()) {
+			Log.d(TAG, "image " + image);
+			fragments.add(FragmentPlaceDetailGallery.newInstance(
+					image.getUrl(), image.getTitle(), image.getDisclamer()));
+		}
+
+		final PlaceDetailGalleryPageAdapter galleryPageAdapter = new PlaceDetailGalleryPageAdapter(
+				context.getSupportFragmentManager(), fragments);
+		final ViewPager pager = (ViewPager) view
+				.findViewById(R.id.place_detail_gallery);
+
+		pager.removeAllViewsInLayout();
+		pager.setAdapter(galleryPageAdapter);
+		mIndicator = (CirclePageIndicator) view
+				.findViewById(R.id.place_detail_gallery_indicator);
+		mIndicator.setViewPager(pager);
+		
+		galleryPageAdapter.notifyDataSetChanged();
+		
 		map = ((MapFragment) getFragmentManager().findFragmentById(
 				R.id.tab_3_map)).getMap();
 
 		if (map != null) {
-			gpsPos = new LatLng(placeModel.getGps().getLat(), placeModel
+
+			final LatLng gpsPos = new LatLng(placeModel.getGps().getLat(), placeModel
 					.getGps().getLng());
 
 			Marker kiel = map.addMarker(new MarkerOptions()
 					.position(gpsPos)
 					.title(placeModel.getTitle())
 					.snippet(
-							placeModel.getSubtitle() + "\n"
+							placeModel.getSubtitle() + "<br/>"
 									+ placeModel.getAddress())
 			// .icon(BitmapDescriptorFactory
 			// .fromResource(R.drawable.ic_launcher)
@@ -85,29 +132,35 @@ public class FragmentPlaceDetail extends Fragment {
 			kiel.setVisible(true);
 
 			map.moveCamera(CameraUpdateFactory.newLatLngZoom(gpsPos, 18));
+			map.setMyLocationEnabled(true);
 
 		}
 
-		Log.d(TAG, "Place Model " + placeModel);
+		
+		dsBookMark = new PlaceBookmarkModelDataSource(context);
+		return view;
 
-		fragments = new ArrayList<FragmentPlaceDetailGallery>();
+	}
 
-		for (PlaceImageModel image : placeModel.getImages()) {
-			Log.d(TAG, "image " + image);
-			fragments.add(FragmentPlaceDetailGallery.newInstance(
-					image.getUrl(), image.getTitle(), image.getDisclamer()));
-		}
+	
+	@Override
+	public void onDestroyView() {
+		super.onDestroyView();
+		MapFragment f = (MapFragment) getFragmentManager().findFragmentById(
+				R.id.tab_3_map);
+		if (f != null)
+			getFragmentManager().beginTransaction().remove(f).commit();
 
-		this.galleryPageAdapter = new PlaceDetailGalleryPageAdapter(
-				context.getSupportFragmentManager(), fragments);
+		MapFragment f2 = (MapFragment) getFragmentManager().findFragmentById(
+				R.id.tab_2);
+		if (f2 != null)
+			getFragmentManager().beginTransaction().remove(f2).commit();
 
-		pager = (ViewPager) v.findViewById(R.id.place_detail_gallery);
-		pager.setAdapter(this.galleryPageAdapter);
-		mIndicator = (CirclePageIndicator) v
-				.findViewById(R.id.place_detail_gallery_indicator);
-		mIndicator.setViewPager(pager);
+		MapFragment f1 = (MapFragment) getFragmentManager().findFragmentById(
+				R.id.tab_1);
+		if (f1 != null)
+			getFragmentManager().beginTransaction().remove(f1).commit();
 
-		return v;
 	}
 
 	private void setupTabs(TabHost mTabHost) {
@@ -156,5 +209,44 @@ public class FragmentPlaceDetail extends Fragment {
 		context = (FragmentActivity) activity;
 		super.onAttach(activity);
 	}
+	
+	@Override
+	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+		inflater.inflate(R.menu.place_detail, menu);
+		
+		
+		PlaceBookmarkModel bookmark =  dsBookMark.getPlaceBookmarkByPlaceId(placeModel.getId());
+		final MenuItem item = menu.findItem(R.id.add_to_bookmark_icon);
+		if(bookmark.getPlaceId() > 0){
+			  item.setIcon(android.R.drawable.btn_star_big_on);
+		}else{
+			  item.setIcon(android.R.drawable.btn_star_big_off);
+		}
+		
+		super.onCreateOptionsMenu(menu,inflater);
+	}
 
+	
+	public boolean onOptionsItemSelected(MenuItem item) {
+	    // Handle item selection
+	    switch (item.getItemId()) {
+	        case R.id.add_to_bookmark_icon:
+	        	
+	        	
+	        	
+	        	PlaceBookmarkModel bookmark =  dsBookMark.getPlaceBookmarkByPlaceId(placeModel.getId());
+	        	
+	    		if(bookmark.getPlaceId() > 0){
+	    			final int tot_delete = dsBookMark.deletePlaceBookmarkByPlaceId(placeModel.getId());
+	    			Log.d(TAG, "tot delete bookmark" + tot_delete);
+	  			  item.setIcon(android.R.drawable.btn_star_big_off);
+	    		}else{
+	    		  dsBookMark.insertPlaceBookmark(placeModel.getId());
+	  			  item.setIcon(android.R.drawable.btn_star_big_on);
+	    		}
+	            return true;
+	        default:
+	            return super.onOptionsItemSelected(item);
+	    }
+	}
 }

@@ -16,6 +16,8 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
@@ -34,52 +36,11 @@ public class FragmentPlace extends Fragment implements OnScrollListener {
 
 	private PlaceModel[] placeModelArray;
 
-	/*
-	 * private PlaceModel[] getData(){ final PlaceModelDataSource ds = new
-	 * PlaceModelDataSource(getActivity().getApplicationContext()); return
-	 * (PlaceModel[])ds.getPlaces().toArray(); }
-	 */
-	/*
-	 * 
-	 * new PlaceModel("Chiesa di Sant'Agata e Giorgio","Parrochia di Santhi�",
-	 * R.drawable.ic_church_item, 1), new
-	 * PlaceModel("Chiesa Santissima Trinit�", "da poco ristrutturata", 0, 2),
-	 * 
-	 * new PlaceModel("Chiesa di San Grato", "Oratorio",
-	 * R.drawable.ic_church_item, 3), new PlaceModel("Galleria di Arte Moderna",
-	 * "Premio nazionale", R.drawable.ic_galley_item, 4), new
-	 * PlaceModel("Ostello della via Francigena", "Ospitalitaa", 0, 5), new
-	 * PlaceModel("Il Mulino Ugliengo", "ex Consorzio agrario",
-	 * R.drawable.ic_windmill_item, 6), new PlaceModel("Il Mulino Ugliengo",
-	 * "ex Consorzio agrario", R.drawable.ic_windmill_item, 7), new
-	 * PlaceModel("Il Mulino Ugliengo", "ex Consorzio agrario",
-	 * R.drawable.ic_windmill_item, 8), new PlaceModel("Il Mulino Ugliengo",
-	 * "ex Consorzio agrario", R.drawable.ic_windmill_item, 9), new
-	 * PlaceModel("Il Mulino Ugliengo", "ex Consorzio agrario",
-	 * R.drawable.ic_windmill_item, 10), new PlaceModel("Il Mulino Ugliengo",
-	 * "ex Consorzio agrario", R.drawable.ic_windmill_item, 11), new
-	 * PlaceModel("Il Mulino Ugliengo", "ex Consorzio agrario",
-	 * R.drawable.ic_windmill_item, 12), new PlaceModel("Il Mulino Ugliengo",
-	 * "ex Consorzio agrario", R.drawable.ic_windmill_item, 13), new
-	 * PlaceModel("Il Mulino Ugliengo", "ex Consorzio agrario",
-	 * R.drawable.ic_windmill_item, 14), new PlaceModel("Il Mulino Ugliengo",
-	 * "ex Consorzio agrario", R.drawable.ic_windmill_item, 15), new
-	 * PlaceModel("Il Mulino Ugliengo", "ex Consorzio agrario",
-	 * R.drawable.ic_windmill_item, 16), new PlaceModel("Il Mulino Ugliengo",
-	 * "ex Consorzio agrario", R.drawable.ic_windmill_item, 17), new
-	 * PlaceModel("Il Mulino Ugliengo", "ex Consorzio agrario",
-	 * R.drawable.ic_windmill_item, 18), new PlaceModel("Il Mulino Ugliengo",
-	 * "ex Consorzio agrario", R.drawable.ic_windmill_item, 19), new
-	 * PlaceModel("Il Mulino Ugliengo", "ex Consorzio agrario",
-	 * R.drawable.ic_windmill_item, 20), new PlaceModel("Il Mulino Ugliengo",
-	 * "ex Consorzio agrario", R.drawable.ic_windmill_item, 21)
-	 * 
-	 * };
-	 */
-
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		Log.i(TAG, "onCreateView()");
+		
+		
 
 		final PlaceModelDataSource dsPlace = new PlaceModelDataSource(
 				getActivity().getApplicationContext());
@@ -88,7 +49,7 @@ public class FragmentPlace extends Fragment implements OnScrollListener {
 		placeModelArray = (PlaceModel[]) dsPlace.getPlaces().toArray(
 				new PlaceModel[tmp_list.size()]);
 		Log.i(TAG, "list" + placeModelArray);
-		View v = inflater.inflate(R.layout.fragment_place_list, container,
+		final View v = inflater.inflate(R.layout.fragment_place_list, container,
 				false);
 
 		listview = (ListView) v.findViewById(R.id.listViewPlace);
@@ -130,26 +91,23 @@ public class FragmentPlace extends Fragment implements OnScrollListener {
 			public void onItemClick(AdapterView<?> arg0, View arg1,
 					int position, long arg3) {
 
-				final FragmentTransaction ft = getFragmentManager()
-						.beginTransaction();
+				final FragmentTransaction ft = getFragmentManager().beginTransaction();
+				
 				final FragmentPlaceDetail detail = new FragmentPlaceDetail();
 
-				PlaceModel placeModel = placeModelArray[position];
+				final PlaceModel placeModel = placeModelArray[position];
 
-				final PlaceImageModelDataSource dsImage = new PlaceImageModelDataSource(
-						getActivity().getApplicationContext());
-				final List<PlaceImageModel> placeImageModelList = dsImage
-						.getImagesByPlaceId(placeModelArray[position].getId());
+				final PlaceImageModelDataSource dsImage = new PlaceImageModelDataSource(getActivity().getApplicationContext());
+				
+				final List<PlaceImageModel> placeImageModelList = dsImage.getImagesByPlaceId(placeModelArray[position].getId());
 				placeModel.setImages(placeImageModelList);
 
-				final PlaceGpsModelDataSource dsGps = new PlaceGpsModelDataSource(
-						getActivity().getApplicationContext());
+				final PlaceGpsModelDataSource dsGps = new PlaceGpsModelDataSource(getActivity().getApplicationContext());
 				
 				placeModel.setGps(dsGps.getGpsByPlaceId(placeModel.getId()));
 				
 				detail.setPlaceModel(placeModel);
-				ft.replace(R.id.content_frame, detail, "CENTER")
-						.addToBackStack(null);
+				ft.replace(R.id.content_frame, detail, "CENTER").addToBackStack(null);
 				ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
 				ft.commit();
 
@@ -173,4 +131,6 @@ public class FragmentPlace extends Fragment implements OnScrollListener {
 
 	}
 
+
+	
 }

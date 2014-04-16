@@ -55,6 +55,7 @@ public class PlaceModelDataSource {
 		long newRowId = db.insert(PlaceModelDBEntry.TABLE_NAME, null, values);
 
 		Log.d(TAG, "Insert tot element in "+PlaceModelDBEntry.TABLE_NAME+ " :" + newRowId);
+		db.close();
 		return newRowId;
 
 	}
@@ -81,7 +82,7 @@ public class PlaceModelDataSource {
 	       }
 	       
 	       Log.d(TAG,"places :" + places );
-	       
+	       db.close();
 		return places;
 
 	}

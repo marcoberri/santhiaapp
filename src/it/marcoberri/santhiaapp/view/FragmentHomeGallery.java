@@ -28,7 +28,7 @@ public class FragmentHomeGallery extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		Log.d(TAG, "onCreateView");
+		Log.i(TAG, "onCreateView()");
 		final int resource = getArguments().getInt(EXTRA_MESSAGE);
 		final View v = inflater.inflate(R.layout.fragment_home_gallery,
 				container, false);

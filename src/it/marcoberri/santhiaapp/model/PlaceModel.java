@@ -2,7 +2,6 @@ package it.marcoberri.santhiaapp.model;
 
 import java.util.List;
 
-import com.google.android.gms.drive.internal.AddEventListenerRequest;
 
 public class PlaceModel {
 
