@@ -47,8 +47,7 @@ public class FragmentHome extends Fragment {
 	private PlaceGpsModelDataSource dsGps;
 	private static View view;
 
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) {
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
 		Log.i(TAG, "onCreateView()");
 		
@@ -63,8 +62,7 @@ public class FragmentHome extends Fragment {
 		  
 		
 		try {
-			view = inflater.inflate(R.layout.fragment_home, container,
-					false);
+			view = inflater.inflate(R.layout.fragment_home, container,false);
 		} catch (InflateException e) {
 			Log.e(TAG, "error inflattter ", e);
 			return view;
@@ -81,6 +79,7 @@ public class FragmentHome extends Fragment {
 		if (map != null) {
 
 			List<PlaceModel> places = dsPlace.getPlaces();
+			
 			for (PlaceModel place : places) {
 				place.setGps(dsGps.getGpsByPlaceId(place.getId()));
 				if (place.getGps() == null) {
@@ -106,7 +105,7 @@ public class FragmentHome extends Fragment {
 
 		}
 
-		final ImageButton placeButton = (ImageButton) view
+	/*	final ImageButton placeButton = (ImageButton) view
 				.findViewById(R.id.home_button_place);
 
 		placeButton.setOnClickListener(new OnClickListener() {
@@ -153,7 +152,7 @@ public class FragmentHome extends Fragment {
 
 			}
 		});
-
+*/
 		// gallery view in home
 		final List<FragmentHomeGallery> fragments = new ArrayList<FragmentHomeGallery>();
 		// TODO get random image from archive
@@ -181,4 +180,13 @@ public class FragmentHome extends Fragment {
 		super.onAttach(activity);
 	}
 
+	@Override
+	public void onDestroyView() {
+		super.onDestroyView();
+		MapFragment f = (MapFragment) getFragmentManager().findFragmentById(
+				R.id.home_map);
+		if (f != null)
+			getFragmentManager().beginTransaction().remove(f).commit();
+
+	}
 }

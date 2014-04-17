@@ -5,6 +5,7 @@ import it.marcoberri.santhiaapp.db.model.PlaceGpsModelDataSource;
 import it.marcoberri.santhiaapp.db.model.PlaceImageModelDataSource;
 import it.marcoberri.santhiaapp.db.model.PlaceModelDataSource;
 import it.marcoberri.santhiaapp.db.model.PlaceModelDataSource.PlaceModelDBEntry;
+import it.marcoberri.santhiaapp.db.model.TourModelDataSource;
 import it.marcoberri.santhiaapp.model.PlaceImageModel;
 import it.marcoberri.santhiaapp.model.PlaceModel;
 import it.marcoberri.santhiaapp.model.PlaceModelList;
@@ -60,15 +61,17 @@ public class SplashActivity extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		Log.i(TAG, "onCreate()");
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.splashscreen);
 		logText = (TextView) findViewById(R.id.editText1);
-		
+
 		boolean checkOnline = HttpUtils.isOnline(this);
-		if(checkOnline)
-		new DownloadFileFromURL().execute(URL_PLACE);
-		else{
-			Toast.makeText(this, "No internet connection", Toast.LENGTH_LONG).show();
+		if (checkOnline)
+			new DownloadFileFromURL().execute(URL_PLACE);
+		else {
+			Toast.makeText(this, "No internet connection", Toast.LENGTH_LONG)
+					.show();
 		}
 	}
 
@@ -102,8 +105,8 @@ public class SplashActivity extends Activity {
 		@Override
 		protected void onPreExecute() {
 			super.onPreExecute();
-			//pDialog.show();
-			
+			// pDialog.show();
+
 			showDialog(progress_bar_type);
 		}
 
@@ -125,7 +128,8 @@ public class SplashActivity extends Activity {
 					long lenghtOfFile = entity.getContentLength();
 
 					final InputStream content = entity.getContent();
-					final InputStreamReader input = new InputStreamReader(content);
+					final InputStreamReader input = new InputStreamReader(
+							content);
 					final BufferedReader reader = new BufferedReader(input);
 					String lineIn;
 
@@ -133,7 +137,8 @@ public class SplashActivity extends Activity {
 					while ((lineIn = reader.readLine()) != null) {
 						builder.append(lineIn);
 						total += lineIn.getBytes().length;
-						publishProgress("" + (int) ((total * 100) / lenghtOfFile));
+						publishProgress(""
+								+ (int) ((total * 100) / lenghtOfFile));
 					}
 					places = builder.toString();
 				}
@@ -166,26 +171,49 @@ public class SplashActivity extends Activity {
 			final Gson gson = new Gson();
 			final PlaceModelList placeModelList = gson.fromJson(places,
 					PlaceModelList.class);
-			
-			final PlaceModelDataSource placeDS = new PlaceModelDataSource(getApplicationContext());
-			final PlaceImageModelDataSource placeImageDS = new PlaceImageModelDataSource(getApplicationContext());
-			final PlaceGpsModelDataSource placeGpsDS = new PlaceGpsModelDataSource(getApplicationContext());
-			
-			for (PlaceModel model : placeModelList.getPlaces()) {
-				placeDS.insertPlace(model.getId(), model.getTitle(),model.getSubtitle(), model.getText(), model.getAddress(),(model.getLocale() == null) ? "it_IT" : model.getLocale());
 
-				for(PlaceImageModel modelImage : model.getImages()){
-					placeImageDS.insertPlaceImage(modelImage.getId(), model.getId(), modelImage.getUrl(), modelImage.getDisclamer(), modelImage.getTitle(), modelImage.getText());
+			final PlaceModelDataSource placeDS = new PlaceModelDataSource(
+					getApplicationContext());
+			final PlaceImageModelDataSource placeImageDS = new PlaceImageModelDataSource(
+					getApplicationContext());
+			final PlaceGpsModelDataSource placeGpsDS = new PlaceGpsModelDataSource(
+					getApplicationContext());
+
+			for (PlaceModel model : placeModelList.getPlaces()) {
+				placeDS.insertPlace(
+						model.getId(),
+						model.getTitle(),
+						model.getSubtitle(),
+						model.getText(),
+						model.getAddress(),
+						(model.getLocale() == null) ? "it_IT" : model
+								.getLocale());
+
+				for (PlaceImageModel modelImage : model.getImages()) {
+					placeImageDS.insertPlaceImage(modelImage.getId(),
+							model.getId(), modelImage.getUrl(),
+							modelImage.getDisclamer(), modelImage.getTitle(),
+							modelImage.getText());
 				}
-				
-				placeGpsDS.insertPlaceGps(model.getId(), model.getGps().getLat(), model.getGps().getLng());
-				
+
+				placeGpsDS.insertPlaceGps(model.getId(), model.getGps()
+						.getLat(), model.getGps().getLng());
+
 			}
 
-	/*		final Intent intent = new Intent(getBaseContext(),
-					MainActivity.class);
-			startActivity(intent);
-*/
+			
+			//DATI TEST
+			final TourModelDataSource tourDS = new TourModelDataSource(
+					getApplicationContext());
+			
+			for(int i=0;i<100;i++){
+				tourDS.insertTour(i, "tour di test " + i, 0);
+			}
+			
+			/*
+			 * final Intent intent = new Intent(getBaseContext(),
+			 * MainActivity.class); startActivity(intent);
+			 */
 		}
 
 	}

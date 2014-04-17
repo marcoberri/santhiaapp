@@ -52,7 +52,7 @@ public class FragmentPlaceDetail extends Fragment {
 			Bundle savedInstanceState) {
 
 		Log.i(TAG, "onCreateView()");
-		
+
 		if (view != null) {
 			ViewGroup parent = (ViewGroup) view.getParent();
 			if (parent != null)
@@ -60,9 +60,6 @@ public class FragmentPlaceDetail extends Fragment {
 			view = null;
 		}
 
-		  setHasOptionsMenu(true);
-		  
-		
 		try {
 			view = inflater.inflate(R.layout.fragment_place_detail, container,
 					false);
@@ -70,7 +67,9 @@ public class FragmentPlaceDetail extends Fragment {
 			Log.e(TAG, "error inflattter ", e);
 			return view;
 		}
-		
+
+		setHasOptionsMenu(true);
+
 		final TextView title = (TextView) view
 				.findViewById(R.id.place_detail_title);
 		title.setText(placeModel.getTitle());
@@ -83,8 +82,6 @@ public class FragmentPlaceDetail extends Fragment {
 				.findViewById(android.R.id.tabhost);
 		setupTabs(mTabHost);
 
-		
-		
 		Log.d(TAG, "Place Model " + placeModel);
 
 		final List<FragmentPlaceDetailGallery> fragments = new ArrayList<FragmentPlaceDetailGallery>();
@@ -105,16 +102,16 @@ public class FragmentPlaceDetail extends Fragment {
 		mIndicator = (CirclePageIndicator) view
 				.findViewById(R.id.place_detail_gallery_indicator);
 		mIndicator.setViewPager(pager);
-		
+
 		galleryPageAdapter.notifyDataSetChanged();
-		
+
 		map = ((MapFragment) getFragmentManager().findFragmentById(
 				R.id.tab_3_map)).getMap();
 
 		if (map != null) {
 
-			final LatLng gpsPos = new LatLng(placeModel.getGps().getLat(), placeModel
-					.getGps().getLng());
+			final LatLng gpsPos = new LatLng(placeModel.getGps().getLat(),
+					placeModel.getGps().getLng());
 
 			Marker kiel = map.addMarker(new MarkerOptions()
 					.position(gpsPos)
@@ -136,13 +133,11 @@ public class FragmentPlaceDetail extends Fragment {
 
 		}
 
-		
 		dsBookMark = new PlaceBookmarkModelDataSource(context);
 		return view;
 
 	}
 
-	
 	@Override
 	public void onDestroyView() {
 		super.onDestroyView();
@@ -209,44 +204,42 @@ public class FragmentPlaceDetail extends Fragment {
 		context = (FragmentActivity) activity;
 		super.onAttach(activity);
 	}
-	
+
 	@Override
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 		inflater.inflate(R.menu.place_detail, menu);
-		
-		
-		PlaceBookmarkModel bookmark =  dsBookMark.getPlaceBookmarkByPlaceId(placeModel.getId());
+		final PlaceBookmarkModel bookmark = dsBookMark
+				.getPlaceBookmarkByPlaceId(placeModel.getId());
 		final MenuItem item = menu.findItem(R.id.add_to_bookmark_icon);
-		if(bookmark.getPlaceId() > 0){
-			  item.setIcon(android.R.drawable.btn_star_big_on);
-		}else{
-			  item.setIcon(android.R.drawable.btn_star_big_off);
+		if (bookmark.getPlaceId() > 0) {
+			item.setIcon(android.R.drawable.btn_star_big_on);
+		} else {
+			item.setIcon(android.R.drawable.btn_star_big_off);
 		}
-		
-		super.onCreateOptionsMenu(menu,inflater);
+
+		super.onCreateOptionsMenu(menu, inflater);
 	}
 
-	
 	public boolean onOptionsItemSelected(MenuItem item) {
-	    // Handle item selection
-	    switch (item.getItemId()) {
-	        case R.id.add_to_bookmark_icon:
-	        	
-	        	
-	        	
-	        	PlaceBookmarkModel bookmark =  dsBookMark.getPlaceBookmarkByPlaceId(placeModel.getId());
-	        	
-	    		if(bookmark.getPlaceId() > 0){
-	    			final int tot_delete = dsBookMark.deletePlaceBookmarkByPlaceId(placeModel.getId());
-	    			Log.d(TAG, "tot delete bookmark" + tot_delete);
-	  			  item.setIcon(android.R.drawable.btn_star_big_off);
-	    		}else{
-	    		  dsBookMark.insertPlaceBookmark(placeModel.getId());
-	  			  item.setIcon(android.R.drawable.btn_star_big_on);
-	    		}
-	            return true;
-	        default:
-	            return super.onOptionsItemSelected(item);
-	    }
+		// Handle item selection
+		switch (item.getItemId()) {
+		case R.id.add_to_bookmark_icon:
+
+			final PlaceBookmarkModel bookmark = dsBookMark
+					.getPlaceBookmarkByPlaceId(placeModel.getId());
+
+			if (bookmark.getPlaceId() > 0) {
+				final int tot_delete = dsBookMark
+						.deletePlaceBookmarkByPlaceId(placeModel.getId());
+				Log.d(TAG, "tot delete bookmark" + tot_delete);
+				item.setIcon(android.R.drawable.btn_star_big_off);
+			} else {
+				dsBookMark.insertPlaceBookmark(placeModel.getId());
+				item.setIcon(android.R.drawable.btn_star_big_on);
+			}
+			return true;
+		default:
+			return super.onOptionsItemSelected(item);
+		}
 	}
 }

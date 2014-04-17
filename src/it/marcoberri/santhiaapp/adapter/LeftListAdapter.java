@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class LeftListAdapter extends ArrayAdapter<LeftListModel>  {
@@ -32,9 +33,18 @@ public class LeftListAdapter extends ArrayAdapter<LeftListModel>  {
 		final View rowView = inflater.inflate(
 				R.layout.left_list_item, parent, false);
 
+		
 		final TextView text = (TextView) rowView
 				.findViewById(R.id.left_list_item_text_view);
 
+		
+		
+		
+		if(data[position].getImage() != 0){
+			final ImageView image = (ImageView)rowView.findViewById(R.id.left_list_item_image_view);
+			image.setBackgroundResource(data[position].getImage());
+		}
+		
 		text.setText(data[position].getTitle());
 
 

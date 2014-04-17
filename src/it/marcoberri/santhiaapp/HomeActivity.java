@@ -41,21 +41,19 @@ public class HomeActivity extends FragmentActivity {
 			new LeftListModel("Home", 0, 0), 
 			new LeftListModel("Place", 0, 1),
 			new LeftListModel("Carnevale", 0, 2),
-			new LeftListModel("Tour", 0, 3)
+			new LeftListModel("Preferiti", 0, 3),
+			new LeftListModel("Tour", R.drawable.ic_list, 4),
+			new LeftListModel("Eventi", 0, 5)
 
 	};
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 	
-        // create and auto start loader
-		Log.d(TAG, "onCreate");
+		Log.i(TAG, "onCreate()");
        
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-			
-
-        
 			        
 		mTitle = mDrawerTitle = getTitle();
 		mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -88,29 +86,24 @@ public class HomeActivity extends FragmentActivity {
 		if (savedInstanceState == null) {
 			selectItem(0);
 		}
-		
-		
-
-        
-        
 
 	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		MenuInflater inflater = getMenuInflater();
-		inflater.inflate(R.menu.main, menu);
+		//MenuInflater inflater = getMenuInflater();
+		//inflater.inflate(R.menu.main, menu);
 		return super.onCreateOptionsMenu(menu);
 	}
 
-	/* Called whenever we call invalidateOptionsMenu() */
 	@Override
 	public boolean onPrepareOptionsMenu(Menu menu) {
 		boolean drawerOpen = mDrawerLayout.isDrawerOpen(mDrawerList);
-		menu.findItem(R.id.action_websearch).setVisible(!drawerOpen);
+		//menu.findItem(R.id.action_websearch).setVisible(!drawerOpen);
 		return super.onPrepareOptionsMenu(menu);
 	}
 
+	
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		if (mDrawerToggle.onOptionsItemSelected(item)) {
@@ -120,7 +113,7 @@ public class HomeActivity extends FragmentActivity {
 		return super.onOptionsItemSelected(item);
 	}
 
-	/* The click listner for ListView in the navigation drawer */
+	
 	private class DrawerItemClickListener implements
 			ListView.OnItemClickListener {
 		@Override

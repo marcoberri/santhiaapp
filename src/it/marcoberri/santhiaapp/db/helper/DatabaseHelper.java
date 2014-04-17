@@ -1,9 +1,10 @@
 package it.marcoberri.santhiaapp.db.helper;
 
-import it.marcoberri.santhiaapp.db.model.PlaceBookMarkModelDataSource.PlaceBookMarkModelDBEntry;
+import it.marcoberri.santhiaapp.db.model.PlaceBookmarkModelDataSource.PlaceBookmarkModelDBEntry;
 import it.marcoberri.santhiaapp.db.model.PlaceGpsModelDataSource.PlaceGpsModelDBEntry;
 import it.marcoberri.santhiaapp.db.model.PlaceImageModelDataSource.PlaceImageModelDBEntry;
 import it.marcoberri.santhiaapp.db.model.PlaceModelDataSource.PlaceModelDBEntry;
+import it.marcoberri.santhiaapp.db.model.TourModelDataSource.TourModelDBEntry;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -51,37 +52,45 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 			" FOREIGN KEY("+PlaceGpsModelDBEntry.COLUMN_NAME_PLACE_ID+") REFERENCES "+PlaceModelDBEntry.TABLE_NAME+"("+PlaceModelDBEntry.COLUMN_NAME_ENTRY_ID +") )";
 
 	private static final String SQL_CREATE_BOOKMARK = "CREATE TABLE "
-			+ PlaceBookMarkModelDBEntry.TABLE_NAME + " (" + 
-			PlaceBookMarkModelDBEntry.COLUMN_NAME_PLACE_ID + INTEGER_TYPE + NOTNULL_TYPE + COMMA_SEP +
-			PlaceBookMarkModelDBEntry.COLUMN_NAME_TS	+ TEXT_TYPE + COMMA_SEP + 
-			" PRIMARY KEY ( "+PlaceBookMarkModelDBEntry.COLUMN_NAME_PLACE_ID + ")" +
-			" FOREIGN KEY("+ PlaceBookMarkModelDBEntry.COLUMN_NAME_PLACE_ID+") REFERENCES "+PlaceModelDBEntry.TABLE_NAME+"("+PlaceModelDBEntry.COLUMN_NAME_ENTRY_ID +") )";
+			+ PlaceBookmarkModelDBEntry.TABLE_NAME + " (" + 
+			PlaceBookmarkModelDBEntry.COLUMN_NAME_PLACE_ID + INTEGER_TYPE + NOTNULL_TYPE + COMMA_SEP +
+			PlaceBookmarkModelDBEntry.COLUMN_NAME_TS	+ TEXT_TYPE + COMMA_SEP + 
+			" PRIMARY KEY ( "+PlaceBookmarkModelDBEntry.COLUMN_NAME_PLACE_ID + ")" +
+			" FOREIGN KEY("+ PlaceBookmarkModelDBEntry.COLUMN_NAME_PLACE_ID+") REFERENCES "+PlaceModelDBEntry.TABLE_NAME+"("+PlaceModelDBEntry.COLUMN_NAME_ENTRY_ID +") )";
+	
+	private static final String SQL_CREATE_TOUR = "CREATE TABLE "
+			+ TourModelDBEntry.TABLE_NAME + " (" + 
+			TourModelDBEntry.COLUMN_NAME_ENTRY_ID + INTEGER_TYPE + NOTNULL_TYPE + COMMA_SEP +
+			TourModelDBEntry.COLUMN_NAME_TITLE	+ TEXT_TYPE + COMMA_SEP +
+			TourModelDBEntry.COLUMN_NAME_VOTE	+ INTEGER_TYPE + ")";
+	
 	
 	private static final String SQL_DELETE_PLACES = "DROP TABLE IF EXISTS " + PlaceModelDBEntry.TABLE_NAME;
 	private static final String SQL_DELETE_IMAGES = "DROP TABLE IF EXISTS " + PlaceImageModelDBEntry.TABLE_NAME;
 	private static final String SQL_DELETE_GPS = "DROP TABLE IF EXISTS " + PlaceGpsModelDBEntry.TABLE_NAME;
-	private static final String SQL_DELETE_BOOKMARK = "DROP TABLE IF EXISTS " + PlaceBookMarkModelDBEntry.TABLE_NAME;
+	private static final String SQL_DELETE_BOOKMARK = "DROP TABLE IF EXISTS " + PlaceBookmarkModelDBEntry.TABLE_NAME;
+	private static final String SQL_DELETE_TOUR = "DROP TABLE IF EXISTS " + TourModelDBEntry.TABLE_NAME;
 
 	public DatabaseHelper(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
 	}
 
 	public void onCreate(SQLiteDatabase db) {
-		Log.d(TAG, "onCreate");
+		Log.i(TAG, "onCreateView()");
 		db.execSQL(SQL_CREATE_PLACES);
 		db.execSQL(SQL_CREATE_IMAGES);
 		db.execSQL(SQL_CREATE_GPS);
 		db.execSQL(SQL_CREATE_BOOKMARK);
+		db.execSQL(SQL_CREATE_TOUR);
 	}
 
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 		Log.d(TAG, "onUpgrade");
 		db.execSQL(SQL_DELETE_BOOKMARK);
 		db.execSQL(SQL_DELETE_GPS);
+		db.execSQL(SQL_DELETE_TOUR);
 		db.execSQL(SQL_DELETE_IMAGES);
 		db.execSQL(SQL_DELETE_PLACES);
-		
-		
 		onCreate(db);
 	}
 

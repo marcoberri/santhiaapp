@@ -1,16 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout 
-   xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/left_list_item_layout"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_alignParentLeft="true"
     android:layout_marginRight="5dip"
-    android:orientation="horizontal"
-    android:padding="3dip" 
     android:background="?android:attr/activatedBackgroundIndicator"
-    android:textAppearance="?android:attr/textAppearanceListItemSmall"
-    >
+    android:orientation="horizontal"
+    android:padding="3dip"
+    android:textAppearance="?android:attr/textAppearanceListItemSmall" >
 
     <ImageView
         android:id="@+id/left_list_item_image_view"

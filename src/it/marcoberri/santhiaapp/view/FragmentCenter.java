@@ -9,7 +9,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 
 public class FragmentCenter extends Fragment {
 
@@ -42,7 +41,7 @@ public class FragmentCenter extends Fragment {
 		if (index == 1) {
 			final String title = HomeActivity.mMenuTitles[index].getTitle();
 			getActivity().setTitle(title);
-			FragmentPlace fplace = new FragmentPlace();
+			FragmentPlaceList fplace = new FragmentPlaceList();
 
 			final FragmentTransaction ft = getFragmentManager()
 					.beginTransaction();
@@ -78,12 +77,22 @@ public class FragmentCenter extends Fragment {
 			getActivity().setTitle(title);
 			final FragmentTransaction ft = getFragmentManager()
 					.beginTransaction();
-			ft.replace(R.id.content_frame, new FragmentYourTour()).addToBackStack(
+			ft.replace(R.id.content_frame, new FragmentYourTourList()).addToBackStack(
 					null);
 			ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
 			ft.commit();
 		}
 
+		if (index == 5) {
+			final String title = HomeActivity.mMenuTitles[index].getTitle();
+			getActivity().setTitle(title);
+			final FragmentTransaction ft = getFragmentManager()
+					.beginTransaction();
+			ft.replace(R.id.content_frame, new FragmentEvents()).addToBackStack(
+					null);
+			ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+			ft.commit();
+		}
 		return null;
 
 	}
