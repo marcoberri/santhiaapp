@@ -28,7 +28,7 @@ import android.widget.ListView;
 import android.widget.AbsListView.OnScrollListener;
 import android.widget.AdapterView.OnItemClickListener;
 
-public class FragmentYourTourList extends Fragment implements OnScrollListener {
+public class FragmentYourTourList extends Fragment implements OnScrollListener{
 
 	protected final static String TAG = FragmentYourTourList.class.getName();
 
@@ -87,6 +87,25 @@ public class FragmentYourTourList extends Fragment implements OnScrollListener {
 			}
 		});
 
+		
+		listview.setOnScrollListener(new OnScrollListener() {
+		    @Override
+		    public void onScrollStateChanged(AbsListView view, int scrollState) {
+		    }
+
+		    @Override
+		    public void onScroll(AbsListView view, int firstVisibleItem,
+		                int visibleItemCount, int totalItemCount) {
+		    	Log.d(TAG, "firstVisibleItem: " + firstVisibleItem);
+		    	Log.d(TAG, "visibleItemCount: " + visibleItemCount);
+		    	Log.d(TAG, "totalItemCount: " + totalItemCount);
+		       final int lastItem = firstVisibleItem + visibleItemCount;
+		       if(lastItem == totalItemCount) {
+		           //load more data
+		       }
+		    }
+		});
+		
 		// listview.addFooterView(R.layout.fragment_place_list_bottom);
 		listview.setOnItemClickListener(new OnItemClickListener() {
 
@@ -133,5 +152,6 @@ public class FragmentYourTourList extends Fragment implements OnScrollListener {
 		// TODO Auto-generated method stub
 		
 	}
+
 
 }
