@@ -1,23 +1,77 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent" >
+<TabHost xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@android:id/tabhost"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="1dp" >
 
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical" >
 
-        <Button
-            android:id="@+id/button_add_tour"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Add Tour" />
+        <TabWidget
+            android:id="@android:id/tabs"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:padding="0dp" />
 
-        <Button
-            android:id="@+id/button_select_place"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="select place" />
+        <FrameLayout
+            android:id="@android:id/tabcontent"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" >
+
+            <FrameLayout
+                android:id="@+id/tab_yours"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent" >
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:orientation="vertical" >
+
+                    <EditText
+                        android:id="@+id/listViewTour_search"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Search tour..."
+                        android:inputType="textVisiblePassword" />
+
+                    <ListView
+                        android:id="@+id/listViewTour"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:choiceMode="singleChoice"
+                        android:listSelector="@drawable/list_item_place_selector" />
+                </LinearLayout>
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/tab_community"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent" >
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:orientation="vertical" >
+
+                    <EditText
+                        android:id="@+id/listViewTourCommunity_search"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Search tour..."
+                        android:inputType="textVisiblePassword" />
+
+                    <ListView
+                        android:id="@+id/listViewTourCommunity"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:choiceMode="singleChoice"
+                        android:listSelector="@drawable/list_item_place_selector" />
+                </LinearLayout>
+            </FrameLayout>
+        </FrameLayout>
     </LinearLayout>
 
-</ScrollView>
+</TabHost>

@@ -77,7 +77,7 @@ public class FragmentCenter extends Fragment {
 			getActivity().setTitle(title);
 			final FragmentTransaction ft = getFragmentManager()
 					.beginTransaction();
-			ft.replace(R.id.content_frame, new FragmentYourTourList()).addToBackStack(
+			ft.replace(R.id.content_frame, new FragmentYourTour()).addToBackStack(
 					null);
 			ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
 			ft.commit();

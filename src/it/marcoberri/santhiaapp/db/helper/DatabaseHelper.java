@@ -5,6 +5,7 @@ import it.marcoberri.santhiaapp.db.model.PlaceGpsModelDataSource.PlaceGpsModelDB
 import it.marcoberri.santhiaapp.db.model.PlaceImageModelDataSource.PlaceImageModelDBEntry;
 import it.marcoberri.santhiaapp.db.model.PlaceModelDataSource.PlaceModelDBEntry;
 import it.marcoberri.santhiaapp.db.model.TourModelDataSource.TourModelDBEntry;
+import it.marcoberri.santhiaapp.db.model.TourPlaceModelDataSource.TourPlaceModelDBEntry;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -62,7 +63,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 			+ TourModelDBEntry.TABLE_NAME + " (" + 
 			TourModelDBEntry.COLUMN_NAME_ENTRY_ID + INTEGER_TYPE + NOTNULL_TYPE + COMMA_SEP +
 			TourModelDBEntry.COLUMN_NAME_TITLE	+ TEXT_TYPE + COMMA_SEP +
-			TourModelDBEntry.COLUMN_NAME_VOTE	+ INTEGER_TYPE + ")";
+			TourModelDBEntry.COLUMN_NAME_VOTE	+ INTEGER_TYPE +  COMMA_SEP + 
+			TourModelDBEntry.COLUMN_NAME_COMMUNITY	+ INTEGER_TYPE  +	")";
+	
+	
+	private static final String SQL_CREATE_TOURPLACE = "CREATE TABLE "
+			+ TourPlaceModelDBEntry.TABLE_NAME + " (" + 
+			TourPlaceModelDBEntry.COLUMN_NAME_TOUR_ID + INTEGER_TYPE + NOTNULL_TYPE + COMMA_SEP +
+			TourPlaceModelDBEntry.COLUMN_NAME_PLACE_ID + INTEGER_TYPE + NOTNULL_TYPE  + COMMA_SEP +
+			" PRIMARY KEY ( "+TourPlaceModelDBEntry.COLUMN_NAME_TOUR_ID + COMMA_SEP + TourPlaceModelDBEntry.COLUMN_NAME_PLACE_ID + ")" + COMMA_SEP +
+			" FOREIGN KEY("+ TourPlaceModelDBEntry.COLUMN_NAME_PLACE_ID+") REFERENCES "+PlaceModelDBEntry.TABLE_NAME+"("+PlaceModelDBEntry.COLUMN_NAME_ENTRY_ID +") " + COMMA_SEP +
+			" FOREIGN KEY("+ TourPlaceModelDBEntry.COLUMN_NAME_TOUR_ID+") REFERENCES "+TourModelDBEntry.TABLE_NAME+"("+TourModelDBEntry.COLUMN_NAME_ENTRY_ID +"))";
 	
 	
 	private static final String SQL_DELETE_PLACES = "DROP TABLE IF EXISTS " + PlaceModelDBEntry.TABLE_NAME;
@@ -70,6 +81,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	private static final String SQL_DELETE_GPS = "DROP TABLE IF EXISTS " + PlaceGpsModelDBEntry.TABLE_NAME;
 	private static final String SQL_DELETE_BOOKMARK = "DROP TABLE IF EXISTS " + PlaceBookmarkModelDBEntry.TABLE_NAME;
 	private static final String SQL_DELETE_TOUR = "DROP TABLE IF EXISTS " + TourModelDBEntry.TABLE_NAME;
+	private static final String SQL_DELETE_TOURPLACE = "DROP TABLE IF EXISTS " + TourPlaceModelDBEntry.TABLE_NAME;
 
 	public DatabaseHelper(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -82,15 +94,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		db.execSQL(SQL_CREATE_GPS);
 		db.execSQL(SQL_CREATE_BOOKMARK);
 		db.execSQL(SQL_CREATE_TOUR);
+		db.execSQL(SQL_CREATE_TOURPLACE);
+		
 	}
 
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 		Log.d(TAG, "onUpgrade");
 		db.execSQL(SQL_DELETE_BOOKMARK);
+		db.execSQL(SQL_DELETE_TOURPLACE);
 		db.execSQL(SQL_DELETE_GPS);
 		db.execSQL(SQL_DELETE_TOUR);
 		db.execSQL(SQL_DELETE_IMAGES);
 		db.execSQL(SQL_DELETE_PLACES);
+		
 		onCreate(db);
 	}
 

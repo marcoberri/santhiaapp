@@ -141,21 +141,25 @@ public class FragmentPlaceDetail extends Fragment {
 	@Override
 	public void onDestroyView() {
 		super.onDestroyView();
-		MapFragment f = (MapFragment) getFragmentManager().findFragmentById(
+		final MapFragment f = (MapFragment) getFragmentManager().findFragmentById(
 				R.id.tab_3_map);
 		if (f != null)
 			getFragmentManager().beginTransaction().remove(f).commit();
 
-		MapFragment f2 = (MapFragment) getFragmentManager().findFragmentById(
+		final MapFragment f2 = (MapFragment) getFragmentManager().findFragmentById(
 				R.id.tab_2);
 		if (f2 != null)
 			getFragmentManager().beginTransaction().remove(f2).commit();
 
-		MapFragment f1 = (MapFragment) getFragmentManager().findFragmentById(
+		final MapFragment f1 = (MapFragment) getFragmentManager().findFragmentById(
 				R.id.tab_1);
 		if (f1 != null)
 			getFragmentManager().beginTransaction().remove(f1).commit();
 
+		final MapFragment f4 = (MapFragment) getFragmentManager().findFragmentById(
+				R.id.tab_4);
+		if (f4 != null)
+			getFragmentManager().beginTransaction().remove(f4).commit();
 	}
 
 	private void setupTabs(TabHost mTabHost) {
@@ -173,9 +177,14 @@ public class FragmentPlaceDetail extends Fragment {
 		tabSpec3.setContent(R.id.tab_3);
 		tabSpec3.setIndicator("Map");
 
+		final TabSpec tabSpec4 = mTabHost.newTabSpec("Comments");
+		tabSpec4.setContent(R.id.tab_4);
+		tabSpec4.setIndicator("comments");
+		
 		mTabHost.addTab(tabSpec1);
 		mTabHost.addTab(tabSpec2);
 		mTabHost.addTab(tabSpec3);
+		mTabHost.addTab(tabSpec4);
 
 		mTabHost.getTabWidget().getChildAt(0).getLayoutParams().height = getResources()
 				.getDimensionPixelSize(R.dimen.tab_height);
@@ -183,6 +192,8 @@ public class FragmentPlaceDetail extends Fragment {
 				.getDimensionPixelSize(R.dimen.tab_height);
 		mTabHost.getTabWidget().getChildAt(2).getLayoutParams().height = getResources()
 				.getDimensionPixelSize(R.dimen.tab_height);
+		mTabHost.getTabWidget().getChildAt(3).getLayoutParams().height = getResources()
+				.getDimensionPixelSize(R.dimen.tab_height);		
 
 	}
 

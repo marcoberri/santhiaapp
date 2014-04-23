@@ -8,7 +8,8 @@ public class TourModel {
 	private int id;
 	private String title;
 	private int vote;
-	
+	private int community;
+		
 	public int getVote() {
 		return vote;
 	}
@@ -59,6 +60,14 @@ public class TourModel {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public int getCommunity() {
+		return community;
+	}
+
+	public void setCommunity(int community) {
+		this.community = community;
 	}
 
 

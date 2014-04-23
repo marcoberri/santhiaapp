@@ -93,12 +93,12 @@ public class FragmentHome extends Fragment {
 						.position(gpsPos)
 						.title(place.getTitle())
 						.snippet(
-								place.getSubtitle() + "<br/>"
+								place.getSubtitle() + "\n"
 										+ place.getAddress()));
 
 				marker.setVisible(true);
 
-				map.moveCamera(CameraUpdateFactory.newLatLngZoom(gpsPos, 18));
+				map.moveCamera(CameraUpdateFactory.newLatLngZoom(gpsPos, 10));
 			}
 
 			map.setMyLocationEnabled(true);

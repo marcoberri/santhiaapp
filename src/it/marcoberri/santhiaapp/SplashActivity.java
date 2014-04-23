@@ -6,6 +6,7 @@ import it.marcoberri.santhiaapp.db.model.PlaceImageModelDataSource;
 import it.marcoberri.santhiaapp.db.model.PlaceModelDataSource;
 import it.marcoberri.santhiaapp.db.model.PlaceModelDataSource.PlaceModelDBEntry;
 import it.marcoberri.santhiaapp.db.model.TourModelDataSource;
+import it.marcoberri.santhiaapp.db.model.TourPlaceModelDataSource;
 import it.marcoberri.santhiaapp.model.PlaceImageModel;
 import it.marcoberri.santhiaapp.model.PlaceModel;
 import it.marcoberri.santhiaapp.model.PlaceModelList;
@@ -203,11 +204,16 @@ public class SplashActivity extends Activity {
 
 			
 			//DATI TEST
-			final TourModelDataSource tourDS = new TourModelDataSource(
-					getApplicationContext());
+			final TourModelDataSource tourDS = new TourModelDataSource(					getApplicationContext());
 			
-			for(int i=0;i<100;i++){
-				tourDS.insertTour(i, "tour di test " + i, 0);
+			final TourPlaceModelDataSource tourPlaceDS = new TourPlaceModelDataSource(					getApplicationContext());	
+			
+			for(int i=0;i<20;i++){
+				tourDS.insertCommunityTour(i, "tour di test " + i, 0,1);
+				
+				for(int j=1;j<=(Math.random() * ( 5 - 1 ));j++){
+					tourPlaceDS.insertPlace(i, j);
+				}
 			}
 			
 			/*
