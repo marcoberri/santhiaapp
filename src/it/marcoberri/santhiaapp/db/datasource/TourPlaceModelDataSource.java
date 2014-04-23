@@ -1,4 +1,4 @@
-package it.marcoberri.santhiaapp.db.model;
+package it.marcoberri.santhiaapp.db.datasource;
 
 import it.marcoberri.santhiaapp.db.helper.DatabaseHelper;
 import it.marcoberri.santhiaapp.model.PlaceModel;
@@ -12,6 +12,10 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.provider.BaseColumns;
 import android.util.Log;
+/**
+ * @author Marco Berri - marcoberri@gmail.com
+ *
+ */
 
 public class TourPlaceModelDataSource {
 

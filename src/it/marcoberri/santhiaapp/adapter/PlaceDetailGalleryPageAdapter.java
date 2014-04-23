@@ -4,13 +4,15 @@ import it.marcoberri.santhiaapp.view.FragmentPlaceDetailGallery;
 
 import java.util.List;
 
-import android.app.FragmentTransaction;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.util.Log;
 import android.view.ViewGroup;
+/**
+ * @author Marco Berri - marcoberri@gmail.com
+ *
+ */
 
 public class PlaceDetailGalleryPageAdapter extends FragmentStatePagerAdapter {
 

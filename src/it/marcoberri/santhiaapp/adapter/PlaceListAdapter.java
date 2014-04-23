@@ -10,6 +10,10 @@ import android.widget.ArrayAdapter;
 import android.widget.Filter;
 import android.widget.ImageView;
 import android.widget.TextView;
+/**
+ * @author Marco Berri - marcoberri@gmail.com
+ *
+ */
 
 public class PlaceListAdapter extends ArrayAdapter<PlaceModel>  {
 	

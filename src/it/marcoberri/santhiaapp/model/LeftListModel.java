@@ -1,4 +1,8 @@
 package it.marcoberri.santhiaapp.model;
+/**
+ * @author Marco Berri - marcoberri@gmail.com
+ *
+ */
 
 public class LeftListModel {
 

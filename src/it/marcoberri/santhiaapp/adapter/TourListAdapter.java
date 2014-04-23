@@ -9,7 +9,10 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Filter;
 import android.widget.TextView;
-
+/**
+ * @author Marco Berri - marcoberri@gmail.com
+ *
+ */
 public class TourListAdapter extends ArrayAdapter<TourModel>  {
 	
 	

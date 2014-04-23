@@ -1,19 +1,22 @@
-package it.marcoberri.santhiaapp.db.model;
+package it.marcoberri.santhiaapp.db.datasource;
+
+import it.marcoberri.santhiaapp.db.helper.DatabaseHelper;
+import it.marcoberri.santhiaapp.model.PlaceBookmarkModel;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.LinkedList;
-import java.util.List;
 
-import it.marcoberri.santhiaapp.db.helper.DatabaseHelper;
-import it.marcoberri.santhiaapp.model.PlaceBookmarkModel;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.provider.BaseColumns;
 import android.util.Log;
+/**
+ * @author Marco Berri - marcoberri@gmail.com
+ *
+ */
 
 public class PlaceBookmarkModelDataSource {
 

@@ -1,29 +1,19 @@
 package it.marcoberri.santhiaapp;
 
+import it.marcoberri.santhiaapp.db.datasource.PlaceGpsModelDataSource;
+import it.marcoberri.santhiaapp.db.datasource.PlaceImageModelDataSource;
+import it.marcoberri.santhiaapp.db.datasource.PlaceModelDataSource;
+import it.marcoberri.santhiaapp.db.datasource.TourModelDataSource;
+import it.marcoberri.santhiaapp.db.datasource.TourPlaceModelDataSource;
 import it.marcoberri.santhiaapp.db.helper.DatabaseHelper;
-import it.marcoberri.santhiaapp.db.model.PlaceGpsModelDataSource;
-import it.marcoberri.santhiaapp.db.model.PlaceImageModelDataSource;
-import it.marcoberri.santhiaapp.db.model.PlaceModelDataSource;
-import it.marcoberri.santhiaapp.db.model.PlaceModelDataSource.PlaceModelDBEntry;
-import it.marcoberri.santhiaapp.db.model.TourModelDataSource;
-import it.marcoberri.santhiaapp.db.model.TourPlaceModelDataSource;
 import it.marcoberri.santhiaapp.model.PlaceImageModel;
 import it.marcoberri.santhiaapp.model.PlaceModel;
 import it.marcoberri.santhiaapp.model.PlaceModelList;
 import it.marcoberri.santhiaapp.utils.HttpUtils;
 
-import java.io.BufferedInputStream;
 import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.net.URL;
-import java.net.URLConnection;
-import java.nio.MappedByteBuffer;
-import java.nio.channels.FileChannel;
-import java.nio.charset.Charset;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -32,23 +22,23 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 
-import com.google.gson.Gson;
-
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
-import android.content.ContentValues;
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Environment;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+
+/**
+ * @author Marco Berri - marcoberri@gmail.com
+ *
+ */
 public class SplashActivity extends Activity {
 
 	private static final String TAG = SplashActivity.class.getName();
@@ -209,7 +199,7 @@ public class SplashActivity extends Activity {
 			final TourPlaceModelDataSource tourPlaceDS = new TourPlaceModelDataSource(					getApplicationContext());	
 			
 			for(int i=0;i<20;i++){
-				tourDS.insertCommunityTour(i, "tour di test " + i, 0,1);
+				tourDS.insertCommunityTour(i, "tour di test " + i, 0);
 				
 				for(int j=1;j<=(Math.random() * ( 5 - 1 ));j++){
 					tourPlaceDS.insertPlace(i, j);

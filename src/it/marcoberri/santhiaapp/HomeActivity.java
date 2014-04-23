@@ -20,6 +20,10 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+/**
+ * @author Marco Berri - marcoberri@gmail.com
+ *
+ */
 public class HomeActivity extends FragmentActivity {
 
 	private static final String TAG = HomeActivity.class.getName();

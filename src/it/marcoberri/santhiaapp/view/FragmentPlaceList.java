@@ -2,9 +2,9 @@ package it.marcoberri.santhiaapp.view;
 
 import it.marcoberri.santhiaapp.R;
 import it.marcoberri.santhiaapp.adapter.PlaceListAdapter;
-import it.marcoberri.santhiaapp.db.model.PlaceGpsModelDataSource;
-import it.marcoberri.santhiaapp.db.model.PlaceImageModelDataSource;
-import it.marcoberri.santhiaapp.db.model.PlaceModelDataSource;
+import it.marcoberri.santhiaapp.db.datasource.PlaceGpsModelDataSource;
+import it.marcoberri.santhiaapp.db.datasource.PlaceImageModelDataSource;
+import it.marcoberri.santhiaapp.db.datasource.PlaceModelDataSource;
 import it.marcoberri.santhiaapp.model.PlaceImageModel;
 import it.marcoberri.santhiaapp.model.PlaceModel;
 

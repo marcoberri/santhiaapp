@@ -1,6 +1,10 @@
 package it.marcoberri.santhiaapp.model;
 
 import java.util.Date;
+/**
+ * @author Marco Berri - marcoberri@gmail.com
+ *
+ */
 
 public class PlaceBookmarkModel {
 

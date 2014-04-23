@@ -1,18 +1,17 @@
-package it.marcoberri.santhiaapp.db.model;
-
-import java.util.LinkedList;
-import java.util.List;
+package it.marcoberri.santhiaapp.db.datasource;
 
 import it.marcoberri.santhiaapp.db.helper.DatabaseHelper;
-import it.marcoberri.santhiaapp.db.model.PlaceImageModelDataSource.PlaceImageModelDBEntry;
 import it.marcoberri.santhiaapp.model.PlaceGpsModel;
-import it.marcoberri.santhiaapp.model.PlaceImageModel;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.provider.BaseColumns;
 import android.util.Log;
+/**
+ * @author Marco Berri - marcoberri@gmail.com
+ *
+ */
 
 public class PlaceGpsModelDataSource {
 

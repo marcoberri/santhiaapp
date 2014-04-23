@@ -1,15 +1,19 @@
 package it.marcoberri.santhiaapp.db.helper;
 
-import it.marcoberri.santhiaapp.db.model.PlaceBookmarkModelDataSource.PlaceBookmarkModelDBEntry;
-import it.marcoberri.santhiaapp.db.model.PlaceGpsModelDataSource.PlaceGpsModelDBEntry;
-import it.marcoberri.santhiaapp.db.model.PlaceImageModelDataSource.PlaceImageModelDBEntry;
-import it.marcoberri.santhiaapp.db.model.PlaceModelDataSource.PlaceModelDBEntry;
-import it.marcoberri.santhiaapp.db.model.TourModelDataSource.TourModelDBEntry;
-import it.marcoberri.santhiaapp.db.model.TourPlaceModelDataSource.TourPlaceModelDBEntry;
+import it.marcoberri.santhiaapp.db.datasource.PlaceBookmarkModelDataSource.PlaceBookmarkModelDBEntry;
+import it.marcoberri.santhiaapp.db.datasource.PlaceGpsModelDataSource.PlaceGpsModelDBEntry;
+import it.marcoberri.santhiaapp.db.datasource.PlaceImageModelDataSource.PlaceImageModelDBEntry;
+import it.marcoberri.santhiaapp.db.datasource.PlaceModelDataSource.PlaceModelDBEntry;
+import it.marcoberri.santhiaapp.db.datasource.TourModelDataSource.TourModelDBEntry;
+import it.marcoberri.santhiaapp.db.datasource.TourPlaceModelDataSource.TourPlaceModelDBEntry;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+/**
+ * @author Marco Berri - marcoberri@gmail.com
+ *
+ */
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 	public static final int DATABASE_VERSION = 1;
@@ -20,6 +24,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	private static final String INTEGER_TYPE = " INTEGER";
 	private static final String NOTNULL_TYPE = " NOT NULL";
 	private static final String COMMA_SEP = ",";
+	private static final String AUTOINCREMENT = " AUTOINCREMENT ";
+	
+	
 	
 	private static final String SQL_CREATE_PLACES = "CREATE TABLE "
 			+ PlaceModelDBEntry.TABLE_NAME + " (" + 
@@ -61,7 +68,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	
 	private static final String SQL_CREATE_TOUR = "CREATE TABLE "
 			+ TourModelDBEntry.TABLE_NAME + " (" + 
-			TourModelDBEntry.COLUMN_NAME_ENTRY_ID + INTEGER_TYPE + NOTNULL_TYPE + COMMA_SEP +
+			TourModelDBEntry.COLUMN_NAME_ENTRY_ID + INTEGER_TYPE + " PRIMARY KEY " + AUTOINCREMENT + COMMA_SEP +
 			TourModelDBEntry.COLUMN_NAME_TITLE	+ TEXT_TYPE + COMMA_SEP +
 			TourModelDBEntry.COLUMN_NAME_VOTE	+ INTEGER_TYPE +  COMMA_SEP + 
 			TourModelDBEntry.COLUMN_NAME_COMMUNITY	+ INTEGER_TYPE  +	")";

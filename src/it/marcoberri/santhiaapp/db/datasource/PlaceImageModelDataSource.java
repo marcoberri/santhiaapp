@@ -1,4 +1,4 @@
-package it.marcoberri.santhiaapp.db.model;
+package it.marcoberri.santhiaapp.db.datasource;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -11,6 +11,10 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.provider.BaseColumns;
 import android.util.Log;
+/**
+ * @author Marco Berri - marcoberri@gmail.com
+ *
+ */
 
 public class PlaceImageModelDataSource {
 

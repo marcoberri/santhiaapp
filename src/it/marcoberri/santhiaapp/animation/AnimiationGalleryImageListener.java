@@ -4,6 +4,10 @@ import android.support.v4.widget.SlidingPaneLayout;
 import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
 import android.widget.ImageView;
+/**
+ * @author Marco Berri - marcoberri@gmail.com
+ *
+ */
 
 public class AnimiationGalleryImageListener implements AnimationListener {
 

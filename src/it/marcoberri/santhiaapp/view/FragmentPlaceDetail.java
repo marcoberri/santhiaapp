@@ -5,7 +5,7 @@ import java.util.List;
 
 import it.marcoberri.santhiaapp.R;
 import it.marcoberri.santhiaapp.adapter.PlaceDetailGalleryPageAdapter;
-import it.marcoberri.santhiaapp.db.model.PlaceBookmarkModelDataSource;
+import it.marcoberri.santhiaapp.db.datasource.PlaceBookmarkModelDataSource;
 import it.marcoberri.santhiaapp.model.PlaceBookmarkModel;
 import it.marcoberri.santhiaapp.model.PlaceImageModel;
 import it.marcoberri.santhiaapp.model.PlaceModel;
