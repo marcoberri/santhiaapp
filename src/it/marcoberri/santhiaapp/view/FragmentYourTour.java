@@ -1,7 +1,5 @@
 package it.marcoberri.santhiaapp.view;
 
-import java.util.List;
-
 import it.marcoberri.santhiaapp.R;
 import it.marcoberri.santhiaapp.adapter.TourListAdapter;
 import it.marcoberri.santhiaapp.db.datasource.TourModelDataSource;
@@ -21,150 +19,133 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TabHost;
 import android.widget.TabHost.TabSpec;
-
+/**
+ * @author Marco Berri - marcoberri@gmail.com
+ * 
+ */
 public class FragmentYourTour extends Fragment implements OnScrollListener {
 
-	protected final static String TAG = FragmentYourTour.class.getName();
+    protected final static String TAG = FragmentYourTour.class.getName();
 
-	private TourModel[] tourModelArray;
-	private TourListAdapter adapter;
-	private EditText inputSearchCommunity;
+    private TourModel[] tourCommunityModelArray;
+    private TourModel[] tourYourModelArray;
+    private TourListAdapter adapterCommunity;
+    private TourListAdapter adapterYour;
+    private EditText inputSearchCommunity;
 
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-		final View view = inflater.inflate(R.layout.fragment_yourtour,
-				container, false);
+	final View view = inflater.inflate(R.layout.fragment_yourtour, container, false);
 
-		final TabHost mTabHost = (TabHost) view
-				.findViewById(android.R.id.tabhost);
-		setupTabs(mTabHost);
+	final TabHost mTabHost = (TabHost) view.findViewById(android.R.id.tabhost);
+	setupTabs(mTabHost);
 
-		final ListView listviewCommunity = (ListView) view
-				.findViewById(R.id.listViewTourCommunity);
-		final TourModelDataSource dsTour = new TourModelDataSource(
-				getActivity().getApplicationContext());
-		final List<TourModel> tmp_list = dsTour.getCommunityTours();
-		tourModelArray = (TourModel[]) dsTour.getCommunityTours().toArray(
-				new TourModel[tmp_list.size()]);
-		Log.i(TAG, "list" + tourModelArray);
+	final ListView listviewCommunity = (ListView) view.findViewById(R.id.listViewTourCommunity);
 
-		adapter = new TourListAdapter(view.getContext(),
-				R.layout.fragment_yourtour_list_item_left, tourModelArray);
+	final TourModelDataSource dsTour = new TourModelDataSource(getActivity().getApplicationContext());
 
-		listviewCommunity.setOnScrollListener(this);
-		listviewCommunity.setAdapter(adapter);
+	tourCommunityModelArray = (TourModel[]) dsTour.getCommunityTours().toArray(new TourModel[dsTour.getCommunityTours().size()]);
 
-		inputSearchCommunity = (EditText) view
-				.findViewById(R.id.listViewTourCommunity_search);
+	adapterCommunity = new TourListAdapter(view.getContext(), R.layout.fragment_yourtour_list_item_left, tourCommunityModelArray);
 
-		final ListView listviewYour = (ListView) view
-				.findViewById(R.id.listViewTour);
-		listviewYour.setOnScrollListener(this);
-		listviewYour.setAdapter(adapter);
+	listviewCommunity.setOnScrollListener(this);
+	listviewCommunity.setAdapter(adapterCommunity);
 
-		final Button addNewTourButton = (Button) view
-				.findViewById(R.id.listViewTour_add_tour);
-		addNewTourButton.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View v) {
+	inputSearchCommunity = (EditText) view.findViewById(R.id.listViewTourCommunity_search);
 
-				final AlertDialog.Builder builder = new AlertDialog.Builder(
-						getActivity());
+	final ListView listviewYour = (ListView) view.findViewById(R.id.listViewTour);
 
-				LayoutInflater inflater = getActivity().getLayoutInflater();
+	tourYourModelArray = (TourModel[]) dsTour.getYourTours().toArray(new TourModel[dsTour.getYourTours().size()]);
 
-				final View dialogView = inflater.inflate(
-						R.layout.dialog_add_new_tour, null);
+	adapterYour = new TourListAdapter(view.getContext(), R.layout.fragment_yourtour_list_item_left, tourYourModelArray);
 
-				builder.setView(dialogView);
+	listviewYour.setOnScrollListener(this);
+	listviewYour.setAdapter(adapterYour);
 
-				builder.setMessage("test message").setTitle("test title");
+	final Button addNewTourButton = (Button) view.findViewById(R.id.listViewTour_add_tour);
+	addNewTourButton.setOnClickListener(new View.OnClickListener() {
+	    public void onClick(View v) {
 
-				builder.setPositiveButton("save",
-						new DialogInterface.OnClickListener() {
-							public void onClick(DialogInterface dialog, int id) {
+		final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
-								final EditText valueView = (EditText) dialogView
-										.findViewById(R.id.edit_tour_name);
+		LayoutInflater inflater = getActivity().getLayoutInflater();
 
-								if (valueView == null) {
-									Log.d(TAG, "NULL");
-								} else {
-									String tour_name = valueView.getText().toString();
-									Log.d(TAG, "Tour to save:" + tour_name);
-									
-									final TourModelDataSource tourDS = new TourModelDataSource(getActivity().getApplicationContext());
-								//TODO change with insertYourTour
-									final long result = tourDS.insertCommunityTour(tour_name);
-									Log.d(TAG,"tot insert: " + result);
-									
-									
-									final List<TourModel> tmp_list = dsTour.getCommunityTours();
-									tourModelArray = (TourModel[]) dsTour.getCommunityTours().toArray(
-											new TourModel[tmp_list.size()]);
-									Log.i(TAG, "list" + tourModelArray);
+		final View dialogView = inflater.inflate(R.layout.dialog_add_new_tour, null);
 
-									adapter = new TourListAdapter(view.getContext(),
-											R.layout.fragment_yourtour_list_item_left, tourModelArray);			
-									listviewYour.setAdapter(adapter);
-								}
+		builder.setView(dialogView);
 
-							}
-						});
+		builder.setMessage("test message").setTitle("test title");
 
-				builder.setNegativeButton("cancel",
-						new DialogInterface.OnClickListener() {
-							public void onClick(DialogInterface dialog, int id) {
-								dialog.cancel();
-							}
-						});
+		builder.setPositiveButton("save", new DialogInterface.OnClickListener() {
+		    public void onClick(DialogInterface dialog, int id) {
 
-				builder.create();
-				builder.show();
+			final EditText valueView = (EditText) dialogView.findViewById(R.id.edit_tour_name);
 
+			if (valueView == null) {
+			    Log.d(TAG, "NULL");
+			} else {
+			    String tour_name = valueView.getText().toString();
+			    Log.d(TAG, "Tour to save:" + tour_name);
+
+			    final TourModelDataSource tourDS = new TourModelDataSource(getActivity().getApplicationContext());
+			    tourDS.insertYouserTour(tour_name);
+			    tourYourModelArray = (TourModel[]) dsTour.getYourTours().toArray(new TourModel[dsTour.getYourTours().size()]);
+			    adapterYour = new TourListAdapter(view.getContext(), R.layout.fragment_yourtour_list_item_left, tourYourModelArray);
+			    listviewYour.setAdapter(adapterYour);
 			}
+
+		    }
 		});
 
-		// final Button btnAddMore = new
-		// Button(this.getActivity().getApplicationContext());
-		// btnAddMore.setText("Add new");
+		builder.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+		    public void onClick(DialogInterface dialog, int id) {
+			dialog.cancel();
+		    }
+		});
 
-		// listviewYour.addFooterView(btnAddMore);
-		return view;
-	}
+		builder.create();
+		builder.show();
 
-	private void setupTabs(TabHost mTabHost) {
+	    }
+	});
 
-		mTabHost.setup();
-		final TabSpec tabSpec1 = mTabHost.newTabSpec("Your");
-		tabSpec1.setContent(R.id.tab_yours);
-		tabSpec1.setIndicator("Your");
+	// final Button btnAddMore = new
+	// Button(this.getActivity().getApplicationContext());
+	// btnAddMore.setText("Add new");
 
-		final TabSpec tabSpec2 = mTabHost.newTabSpec("Community");
-		tabSpec2.setContent(R.id.tab_community);
-		tabSpec2.setIndicator("Community");
+	// listviewYour.addFooterView(btnAddMore);
+	return view;
+    }
 
-		mTabHost.addTab(tabSpec1);
-		mTabHost.addTab(tabSpec2);
+    private void setupTabs(TabHost mTabHost) {
 
-		mTabHost.getTabWidget().getChildAt(0).getLayoutParams().height = getResources()
-				.getDimensionPixelSize(R.dimen.tab_height);
-		mTabHost.getTabWidget().getChildAt(1).getLayoutParams().height = getResources()
-				.getDimensionPixelSize(R.dimen.tab_height);
+	mTabHost.setup();
+	final TabSpec tabSpec1 = mTabHost.newTabSpec("Your");
+	tabSpec1.setContent(R.id.tab_yours);
+	tabSpec1.setIndicator("Your");
 
-	}
+	final TabSpec tabSpec2 = mTabHost.newTabSpec("Community");
+	tabSpec2.setContent(R.id.tab_community);
+	tabSpec2.setIndicator("Community");
 
-	@Override
-	public void onScrollStateChanged(AbsListView view, int scrollState) {
-		// TODO Auto-generated method stub
+	mTabHost.addTab(tabSpec1);
+	mTabHost.addTab(tabSpec2);
 
-	}
+	mTabHost.getTabWidget().getChildAt(0).getLayoutParams().height = getResources().getDimensionPixelSize(R.dimen.tab_height);
+	mTabHost.getTabWidget().getChildAt(1).getLayoutParams().height = getResources().getDimensionPixelSize(R.dimen.tab_height);
 
-	@Override
-	public void onScroll(AbsListView view, int firstVisibleItem,
-			int visibleItemCount, int totalItemCount) {
-		// TODO Auto-generated method stub
+    }
 
-	}
+    @Override
+    public void onScrollStateChanged(AbsListView view, int scrollState) {
+	// TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+	// TODO Auto-generated method stub
+
+    }
 
 }

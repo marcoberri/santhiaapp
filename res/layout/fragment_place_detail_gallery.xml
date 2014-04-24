@@ -1,40 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v4.widget.SlidingPaneLayout xmlns:android="http://schemas.android.com/apk/res/android"
-
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical" 
     android:layout_marginTop="20dp"
-    >
+    android:orientation="vertical" >
 
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:gravity="center_horizontal"
-        android:orientation="vertical" 
-         
-        
-        >
+        android:orientation="vertical" >
 
         <ImageView
             android:id="@+id/imageview_gallery_place_detail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:src="@drawable/loading"
             android:contentDescription=""
+            android:gravity="center_horizontal"
             android:paddingBottom="3dp"
             android:paddingLeft="3dp"
             android:paddingRight="3dp"
-            android:paddingTop="20dp" />
+            android:paddingTop="20dp"
+            android:src="@drawable/loading" />
 
         <TextView
             android:id="@+id/imageview_gallery_place_detail_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/imageview_gallery_place_detail"
-            android:gravity="center_horizontal"
             android:layout_marginTop="10dp"
+            android:gravity="center_horizontal"
             android:text="@string/dummy_title" />
 
         <TextView
@@ -42,8 +37,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/imageview_gallery_place_detail_title"
-            android:gravity="center_horizontal"
             android:layout_marginTop="3dp"
+            android:gravity="center_horizontal"
             android:text="@string/dummy_title" />
     </RelativeLayout>
 

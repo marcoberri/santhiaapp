@@ -1,20 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.SlidingPaneLayout
-	 xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.SlidingPaneLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-    
-    
-    <!--  it.marcoberri.santhiaapp.widget.CustomImageView
-        android:id="@+id/imageview_gallery_home"
-        android:layout_width="0px"
-        android:layout_height="0px"
-        android:background="#33ff0000"
-        android:scaleType="centerCrop"
-        android:visibility="invisible"/-->
-    
-    
+
     <ImageView
         android:id="@+id/imageview_gallery_home"
         android:layout_width="fill_parent"
@@ -26,8 +15,6 @@
         android:paddingLeft="3dp"
         android:paddingRight="3dp"
         android:paddingTop="3dp"
-        android:scaleType="centerCrop"/>
+        android:scaleType="centerCrop" />
 
-
-    
 </android.support.v4.widget.SlidingPaneLayout>

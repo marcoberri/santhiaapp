@@ -11,82 +11,104 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.provider.BaseColumns;
 import android.util.Log;
+
 /**
  * @author Marco Berri - marcoberri@gmail.com
- *
+ * 
  */
 
 public class PlaceImageModelDataSource {
 
-	private static final String TAG = PlaceImageModelDataSource.class.getName();
-	
-	private static final String[] ALLFIELD = {PlaceImageModelDBEntry.COLUMN_NAME_ENTRY_ID,PlaceImageModelDBEntry.COLUMN_NAME_PLACE_ID, PlaceImageModelDBEntry.COLUMN_NAME_URL, PlaceImageModelDBEntry.COLUMN_NAME_DISCLAMER, PlaceImageModelDBEntry.COLUMN_NAME_TEXT, PlaceImageModelDBEntry.COLUMN_NAME_TITLE};
-	
-	DatabaseHelper helper = null;
+    private static final String TAG = PlaceImageModelDataSource.class.getName();
 
-	public static abstract class PlaceImageModelDBEntry implements BaseColumns {
-		public static final String TABLE_NAME = "images";
-		public static final String COLUMN_NAME_ENTRY_ID = "id";
-		public static final String COLUMN_NAME_PLACE_ID = "place_id";
-		public static final String COLUMN_NAME_URL = "url";
-		public static final String COLUMN_NAME_DISCLAMER = "disclamer";
-		public static final String COLUMN_NAME_TEXT = "text";
-		public static final String COLUMN_NAME_TITLE = "title";
-	};
+    private static final String[] ALLFIELD = { PlaceImageModelDBEntry.COLUMN_NAME_ENTRY_ID, PlaceImageModelDBEntry.COLUMN_NAME_PLACE_ID, PlaceImageModelDBEntry.COLUMN_NAME_URL, PlaceImageModelDBEntry.COLUMN_NAME_DISCLAMER, PlaceImageModelDBEntry.COLUMN_NAME_TEXT, PlaceImageModelDBEntry.COLUMN_NAME_TITLE };
 
-	
+    DatabaseHelper helper = null;
 
-	public PlaceImageModelDataSource(Context context) {
-		if (helper == null) {
-			helper = new DatabaseHelper(context);
-		}
-	};
-	
+    public static abstract class PlaceImageModelDBEntry implements BaseColumns {
+	public static final String TABLE_NAME = "images";
+	public static final String COLUMN_NAME_ENTRY_ID = "id";
+	public static final String COLUMN_NAME_PLACE_ID = "place_id";
+	public static final String COLUMN_NAME_URL = "url";
+	public static final String COLUMN_NAME_DISCLAMER = "disclamer";
+	public static final String COLUMN_NAME_TEXT = "text";
+	public static final String COLUMN_NAME_TITLE = "title";
+    };
 
-	public long insertPlaceImage(Integer id, Integer place_id, String url, String disclamer, String title, String text) {
+    public PlaceImageModelDataSource(Context context) {
+	if (helper == null) {
+	    helper = new DatabaseHelper(context);
+	}
+    };
 
-		final SQLiteDatabase db = helper.getWritableDatabase();
-		ContentValues values = new ContentValues();
-		values.put(PlaceImageModelDBEntry.COLUMN_NAME_ENTRY_ID, id);
-		values.put(PlaceImageModelDBEntry.COLUMN_NAME_PLACE_ID, place_id);
-		values.put(PlaceImageModelDBEntry.COLUMN_NAME_TITLE, title);
-		values.put(PlaceImageModelDBEntry.COLUMN_NAME_TEXT, text);
-		values.put(PlaceImageModelDBEntry.COLUMN_NAME_URL, url);
-		values.put(PlaceImageModelDBEntry.COLUMN_NAME_DISCLAMER, disclamer);
+    public long insertPlaceImage(Integer id, Integer place_id, String url, String disclamer, String title, String text) {
 
-		long newRowId = db.insert(PlaceImageModelDBEntry.TABLE_NAME, null, values);
+	final SQLiteDatabase db = helper.getWritableDatabase();
+	ContentValues values = new ContentValues();
+	values.put(PlaceImageModelDBEntry.COLUMN_NAME_ENTRY_ID, id);
+	values.put(PlaceImageModelDBEntry.COLUMN_NAME_PLACE_ID, place_id);
+	values.put(PlaceImageModelDBEntry.COLUMN_NAME_TITLE, title);
+	values.put(PlaceImageModelDBEntry.COLUMN_NAME_TEXT, text);
+	values.put(PlaceImageModelDBEntry.COLUMN_NAME_URL, url);
+	values.put(PlaceImageModelDBEntry.COLUMN_NAME_DISCLAMER, disclamer);
 
-		Log.d(TAG, "Insert tot element in "+PlaceImageModelDBEntry.TABLE_NAME+ " :" + newRowId);
-		db.close();
-		return newRowId;
+	long newRowId = db.insert(PlaceImageModelDBEntry.TABLE_NAME, null, values);
 
+	Log.d(TAG, "Insert tot element in " + PlaceImageModelDBEntry.TABLE_NAME + " :" + newRowId);
+	db.close();
+	return newRowId;
+
+    }
+
+    public List<PlaceImageModel> getImagesByPlaceId(Integer placeId) {
+
+	final SQLiteDatabase db = helper.getWritableDatabase();
+	final Cursor c = db.query(PlaceImageModelDBEntry.TABLE_NAME, ALLFIELD, PlaceImageModelDBEntry.COLUMN_NAME_PLACE_ID + " = ?", new String[] { placeId.toString() }, null, null, PlaceImageModelDBEntry.COLUMN_NAME_ENTRY_ID);
+
+	final List<PlaceImageModel> images = new LinkedList<PlaceImageModel>();
+
+	if (c.moveToFirst()) {
+	    do {
+		final PlaceImageModel image = new PlaceImageModel();
+		image.setId(c.getInt(c.getColumnIndex(PlaceImageModelDBEntry.COLUMN_NAME_ENTRY_ID)));
+		image.setDisclamer(c.getString(c.getColumnIndex(PlaceImageModelDBEntry.COLUMN_NAME_DISCLAMER)));
+		image.setPlaceId(c.getInt(c.getColumnIndex(PlaceImageModelDBEntry.COLUMN_NAME_PLACE_ID)));
+		image.setUrl(c.getString(c.getColumnIndex(PlaceImageModelDBEntry.COLUMN_NAME_URL)));
+		image.setTitle(c.getString(c.getColumnIndex(PlaceImageModelDBEntry.COLUMN_NAME_TITLE)));
+		image.setText(c.getString(c.getColumnIndex(PlaceImageModelDBEntry.COLUMN_NAME_TEXT)));
+		images.add(image);
+	    } while (c.moveToNext());
 	}
 
-	
-	public List<PlaceImageModel> getImagesByPlaceId(Integer placeId) {
+	Log.d(TAG, "images :" + images);
+	db.close();
+	return images;
+    }
+    
+    public List<PlaceImageModel> getImages() {
 
-		final SQLiteDatabase db = helper.getWritableDatabase();
-		final Cursor c = db.query(PlaceImageModelDBEntry.TABLE_NAME, ALLFIELD, PlaceImageModelDBEntry.COLUMN_NAME_PLACE_ID + " = ?", new String[]{placeId.toString()}, null, null, PlaceImageModelDBEntry.COLUMN_NAME_ENTRY_ID);
+	final SQLiteDatabase db = helper.getWritableDatabase();
+	final Cursor c = db.query(PlaceImageModelDBEntry.TABLE_NAME, ALLFIELD, null, null, null, null, PlaceImageModelDBEntry.COLUMN_NAME_ENTRY_ID);
 
-		
-		final List<PlaceImageModel> images = new LinkedList<PlaceImageModel>();
+	final List<PlaceImageModel> images = new LinkedList<PlaceImageModel>();
 
-	       if (c.moveToFirst()) {
-	           do {
-	        	   final PlaceImageModel image = new PlaceImageModel();
-	        	   image.setId(c.getInt(c.getColumnIndex(PlaceImageModelDBEntry.COLUMN_NAME_ENTRY_ID)));
-	        	   image.setDisclamer(c.getString(c.getColumnIndex(PlaceImageModelDBEntry.COLUMN_NAME_DISCLAMER)));
-	        	   image.setPlaceId(c.getInt(c.getColumnIndex(PlaceImageModelDBEntry.COLUMN_NAME_PLACE_ID)));
-	        	   image.setUrl(c.getString(c.getColumnIndex(PlaceImageModelDBEntry.COLUMN_NAME_URL)));
-	        	   image.setTitle(c.getString(c.getColumnIndex(PlaceImageModelDBEntry.COLUMN_NAME_TITLE)));
-	        	   image.setText(c.getString(c.getColumnIndex(PlaceImageModelDBEntry.COLUMN_NAME_TEXT)));
-	        	   images.add(image);
-	           } while (c.moveToNext());
-	       }
-	       
-	       Log.d(TAG,"images :" + images );
-	       db.close();
-		return images;
+	if (c.moveToFirst()) {
+	    do {
+		final PlaceImageModel image = new PlaceImageModel();
+		image.setId(c.getInt(c.getColumnIndex(PlaceImageModelDBEntry.COLUMN_NAME_ENTRY_ID)));
+		image.setDisclamer(c.getString(c.getColumnIndex(PlaceImageModelDBEntry.COLUMN_NAME_DISCLAMER)));
+		image.setPlaceId(c.getInt(c.getColumnIndex(PlaceImageModelDBEntry.COLUMN_NAME_PLACE_ID)));
+		image.setUrl(c.getString(c.getColumnIndex(PlaceImageModelDBEntry.COLUMN_NAME_URL)));
+		image.setTitle(c.getString(c.getColumnIndex(PlaceImageModelDBEntry.COLUMN_NAME_TITLE)));
+		image.setText(c.getString(c.getColumnIndex(PlaceImageModelDBEntry.COLUMN_NAME_TEXT)));
+		images.add(image);
+	    } while (c.moveToNext());
 	}
-	
+
+	Log.d(TAG, "images :" + images);
+	db.close();
+	return images;
+    }
+    
+
 }

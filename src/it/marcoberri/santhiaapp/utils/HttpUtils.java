@@ -1,6 +1,5 @@
 package it.marcoberri.santhiaapp.utils;
 
-
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -15,57 +14,57 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.util.Log;
-
+/**
+ * @author Marco Berri - marcoberri@gmail.com
+ * 
+ */
 public class HttpUtils {
 
-	final static String TAG = HttpUtils.class.getName();
+    final static String TAG = HttpUtils.class.getName();
 
-	/**
-	 * @param args
-	 * @throws IOException
-	 */
-	public static String getDataFromUrl(String url) throws IOException {
-		
-		final HttpURLConnection httpURLConnection = (HttpURLConnection) new URL(url).openConnection();
-		
-		  try {
-			  Log.d(TAG,"Start read url:" + url);
-			  Log.d(TAG,"Url connected: "  + httpURLConnection.getURL());
-              InputStream input = new BufferedInputStream(httpURLConnection.getInputStream());
-              return streamToString(input);
-              
-		  } finally {
-                  httpURLConnection.disconnect();
-          }
-        
-    	
+    /**
+     * @param args
+     * @throws IOException
+     */
+    public static String getDataFromUrl(String url) throws IOException {
+
+	final HttpURLConnection httpURLConnection = (HttpURLConnection) new URL(url).openConnection();
+
+	try {
+	    Log.d(TAG, "Start read url:" + url);
+	    Log.d(TAG, "Url connected: " + httpURLConnection.getURL());
+	    InputStream input = new BufferedInputStream(httpURLConnection.getInputStream());
+	    return streamToString(input);
+
+	} finally {
+	    httpURLConnection.disconnect();
 	}
-	
-	private static String streamToString(InputStream stream) throws IOException {
-        Writer writer = new StringWriter();
-        InputStreamReader input = new InputStreamReader(new BufferedInputStream(stream), "UTF-8");
-        
-        try {
-                final char[] buffer = new char[1024];
-                int read;
 
-                while ((read = input.read(buffer)) != -1)
-                        writer.write(buffer, 0, read);
-        } finally {
-                input.close();
-        }
-        
-        return writer.toString();
-}
-	
+    }
 
-	public static boolean isOnline(Activity activity) {
-	    ConnectivityManager cm =
-	        (ConnectivityManager) activity.getSystemService(Context.CONNECTIVITY_SERVICE);
-	    NetworkInfo netInfo = cm.getActiveNetworkInfo();
-	    if (netInfo != null && netInfo.isConnectedOrConnecting()) {
-	        return true;
-	    }
-	    return false;
+    private static String streamToString(InputStream stream) throws IOException {
+	Writer writer = new StringWriter();
+	InputStreamReader input = new InputStreamReader(new BufferedInputStream(stream), "UTF-8");
+
+	try {
+	    final char[] buffer = new char[1024];
+	    int read;
+
+	    while ((read = input.read(buffer)) != -1)
+		writer.write(buffer, 0, read);
+	} finally {
+	    input.close();
 	}
+
+	return writer.toString();
+    }
+
+    public static boolean isOnline(Activity activity) {
+	ConnectivityManager cm = (ConnectivityManager) activity.getSystemService(Context.CONNECTIVITY_SERVICE);
+	NetworkInfo netInfo = cm.getActiveNetworkInfo();
+	if (netInfo != null && netInfo.isConnectedOrConnecting()) {
+	    return true;
+	}
+	return false;
+    }
 }

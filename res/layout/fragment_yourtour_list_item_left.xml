@@ -43,7 +43,6 @@
             android:textSize="20sp"
             android:textStyle="bold"
             android:typeface="sans" />
-
     </LinearLayout>
 
     <ImageView
