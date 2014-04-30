@@ -35,7 +35,6 @@ public class HomeGalleryPageAdapter extends FragmentStatePagerAdapter {
     @Override
     public int getCount() {
 	return this.fragments.size();
-   }
-
+    }
 
 }

@@ -137,13 +137,13 @@ public class FragmentHome extends Fragment {
 
 	// gallery view in home
 	final List<FragmentHomeGallery> fragments = new ArrayList<FragmentHomeGallery>();
-	
+
 	final List<PlaceImageModel> listPlaceHome = dsPlaceImage.getImages();
-	
-	for(PlaceImageModel placeImage : listPlaceHome.subList(0, 15)){
+
+	for (PlaceImageModel placeImage : listPlaceHome.subList(0, 15)) {
 	    fragments.add(FragmentHomeGallery.newInstance(placeImage.getUrl(), placeImage.getTitle(), placeImage.getDisclamer()));
 	}
-	
+
 	this.galleryPageAdapter = new HomeGalleryPageAdapter(context.getSupportFragmentManager(), fragments);
 
 	pager = (ViewPager) view.findViewById(R.id.home_gallery);
@@ -174,7 +174,9 @@ public class FragmentHome extends Fragment {
 	}
     };
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see android.app.Fragment#onAttach(android.app.Activity)
      */
     @Override
@@ -183,7 +185,9 @@ public class FragmentHome extends Fragment {
 	super.onAttach(activity);
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see android.app.Fragment#onDestroyView()
      */
     @Override

@@ -186,10 +186,6 @@ public class SplashActivity extends Activity {
 		}
 	    }
 
-	    /*
-	     * final Intent intent = new Intent(getBaseContext(),
-	     * MainActivity.class); startActivity(intent);
-	     */
 	}
 
     }

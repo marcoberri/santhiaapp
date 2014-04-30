@@ -3,6 +3,7 @@ package it.marcoberri.santhiaapp.view;
 import it.marcoberri.santhiaapp.R;
 import it.marcoberri.santhiaapp.adapter.TourListAdapter;
 import it.marcoberri.santhiaapp.db.datasource.TourModelDataSource;
+import it.marcoberri.santhiaapp.model.PlaceModel;
 import it.marcoberri.santhiaapp.model.TourModel;
 import android.app.AlertDialog;
 import android.app.Fragment;
@@ -14,11 +15,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TabHost;
 import android.widget.TabHost.TabSpec;
+import android.widget.Toast;
+
 /**
  * @author Marco Berri - marcoberri@gmail.com
  * 
@@ -40,25 +45,38 @@ public class FragmentYourTour extends Fragment implements OnScrollListener {
 	final TabHost mTabHost = (TabHost) view.findViewById(android.R.id.tabhost);
 	setupTabs(mTabHost);
 
-	final ListView listviewCommunity = (ListView) view.findViewById(R.id.listViewTourCommunity);
+	setListViewCommunity(view);
 
-	final TourModelDataSource dsTour = new TourModelDataSource(getActivity().getApplicationContext());
-
-	tourCommunityModelArray = (TourModel[]) dsTour.getCommunityTours().toArray(new TourModel[dsTour.getCommunityTours().size()]);
-
-	adapterCommunity = new TourListAdapter(view.getContext(), R.layout.fragment_yourtour_list_item_left, tourCommunityModelArray);
-
-	listviewCommunity.setOnScrollListener(this);
-	listviewCommunity.setAdapter(adapterCommunity);
-
+	//TODO
 	inputSearchCommunity = (EditText) view.findViewById(R.id.listViewTourCommunity_search);
 
-	final ListView listviewYour = (ListView) view.findViewById(R.id.listViewTour);
+	setListViewTour(view);
 
+	// final Button btnAddMore = new
+	// Button(this.getActivity().getApplicationContext());
+	// btnAddMore.setText("Add new");
+
+	// listviewYour.addFooterView(btnAddMore);
+	return view;
+    }
+
+    private ListView setListViewCommunity(View view) {
+	final ListView listviewCommunity = (ListView) view.findViewById(R.id.listViewTourCommunity);
+	final TourModelDataSource dsTour = new TourModelDataSource(getActivity().getApplicationContext());
 	tourYourModelArray = (TourModel[]) dsTour.getYourTours().toArray(new TourModel[dsTour.getYourTours().size()]);
+	tourCommunityModelArray = (TourModel[]) dsTour.getCommunityTours().toArray(new TourModel[dsTour.getCommunityTours().size()]);
+	adapterCommunity = new TourListAdapter(view.getContext(), R.layout.fragment_yourtour_list_item_left, tourCommunityModelArray);
+	listviewCommunity.setOnScrollListener(this);
+	listviewCommunity.setAdapter(adapterCommunity);
+	return listviewCommunity;
 
+    }
+
+    private ListView setListViewTour(View view) {
+
+	final ListView listviewYour = (ListView) view.findViewById(R.id.listViewTour);
 	adapterYour = new TourListAdapter(view.getContext(), R.layout.fragment_yourtour_list_item_left, tourYourModelArray);
-
+	final TourModelDataSource dsTour = new TourModelDataSource(getActivity().getApplicationContext());
 	listviewYour.setOnScrollListener(this);
 	listviewYour.setAdapter(adapterYour);
 
@@ -67,15 +85,10 @@ public class FragmentYourTour extends Fragment implements OnScrollListener {
 	    public void onClick(View v) {
 
 		final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-
 		LayoutInflater inflater = getActivity().getLayoutInflater();
-
 		final View dialogView = inflater.inflate(R.layout.dialog_add_new_tour, null);
-
 		builder.setView(dialogView);
-
-		builder.setMessage("test message").setTitle("test title");
-
+		builder.setMessage(R.string.add_tour_name_field).setTitle(R.string.add_tour_name_title);
 		builder.setPositiveButton("save", new DialogInterface.OnClickListener() {
 		    public void onClick(DialogInterface dialog, int id) {
 
@@ -90,7 +103,7 @@ public class FragmentYourTour extends Fragment implements OnScrollListener {
 			    final TourModelDataSource tourDS = new TourModelDataSource(getActivity().getApplicationContext());
 			    tourDS.insertYouserTour(tour_name);
 			    tourYourModelArray = (TourModel[]) dsTour.getYourTours().toArray(new TourModel[dsTour.getYourTours().size()]);
-			    adapterYour = new TourListAdapter(view.getContext(), R.layout.fragment_yourtour_list_item_left, tourYourModelArray);
+			    adapterYour = new TourListAdapter(getActivity().getApplicationContext(), R.layout.fragment_yourtour_list_item_left, tourYourModelArray);
 			    listviewYour.setAdapter(adapterYour);
 			}
 
@@ -109,12 +122,37 @@ public class FragmentYourTour extends Fragment implements OnScrollListener {
 	    }
 	});
 
-	// final Button btnAddMore = new
-	// Button(this.getActivity().getApplicationContext());
-	// btnAddMore.setText("Add new");
+	listviewYour.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
 
-	// listviewYour.addFooterView(btnAddMore);
-	return view;
+	    @Override
+	    public boolean onItemLongClick(final AdapterView<?> parent, View view, final int position, long id) {
+
+		final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+		LayoutInflater inflater = getActivity().getLayoutInflater();
+		final View dialogView = inflater.inflate(R.layout.dialog_edit_tour, null);
+		builder.setView(dialogView);
+		final Button deleteButton = (Button) dialogView.findViewById(R.id.dialog_edit_tour_delete);
+		deleteButton.setOnClickListener(new AdapterView.OnClickListener() {
+		    @Override
+		    public void onClick(View v) {
+			Toast.makeText(v.getContext(), "TO DELETE - posizion " + position, Toast.LENGTH_SHORT).show();
+			final TourModelDataSource dsTour = new TourModelDataSource(getActivity().getApplicationContext());
+			dsTour.deleteTour(tourYourModelArray[position].getId());
+			tourYourModelArray = (TourModel[]) dsTour.getYourTours().toArray(new TourModel[dsTour.getYourTours().size()]);
+		    	adapterYour = new TourListAdapter(getActivity().getApplicationContext(), R.layout.fragment_yourtour_list_item_left, tourYourModelArray);
+			listviewYour.setAdapter(adapterYour);
+
+		    }
+		});
+
+		builder.create();
+		builder.show();
+
+		return false;
+	    }
+	});
+
+	return listviewYour;
     }
 
     private void setupTabs(TabHost mTabHost) {

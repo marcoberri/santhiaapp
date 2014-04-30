@@ -84,7 +84,7 @@ public class PlaceImageModelDataSource {
 	db.close();
 	return images;
     }
-    
+
     public List<PlaceImageModel> getImages() {
 
 	final SQLiteDatabase db = helper.getWritableDatabase();
@@ -109,6 +109,5 @@ public class PlaceImageModelDataSource {
 	db.close();
 	return images;
     }
-    
 
 }

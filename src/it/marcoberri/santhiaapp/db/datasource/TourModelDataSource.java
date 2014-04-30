@@ -158,4 +158,12 @@ public class TourModelDataSource {
 	return tours;
 
     }
+
+    public void deleteTour(int id) {
+	final SQLiteDatabase db = helper.getWritableDatabase();
+	
+	int deleted = db.delete(TourModelDBEntry.TABLE_NAME, TourModelDBEntry.COLUMN_NAME_ENTRY_ID + " = ?", new String[] {""+id});
+	Log.d(TAG, "delete entry tours :" + deleted);
+	db.close();
+    }
 }

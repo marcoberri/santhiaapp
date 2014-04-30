@@ -1,6 +1,7 @@
 package it.marcoberri.santhiaapp.view;
 
 import android.app.Fragment;
+
 /**
  * @author Marco Berri - marcoberri@gmail.com
  * 

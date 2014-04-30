@@ -12,6 +12,8 @@
     <string name="tab_photo">Pictures</string>
     <string name="tab_map">Map</string>
     <string name="tab_comment">Comments</string>
+    <string name="add_tour_name_title">Add New Tour</string>
+    <string name="add_tour_name_field">Enter Tour Name</string>
     
     <string-array name="leftmenu">
         <item>Home</item>

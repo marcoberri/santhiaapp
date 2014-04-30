@@ -5,6 +5,7 @@ import it.marcoberri.santhiaapp.model.PlaceModel;
 import java.util.List;
 
 import android.util.Log;
+
 /**
  * @author Marco Berri - marcoberri@gmail.com
  * 

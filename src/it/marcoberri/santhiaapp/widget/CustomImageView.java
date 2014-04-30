@@ -5,6 +5,7 @@ import android.support.v4.widget.SlidingPaneLayout.LayoutParams;
 import android.util.AttributeSet;
 import android.view.ViewGroup.MarginLayoutParams;
 import android.widget.ImageView;
+
 /**
  * @author Marco Berri - marcoberri@gmail.com
  * 
