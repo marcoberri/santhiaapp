@@ -12,8 +12,11 @@ public class PlaceBookmarkModel {
     private int place_id;
     private Date ts;
 
+
+
+    @Override
     public String toString() {
-	return " place_id: " + place_id + " - ts: " + ts;
+	return "PlaceBookmarkModel [place_id=" + place_id + ", ts=" + ts + "]";
     }
 
     public PlaceBookmarkModel(int id, int place_id, Date ts) {

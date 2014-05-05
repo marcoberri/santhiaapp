@@ -19,8 +19,10 @@ public class PlaceModel {
     private PlaceGpsModel gps;
     private String address;
 
+
+    @Override
     public String toString() {
-	return "id: " + id + " - title: " + title + " - subtitle: " + subtitle + " - image: " + image + " - images: " + images + " locale: " + locale + "address" + address;
+	return "PlaceModel [id=" + id + ", title=" + title + ", subtitle=" + subtitle + ", image=" + image + ", text=" + text + ", locale=" + locale + ", images=" + images + ", gps=" + gps + ", address=" + address + "]";
     }
 
     public PlaceModel(String title, String subtitle, int image, int id, String address, String locale) {

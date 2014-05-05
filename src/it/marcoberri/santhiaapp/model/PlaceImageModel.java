@@ -14,8 +14,11 @@ public class PlaceImageModel {
     private String disclamer;
     private int placeId;
 
+
+
+    @Override
     public String toString() {
-	return "id: " + id + " - title: " + title + " - url: " + url + " - discalmer: " + disclamer + " - text: " + text;
+	return "PlaceImageModel [id=" + id + ", title=" + title + ", url=" + url + ", text=" + text + ", disclamer=" + disclamer + ", placeId=" + placeId + "]";
     }
 
     public String getText() {

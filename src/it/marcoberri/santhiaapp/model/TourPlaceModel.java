@@ -10,8 +10,10 @@ public class TourPlaceModel {
     private int tour_id;
     private int place_id;
 
+
+    @Override
     public String toString() {
-	return "tour_id: " + tour_id + " - place_id: " + place_id;
+	return "TourPlaceModel [tour_id=" + tour_id + ", place_id=" + place_id + "]";
     }
 
     public TourPlaceModel(int tour_id, int place_id) {

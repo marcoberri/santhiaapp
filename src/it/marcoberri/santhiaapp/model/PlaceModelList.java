@@ -19,7 +19,11 @@ public class PlaceModelList extends BaseModel {
 	this.places = places;
     }
 
+    @Override
     public String toString() {
-	return "version :" + this.getVersion() + " places: " + this.places;
+	return "PlaceModelList [places=" + places + ", getPlaces()=" + getPlaces() + ", getVersion()=" + getVersion() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
     }
+
+
+    
 }

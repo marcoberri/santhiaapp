@@ -32,8 +32,11 @@ public class TourModel {
 
     private List<PlaceModel> places;
 
+
+
+    @Override
     public String toString() {
-	return "id: " + id + " - title: " + title + "places" + places;
+	return "TourModel [id=" + id + ", title=" + title + ", vote=" + vote + ", community=" + community + ", places=" + places + ", getVote()=" + getVote() + ", getPlaces()=" + getPlaces() + ", getTitle()=" + getTitle() + ", getId()=" + getId() + ", getCommunity()=" + getCommunity() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
     }
 
     public TourModel(int id, String title) {

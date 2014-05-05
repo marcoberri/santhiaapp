@@ -30,6 +30,11 @@ public class LeftListModel {
 	this.title = title;
     }
 
+    @Override
+    public String toString() {
+	return "LeftListModel [id=" + id + ", title=" + title + ", image=" + image + "]";
+    }
+
     public int getImage() {
 	return image;
     }

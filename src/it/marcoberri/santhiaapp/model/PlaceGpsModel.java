@@ -35,8 +35,11 @@ public class PlaceGpsModel {
 	this.lng = lng;
     }
 
+
+
+    @Override
     public String toString() {
-	return "place_id: " + place_id + " - lat: " + lat + " - lng: " + lng;
+	return "PlaceGpsModel [place_id=" + place_id + ", lat=" + lat + ", lng=" + lng + "]";
     }
 
     public PlaceGpsModel() {
