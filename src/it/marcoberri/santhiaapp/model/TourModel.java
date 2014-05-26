@@ -33,12 +33,6 @@ public class TourModel {
     private List<PlaceModel> places;
 
 
-
-    @Override
-    public String toString() {
-	return "TourModel [id=" + id + ", title=" + title + ", vote=" + vote + ", community=" + community + ", places=" + places + ", getVote()=" + getVote() + ", getPlaces()=" + getPlaces() + ", getTitle()=" + getTitle() + ", getId()=" + getId() + ", getCommunity()=" + getCommunity() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
-    }
-
     public TourModel(int id, String title) {
 	super();
 	this.title = title;
@@ -72,6 +66,11 @@ public class TourModel {
 
     public void setCommunity(int community) {
 	this.community = community;
+    }
+
+    @Override
+    public String toString() {
+	return "TourModel [id=" + id + ", title=" + title + ", vote=" + vote + ", community=" + community + ", places=" + places + ", getVote()=" + getVote() + ", getPlaces()=" + getPlaces() + ", getTitle()=" + getTitle() + ", getId()=" + getId() + ", getCommunity()=" + getCommunity() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
     }
 
 }

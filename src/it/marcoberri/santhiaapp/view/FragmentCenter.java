@@ -41,7 +41,7 @@ public class FragmentCenter extends Fragment {
 	if (index == 1) {
 	    final String title = HomeActivity.mMenuTitles[index].getTitle();
 	    getActivity().setTitle(title);
-	    FragmentPlaceList fplace = new FragmentPlaceList();
+	    final FragmentPlaceList fplace = new FragmentPlaceList();
 
 	    final FragmentTransaction ft = getFragmentManager().beginTransaction();
 	    ft.replace(R.id.content_frame, fplace).addToBackStack(null);
@@ -87,4 +87,5 @@ public class FragmentCenter extends Fragment {
 	return null;
 
     }
+    
 }

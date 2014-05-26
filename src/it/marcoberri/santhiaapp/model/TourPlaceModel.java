@@ -11,10 +11,6 @@ public class TourPlaceModel {
     private int place_id;
 
 
-    @Override
-    public String toString() {
-	return "TourPlaceModel [tour_id=" + tour_id + ", place_id=" + place_id + "]";
-    }
 
     public TourPlaceModel(int tour_id, int place_id) {
 	super();
@@ -36,6 +32,11 @@ public class TourPlaceModel {
 
     public void setPlace_id(int place_id) {
 	this.place_id = place_id;
+    }
+
+    @Override
+    public String toString() {
+	return "TourPlaceModel [tour_id=" + tour_id + ", place_id=" + place_id + ", getTour_id()=" + getTour_id() + ", getPlace_id()=" + getPlace_id() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
     }
 
 }

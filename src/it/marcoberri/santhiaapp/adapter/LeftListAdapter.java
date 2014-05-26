@@ -31,7 +31,7 @@ public class LeftListAdapter extends ArrayAdapter<LeftListModel> {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-	LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+	final LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
 	final View rowView = inflater.inflate(R.layout.left_list_item, parent, false);
 

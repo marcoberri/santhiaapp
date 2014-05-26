@@ -152,9 +152,7 @@ public class SplashActivity extends Activity {
 	protected void onPostExecute(String file_url) {
 	    pDialog.dismiss();
 	    logText.setText(places);
-	    
-	    
-	    
+
 	    DatabaseHelper dbHelper = new DatabaseHelper(getApplicationContext());
 	    dbHelper.clean();
 

@@ -7,12 +7,15 @@ import it.marcoberri.santhiaapp.model.PlaceModel;
 import it.marcoberri.santhiaapp.model.TourModel;
 import android.app.AlertDialog;
 import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.View.OnKeyListener;
 import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
 import android.widget.AdapterView;
@@ -52,11 +55,23 @@ public class FragmentYourTour extends Fragment implements OnScrollListener {
 
 	setListViewTour(view);
 
-	// final Button btnAddMore = new
-	// Button(this.getActivity().getApplicationContext());
-	// btnAddMore.setText("Add new");
+	view.setFocusableInTouchMode(true);
+	view.requestFocus();
+	view.setOnKeyListener(new OnKeyListener() {
 
-	// listviewYour.addFooterView(btnAddMore);
+	    @Override
+	    public boolean onKey(View v, int keyCode, KeyEvent event) {
+		if (keyCode == KeyEvent.KEYCODE_BACK) {
+		    Log.i(TAG, "keyCode: " + keyCode);
+		    final FragmentTransaction ft = getFragmentManager().beginTransaction();
+		    ft.replace(R.id.content_frame, new FragmentHome()).addToBackStack(null);
+		    ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+		    ft.commit();
+		}
+		return true;
+	    }
+	});
+	
 	return view;
     }
 

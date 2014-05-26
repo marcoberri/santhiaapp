@@ -13,11 +13,13 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 /**
  * @author Marco Berri - marcoberri@gmail.com
@@ -26,7 +28,6 @@ import android.widget.ListView;
 public class HomeActivity extends FragmentActivity {
 
     private static final String TAG = HomeActivity.class.getName();
-
     protected Dialog mSplashDialog;
 
     private DrawerLayout mDrawerLayout;
@@ -140,5 +141,5 @@ public class HomeActivity extends FragmentActivity {
 	super.onConfigurationChanged(newConfig);
 	mDrawerToggle.onConfigurationChanged(newConfig);
     }
-
+    
 }

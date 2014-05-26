@@ -1,8 +1,5 @@
 package it.marcoberri.santhiaapp.view;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import it.marcoberri.santhiaapp.R;
 import it.marcoberri.santhiaapp.adapter.PlaceDetailGalleryPageAdapter;
 import it.marcoberri.santhiaapp.animation.ZoomOutPageTransformer;
@@ -10,20 +7,29 @@ import it.marcoberri.santhiaapp.db.datasource.PlaceBookmarkModelDataSource;
 import it.marcoberri.santhiaapp.model.PlaceBookmarkModel;
 import it.marcoberri.santhiaapp.model.PlaceImageModel;
 import it.marcoberri.santhiaapp.model.PlaceModel;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import android.app.Activity;
 import android.app.Fragment;
+import android.app.FragmentTransaction;
+import android.app.FragmentManager.OnBackStackChangedListener;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.InflateException;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnKeyListener;
 import android.view.ViewGroup;
 import android.widget.TabHost;
+import android.widget.Toast;
 import android.widget.TabHost.TabSpec;
 import android.widget.TextView;
 
@@ -124,6 +130,23 @@ public class FragmentPlaceDetail extends Fragment {
 	}
 
 	dsBookMark = new PlaceBookmarkModelDataSource(context);
+
+	view.setFocusableInTouchMode(true);
+	view.requestFocus();
+	view.setOnKeyListener(new OnKeyListener() {
+
+	    @Override
+	    public boolean onKey(View v, int keyCode, KeyEvent event) {
+		if (keyCode == KeyEvent.KEYCODE_BACK) {
+		    final FragmentTransaction ft = getFragmentManager().beginTransaction();
+		    ft.replace(R.id.content_frame, new FragmentPlaceList()).addToBackStack(null);
+		    ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+		    ft.commit();
+		}
+		return true;
+	    }
+	});
+
 	return view;
 
     }

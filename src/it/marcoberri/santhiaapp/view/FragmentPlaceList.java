@@ -16,9 +16,11 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.View.OnKeyListener;
 import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
 import android.widget.AdapterView;
@@ -100,6 +102,7 @@ public class FragmentPlaceList extends Fragment implements OnScrollListener {
 		placeModel.setGps(dsGps.getGpsByPlaceId(placeModel.getId()));
 
 		detail.setPlaceModel(placeModel);
+
 		ft.replace(R.id.content_frame, detail, "CENTER").addToBackStack(null);
 		ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
 		ft.commit();
@@ -108,6 +111,23 @@ public class FragmentPlaceList extends Fragment implements OnScrollListener {
 
 	});
 
+	v.setFocusableInTouchMode(true);
+	v.requestFocus();
+	/*v.setOnKeyListener(new OnKeyListener() {
+
+	    @Override
+	    public boolean onKey(View v, int keyCode, KeyEvent event) {
+		if (keyCode == KeyEvent.KEYCODE_BACK) {
+		    Log.i(TAG, "keyCode: " + keyCode);
+		    final FragmentTransaction ft = getFragmentManager().beginTransaction();
+		    ft.replace(R.id.content_frame, new FragmentHome()).addToBackStack(null);
+		    ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+		    ft.commit();
+		}
+		return true;
+	    }
+	});
+*/
 	return v;
     }
 
