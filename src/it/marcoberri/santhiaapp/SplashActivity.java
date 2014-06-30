@@ -58,9 +58,10 @@ public class SplashActivity extends Activity {
 	logText = (TextView) findViewById(R.id.editText1);
 
 	boolean checkOnline = HttpUtils.isOnline(this);
-	if (checkOnline)
+	if (checkOnline){
+	    Log.i(TAG,"start download: " + URL_PLACE);
 	    new DownloadFileFromURL().execute(URL_PLACE);
-	else {
+	} else {
 	    Toast.makeText(this, "No internet connection", Toast.LENGTH_LONG).show();
 	}
     }
@@ -167,6 +168,11 @@ public class SplashActivity extends Activity {
 		placeDS.insertPlace(model.getId(), model.getTitle(), model.getSubtitle(), model.getText(), model.getAddress(), (model.getLocale() == null) ? "it_IT" : model.getLocale());
 
 		for (PlaceImageModel modelImage : model.getImages()) {
+		    if(modelImage == null || modelImage.getUrl() == null){
+			Log.d(TAG, "modelImage is null");
+			continue;
+		    }
+		    Log.d(TAG, modelImage.getUrl());
 		    placeImageDS.insertPlaceImage(modelImage.getId(), model.getId(), modelImage.getUrl(), modelImage.getDisclamer(), modelImage.getTitle(), modelImage.getText());
 		}
 

@@ -91,7 +91,7 @@ public class FragmentHome extends Fragment {
 
 		marker.setVisible(true);
 
-		map.moveCamera(CameraUpdateFactory.newLatLngZoom(gpsPos, 10));
+		map.moveCamera(CameraUpdateFactory.newLatLngZoom(gpsPos, 15));
 	    }
 
 	    map.setMyLocationEnabled(true);

@@ -51,6 +51,8 @@ public class FragmentPlaceList extends Fragment implements OnScrollListener {
 	Log.i(TAG, "list" + placeModelArray);
 	final View v = inflater.inflate(R.layout.fragment_place_list, container, false);
 
+	
+	
 	listview = (ListView) v.findViewById(R.id.listViewPlace);
 
 	adapter = new PlaceListAdapter(v.getContext(), R.layout.fragment_place_list, placeModelArray);
@@ -111,9 +113,9 @@ public class FragmentPlaceList extends Fragment implements OnScrollListener {
 
 	});
 
-	v.setFocusableInTouchMode(true);
-	v.requestFocus();
-	/*v.setOnKeyListener(new OnKeyListener() {
+	/*listview.setFocusableInTouchMode(true);
+	listview.requestFocus();*/
+	v.setOnKeyListener(new OnKeyListener() {
 
 	    @Override
 	    public boolean onKey(View v, int keyCode, KeyEvent event) {
@@ -127,7 +129,7 @@ public class FragmentPlaceList extends Fragment implements OnScrollListener {
 		return true;
 	    }
 	});
-*/
+
 	return v;
     }
 

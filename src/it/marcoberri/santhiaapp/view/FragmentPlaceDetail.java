@@ -181,6 +181,7 @@ public class FragmentPlaceDetail extends Fragment {
 	final TabSpec tabSpec2 = mTabHost.newTabSpec("Near");
 	tabSpec2.setContent(R.id.tab_2);
 	tabSpec2.setIndicator(getResources().getString(R.string.tab_photo));
+	
 
 	final TabSpec tabSpec3 = mTabHost.newTabSpec("Map");
 	tabSpec3.setContent(R.id.tab_3);
@@ -194,11 +195,12 @@ public class FragmentPlaceDetail extends Fragment {
 	mTabHost.addTab(tabSpec2);
 	mTabHost.addTab(tabSpec3);
 	mTabHost.addTab(tabSpec4);
-
-	mTabHost.getTabWidget().getChildAt(0).getLayoutParams().height = getResources().getDimensionPixelSize(R.dimen.tab_height);
-	mTabHost.getTabWidget().getChildAt(1).getLayoutParams().height = getResources().getDimensionPixelSize(R.dimen.tab_height);
-	mTabHost.getTabWidget().getChildAt(2).getLayoutParams().height = getResources().getDimensionPixelSize(R.dimen.tab_height);
-	mTabHost.getTabWidget().getChildAt(3).getLayoutParams().height = getResources().getDimensionPixelSize(R.dimen.tab_height);
+	
+	for(int i=0; i<mTabHost.getTabWidget().getChildCount();i++){
+	    mTabHost.getTabWidget().getChildAt(i).getLayoutParams().height = getResources().getDimensionPixelSize(R.dimen.tab_height);
+	    TextView t = (TextView)mTabHost.getTabWidget().getChildAt(i).findViewById(android.R.id.title);
+	    t.setTextSize(10);
+	}
 
     }
 
